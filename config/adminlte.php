@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b style="font-weight:600; font-family: Poppins;">Municipal Aparri</b>',
+    'logo' => '<b style="font-weight:600; font-family: Poppins;">Agriculture Office</b>',
     'logo_img' => 'assets/img/masp-logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-1',
     'logo_img_xl' => null,
@@ -324,6 +324,16 @@ return [
         // ],
         // ['header' => 'account_settings'],
         [
+            'text' => 'Dashboard',
+            'url' => '/home',
+            'icon' => 'fas fa-fw fa-house',
+        ],
+        [
+            'text' => 'Events',
+            'url' => 'admin/Event',
+            'icon' => 'fa-regular fa-calendar-plus',
+        ],
+        [
             'text' => 'profile',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
@@ -491,6 +501,16 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'FontAwesome' => [
+            'active' => true,  // Enable FontAwesome
+            'files'  => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
                 ],
             ],
         ],

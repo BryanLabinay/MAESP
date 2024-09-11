@@ -3,17 +3,18 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\EventController;
+use Illuminate\Console\Scheduling\Event;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [HomeController::class, 'auth'])
-    ->middleware(['auth'])->name('home');
 
 
 Route::middleware('auth')->group(function () {
@@ -27,3 +28,9 @@ require __DIR__ . '/auth.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('admin')->group(function () {
+    // Event
+    Route::get('/Event', [EventController::class, 'event'])->name('event');
+    Route::post('Event', [EventController::class, 'storeEvent'])->name('store.event');
+});
