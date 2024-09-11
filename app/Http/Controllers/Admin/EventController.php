@@ -14,7 +14,8 @@ class EventController extends Controller
      */
     public function event()
     {
-        return view('admin.event');
+        $events = Event::all();
+        return view('layouts.userlayout', compact('events'));
     }
 
     public function storeEvent(EventFormRequest $request){
