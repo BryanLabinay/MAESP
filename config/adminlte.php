@@ -31,7 +31,7 @@ return [
     */
 
     'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -191,13 +191,13 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
-    'classes_brand_text' => '',
-    'classes_content_wrapper' => '',
+    'classes_brand' => 'bg-olive',
+    'classes_brand_text' => 'text-md',
+    'classes_content_wrapper' => 'text-sm',
     'classes_content_header' => '',
-    'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-olive elevation-2',
-    'classes_sidebar_nav' => '',
+    'classes_content' => 'text-sm',
+    'classes_sidebar' => 'sidebar-light-olive elevation-2 ',
+    'classes_sidebar_nav' => 'nav-flat',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -330,22 +330,22 @@ return [
         ],
         [
             'text' => 'Events',
-            'url' => 'admin/Event',
+            'url' => 'Admin/Event',
             'icon' => 'fa-regular fa-calendar-plus',
         ],
         [
-            'text' => 'profile',
-            'url' => 'admin/settings',
+            'text' => 'Brgy. Offices',
+            'url' => 'Admin/Brgy',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Manage User',
+            'url' => '',
+            'icon' => 'fa-solid fa-users',
         ],
         [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
+            'text' => 'News & Update',
+            'icon' => 'fa-solid fa-newspaper',
             'submenu' => [
                 [
                     'text' => 'level_one',
@@ -383,20 +383,12 @@ return [
         ],
         ['header' => 'labels'],
         [
-            'text' => 'important',
-            'icon_color' => 'red',
+            'text' => 'Activity Log',
+            'icon' => 'fa-solid fa-clock-rotate-left',
+            'icon_color' => 'blue',
             'url' => '#',
         ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],
+
     ],
 
     /*
