@@ -14,46 +14,32 @@ class EventController extends Controller
      */
     public function event()
     {
-        $events = Event::all();
-        return view('layouts.userlayout', compact('events'));
+        return view('admin.event');
+        // $events = Event::all();
+        // return view('layouts.userlayout', compact('events'));
     }
 
-    public function storeEvent(EventFormRequest $request){
-        // Create a new event instance
+    public function storeEvent(Request $request)
+    {
         $event = new Event();
-
-        // Assign form values to the event instance
         $event->title = $request->title;
         $event->description = $request->description;
-
-        // Check if an image was uploaded
-        if($request->hasFile('img')){
-            // Get the uploaded image
+        if ($request->hasFile('img')) {
             $img = $request->file('img');
-
-            // Create a unique name for the image file
             $imgName = time() . '.' . $img->getClientOriginalName();
-
-            // Move the image to the 'uploads/event' directory in public folder
             $img->move(public_path('uploads/event'), $imgName);
-
-            // Save the image file name to the 'img' column in the event model
             $event->img = $imgName;
         }
-
-        // Save the event to the database
         $event->save();
-
-        // Redirect back with the event instance and a success status
         return redirect()->back()->with('event', $event)->with('eventStatus', 'Event Added');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function brgy()
     {
-        //
+        return view('admin.brgy-offices');
     }
 
     /**
