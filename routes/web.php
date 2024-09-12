@@ -30,8 +30,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('Admin')->group(function () {
     // Event
     Route::get('/Event', [EventController::class, 'event'])->name('event');
-    Route::post('Event', [EventController::class, 'storeEvent'])->name('store.event');
+    Route::post('/Event', [EventController::class, 'storeEvent'])->name('store.event');
+
+    // Brgy.Offices
+    Route::get('/Brgy', [EventController::class, 'brgy'])->name('brgy');
 });
