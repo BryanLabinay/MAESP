@@ -37,10 +37,10 @@ class EventController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function brgy()
-    {
-        return view('admin.brgy-offices');
-    }
+    // public function brgy()
+    // {
+    //     return view('admin.brgy-offices');
+    // }
 
     /**
      * Store a newly created resource in storage.
