@@ -1,12 +1,18 @@
 <?php
 
-use App\Http\Controllers\Admin\BarangayController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\EventController;
-use Illuminate\Console\Scheduling\Event;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use Illuminate\Console\Scheduling\Event;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\ForumController;
+use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\BarangayController;
+
+
+Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
+
 
 Route::get('/', function () {
     return view('layouts.userlayout');
@@ -25,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
 require __DIR__ . '/auth.php';
 
 Auth::routes();
@@ -42,4 +50,9 @@ Route::prefix('Admin')->group(function () {
 
     Route::post('/add-brgy', [BarangayController::class, 'store'])->name('store.brgy');
 
+    // Report
+    Route::get('/Reports', [ReportController::class, 'report'])->name('report');
+
+    // Forum
+    Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 });
