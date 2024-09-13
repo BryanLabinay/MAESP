@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => 'text-sm',
     'classes_content_header' => '',
     'classes_content' => 'text-sm',
-    'classes_sidebar' => 'sidebar-light-olive elevation-2 ',
+    'classes_sidebar' => 'sidebar-light-olive elevation-2 fw-medium',
     'classes_sidebar_nav' => 'nav-flat',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -381,7 +381,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        // ['header' => 'OTHER'],
         [
             'text' => 'Activity Log',
             'icon' => 'fa-solid fa-clock-rotate-left',
