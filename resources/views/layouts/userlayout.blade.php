@@ -29,6 +29,7 @@
 
 </head>
 
+
 <body>
 
     <!-- ======= Header ======= -->
@@ -78,6 +79,7 @@
 
         </div>
     </header><!-- End Header -->
+
 
     <!-- ======= hero Section ======= -->
     <section id="hero">
@@ -232,34 +234,35 @@
         </div>
     </section><!-- End Hero Section -->
 
+
     <main id="main">
 
         <!-- ======= Featured events Section Section ======= -->
         <!-- <section id="featured-events">
-                  <div class="container">
-                    <div class="row">
+                              <div class="container">
+                                <div class="row">
 
-                      <div class="col-lg-4 box">
-                        <i class="bi bi-briefcase"></i>
-                        <h4 class="title"><a href="">Lorem Ipsum Delino</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                      </div>
+                                  <div class="col-lg-4 box">
+                                    <i class="bi bi-briefcase"></i>
+                                    <h4 class="title"><a href="">Lorem Ipsum Delino</a></h4>
+                                    <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                                  </div>
 
-                      <div class="col-lg-4 box box-bg">
-                        <i class="bi bi-card-checklist"></i>
-                        <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                        <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-                      </div>
+                                  <div class="col-lg-4 box box-bg">
+                                    <i class="bi bi-card-checklist"></i>
+                                    <h4 class="title"><a href="">Dolor Sitema</a></h4>
+                                    <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                                  </div>
 
-                      <div class="col-lg-4 box">
-                        <i class="bi bi-binoculars"></i>
-                        <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-                      </div>
+                                  <div class="col-lg-4 box">
+                                    <i class="bi bi-binoculars"></i>
+                                    <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
+                                    <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                                  </div>
 
-                    </div>
-                  </div>
-                </section> -->
+                                </div>
+                              </div>
+                            </section> -->
 
         <!-- ======= About Us Section ======= -->
         <section id="about">
@@ -445,7 +448,7 @@
                     <h3 class="section-title">Our Portfolio</h3>
                 </header>
 
-                <div class="row" data-aos="fade-up" data-aos-delay="100"">
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
                     <div class=" col-lg-12">
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">All</li>
@@ -805,13 +808,30 @@
         <section id="contact" class="section-bg">
             <div class="container" data-aos="fade-up">
 
+
                 <div class="section-header">
                     <h3>Forum</h3>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                 </div>
 
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="form">
-                    <form action="{{ route('forum.create') }}" method="post" class="php-email-form">
+                    <form id="forumForm" action="{{ route('forum.create') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -827,16 +847,76 @@
                             <textarea class="form-control" name="description" rows="5" placeholder="Message" required></textarea>
                         </div>
                         <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                            <div id="loading" class="loading" style="display: none;">Loading</div>
+                            <div id="error-message" class="error-message" style="display: none;"></div>
+                            <div id="success-message" class="sent-message" style="display: none;">Your message has
+                                been sent. Thank you!</div>
                         </div>
                         <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
                 </div>
 
+
+                <div class="div">
+                    @foreach ($forums as $forum)
+                        <div>
+                            <h1> {{ $forum->name }}</h1>
+                            <p>{{ $forum->description }}</p>
+                        </div>
+                    @endforeach
+                </div>
+                <script>
+                    document.getElementById('forumForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+
+                        // Show loading message
+                        document.getElementById('loading').style.display = 'block';
+
+                        // Clear previous error and success messages
+                        document.getElementById('error-message').style.display = 'none';
+                        document.getElementById('success-message').style.display = 'none';
+
+                        var formData = new FormData(this);
+
+                        // Submit form via AJAX
+                        fetch('{{ route('forum.create') }}', {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                },
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    // Hide loading
+                                    document.getElementById('loading').style.display = 'none';
+
+                                    // Show success message
+                                    document.getElementById('success-message').style.display = 'block';
+
+                                    // Optionally, refresh the page after submission
+                                    setTimeout(function() {
+                                        window.location.reload();
+                                    }, 1000); // Refresh page after 1 second
+                                } else {
+                                    throw data.message || 'An error occurred';
+                                }
+                            })
+                            .catch(error => {
+                                // Hide loading
+                                document.getElementById('loading').style.display = 'none';
+
+                                // Show error message
+                                document.getElementById('error-message').innerText = error;
+                                document.getElementById('error-message').style.display = 'block';
+                            });
+                    });
+                </script>
+
             </div>
         </section><!-- End Contact Section -->
+
 
     </main><!-- End #main -->
 
@@ -907,8 +987,8 @@
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
-    <!-- Uncomment below i you want to use a preloader -->
-    <!-- <div id="preloader"></div> -->
+
+    {{--  <!-- <div id="preloader"></div>   --}}
 
     <!-- Vendor JS Files -->
     <script src="{{ url('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

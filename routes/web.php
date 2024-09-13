@@ -12,11 +12,12 @@ use App\Http\Controllers\Admin\BarangayController;
 
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
+Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
 
 
 Route::get('/', function () {
-    return view('layouts.userlayout');
-});
+    return redirect()->route('forum.show');
+})->name('homepage');
 
 
 Route::get('/dashboard', function () {

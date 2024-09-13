@@ -23,39 +23,30 @@ class ForumController extends Controller
      */
     public function create(Request $request)
     {
-        try {
-            $forums = new Forum();
-            $forums->name = $request->name;
-            $forums->subject = $request->subject;
-            $forums->description = $request->description;
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'subject' => 'nullable|string|max:255',
+            'description' => 'required|string',
+        ]);
 
-            $forums->save();
+        // Save the form data
+        Forum::create($validatedData);
 
-            // Redirect to a named route or specific URL
-            return redirect()->url('/');
-        } catch (\Exception $e) {
-            // Log the exception
-            Log::error('Error creating forum: ' . $e->getMessage());
-
-            // Return a generic error message
-            return response()->json(['error' => 'An error occurred while creating the forum.'], 500);
-        }
+        // Return a JSON response indicating success
+        return response()->json(['success' => true]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $forums = Forum::all();
+        return view('layouts.userlayout', compact('forums'));
     }
 
     /**
