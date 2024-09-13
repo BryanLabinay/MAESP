@@ -56,4 +56,5 @@ Route::prefix('Admin')->group(function () {
 
     // Forum
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
+
 });

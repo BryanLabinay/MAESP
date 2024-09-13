@@ -22,7 +22,16 @@
 
     @section('content')
         <div class="container-fluid">
+            <div class="div">
+                @foreach ($forums as $forum)
+                    <div>
+                        <h1> {{ $forum->name }}</h1>
+                        <h6> {{ $forum->subject }}</h6>
 
+                        <p>{{ $forum->description }}</p>
+                    </div>
+                @endforeach
+            </div>
         </div>
     @stop
 </x-app-layout>

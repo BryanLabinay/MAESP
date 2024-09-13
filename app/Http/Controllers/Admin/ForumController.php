@@ -15,7 +15,8 @@ class ForumController extends Controller
      */
     public function forum()
     {
-        return view('admin.forum');
+        $forums = Forum::all();
+        return view('admin.forum', compact('forums'));
     }
 
     /**
@@ -48,6 +49,9 @@ class ForumController extends Controller
         $forums = Forum::all();
         return view('layouts.userlayout', compact('forums'));
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
