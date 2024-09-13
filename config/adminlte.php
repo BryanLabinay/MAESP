@@ -196,7 +196,7 @@ return [
     'classes_content_wrapper' => 'text-sm',
     'classes_content_header' => '',
     'classes_content' => 'text-sm',
-    'classes_sidebar' => 'sidebar-light-olive elevation-2 fw-medium',
+    'classes_sidebar' => 'sidebar-light-olive elevation-2',
     'classes_sidebar_nav' => 'nav-flat',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -337,6 +337,16 @@ return [
             'text' => 'Brgy. Offices',
             'url' => 'Admin/Brgy',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Reports',
+            'url' => 'Admin/Reports',
+            'icon' => 'fa-solid fa-clipboard',
+        ],
+        [
+            'text' => 'Forum',
+            'url' => 'Admin/Forum',
+            'icon' => 'fa-solid fa-envelope',
         ],
         [
             'text' => 'Manage User',
