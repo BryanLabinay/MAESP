@@ -25,84 +25,22 @@
                 </form </div>
 
                 <div class="row mt-3">
-                    <div class="col-2">
-                        <a href="#" class="text-decoration-none">
-                            <div class="card-group">
-                                <div class="card p-0">
-                                    <img src="{{ asset('assets/img/offices/img1.jpg') }}" class="card-img-top"
-                                        alt="..." height="120" style="object-fit:cover;">
-                                    <div class="text-center mt-1">
-                                        <h6 class="fw-semibold">Brgy. Toran</h6>
+                    @foreach ($barangays as $barangay)
+                        <div class="col-2">
+                            <a href="#" class="text-decoration-none">
+                                <div class="card-group">
+                                    <div class="card p-0">
+                                        <img src="{{ $barangay->image ? asset('brgy_images/' . $barangay->image) : asset('assets/img/offices/default.jpg') }}"
+                                            class="card-img-top" alt="Image of {{ $barangay->brgy_name }}" height="120"
+                                            style="object-fit:cover;">
+                                        <div class="text-center mt-1">
+                                            <h6 class="fw-semibold">{{ $barangay->brgy_name }}</h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="#" class="text-decoration-none">
-                            <div class="card-group">
-                                <div class="card p-0">
-                                    <img src="{{ asset('assets/img/offices/img2.jpg') }}" class="card-img-top"
-                                        alt="..." height="120" style="object-fit:cover;">
-                                    <div class="text-center mt-1">
-                                        <h6 class="fw-semibold">Brgy. Maura</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="#" class="text-decoration-none">
-                            <div class="card-group">
-                                <div class="card p-0">
-                                    <img src="{{ asset('assets/img/offices/img3.jpg') }}" class="card-img-top"
-                                        alt="..." height="120" style="object-fit:cover;">
-                                    <div class="text-center mt-1">
-                                        <h6 class="fw-semibold">Brgy. San Antonio</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="#" class="text-decoration-none">
-                            <div class="card-group">
-                                <div class="card p-0">
-                                    <img src="{{ asset('assets/img/offices/img4.jpg') }}" class="card-img-top"
-                                        alt="..." height="120" style="object-fit:cover;">
-                                    <div class="text-center mt-1">
-                                        <h6 class="fw-semibold">Brgy. Dodan</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="#" class="text-decoration-none">
-                            <div class="card-group">
-                                <div class="card p-0">
-                                    <img src="{{ asset('assets/img/offices/img5.jpg') }}" class="card-img-top"
-                                        alt="..." height="120" style="object-fit:cover;">
-                                    <div class="text-center mt-1">
-                                        <h6 class="fw-semibold">Brgy. Minanga</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-2">
-                        <a href="#" class="text-decoration-none">
-                            <div class="card-group">
-                                <div class="card p-0">
-                                    <img src="{{ asset('assets/img/offices/img6.jpg') }}" class="card-img-top"
-                                        alt="..." height="120" style="object-fit:cover;">
-                                    <div class="text-center mt-1">
-                                        <h6 class="fw-semibold">Brgy. Macanaya</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -117,14 +55,36 @@
                         </div>
                         <div class="modal-body">
                             <!-- Modal Form Content -->
-                            <form id="addBarangayForm" action="">
+                            <form id="addBarangayForm" action="{{ route('store.brgy') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="barangayName" class="form-label">Barangay Name</label>
-                                    <input type="text" class="form-control" id="barangayName"
-                                        placeholder="Enter Barangay Name">
+                                    <input type="text" class="form-control" id="brgy_name" name="brgy_name"
+                                        placeholder="Enter Barangay Name" required>
                                 </div>
-                                <!-- Additional form fields can go here -->
+
+                                <div class="mb-3">
+                                    <label for="cityMunicipality" class="form-label">City/Municipality</label>
+                                    <input type="text" class="form-control" id="cityMunicipality" name="municipality"
+                                        placeholder="Enter City/Municipality" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="Zipcode" class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" id="barangayCode" name="zip_code"
+                                        placeholder="Enter Zip Code (optional)">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="barangayImage" class="form-label">Barangay Image</label>
+                                    <input type="file" class="form-control" id="barangayImage" name="image"
+                                        accept="image/*">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Add Barangay</button>
                             </form>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

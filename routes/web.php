@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,9 @@ Route::prefix('Admin')->group(function () {
     Route::post('/Event', [EventController::class, 'storeEvent'])->name('store.event');
 
     // Brgy.Offices
-    Route::get('/Brgy', [EventController::class, 'brgy'])->name('brgy');
+    // Route::get('/Brgy', [EventController::class, 'brgy'])->name('brgy');
+    Route::get('/Brgy', [BarangayController::class, 'show'])->name('barangays.index');
+
+    Route::post('/add-brgy', [BarangayController::class, 'store'])->name('store.brgy');
+
 });
