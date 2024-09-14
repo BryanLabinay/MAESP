@@ -16,7 +16,8 @@ Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
 
 
 Route::get('/', function () {
-    return redirect()->route('forum.show');
+    return view('layouts.userlayout');
+    // return redirect()->route('forum.show');
 })->name('homepage');
 
 
