@@ -22,15 +22,18 @@
 
     @section('content')
         <div class="container-fluid">
-            <div class="div">
-                @foreach ($forums as $forum)
-                    <div>
-                        <h1> {{ $forum->name }}</h1>
-                        <h6> {{ $forum->subject }}</h6>
-
-                        <p>{{ $forum->description }}</p>
-                    </div>
-                @endforeach
+            <div class="row">
+                <div class="col-3">
+                    @foreach ($forums as $forum)
+                        <a href="#" class="text-decoration-none">
+                            <div class="bg-secondary bg-opacity-25 text-black py-0 px-1 rounded-1 mb-1">
+                                <h6>Name: {{ $forum->name }}</h6>
+                                <h6>Subject: {{ $forum->subject }}</h6>
+                                <p>Description: {{ $forum->description }}</p>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
     @stop
