@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Event;
+use App\Models\Forum;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,8 +21,13 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        $events = Event::all();
-        View::share('events', $events);
-    }
+{
+    $events = Event::all();
+    $forums = Forum::all();
+
+    View::share([
+        'events' => $events,
+        'forums' => $forums,
+    ]);
+}
 }
