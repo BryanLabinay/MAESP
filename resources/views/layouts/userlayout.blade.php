@@ -5,12 +5,16 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>MUNICIPAL AGRICULTURE EXTENSION SERVICE PORTAL</title>
+    <title>MUNICIPAL AGRICULTURE SERVICE PORTAL</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
     <link href="{{ url('assets/img/doa-logo.png') }}" rel="icon">
+
+    {{-- Boostrap CDN --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
@@ -39,7 +43,7 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-xl-11 d-flex align-items-center justify-content-between">
                     <a href="index.html" class="logo"><img src="assets/img/doa-logo.png" alt=""
-                            class="img-fluid me-1"><strong class="text-light">MAESP</strong></a>
+                            class="img-fluid me-1"><strong class="text-light">MASP</strong></a>
                     {{-- <h1 class="logo"><a href="index.html">MAESP</a></h1> --}}
 
 
@@ -94,7 +98,7 @@
                         <div class="carousel-container">
                             <div class="container">
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
-                                        class="text-success">AGRICULTURE</strong> EXTENSION
+                                        class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
                                 <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -120,7 +124,7 @@
                         <div class="carousel-container">
                             <div class="container">
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
-                                        class="text-success">AGRICULTURE</strong> EXTENSION
+                                        class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
                                 <p class="animate__animated animate__fadeInUp">Nam libero tempore, cum soluta nobis est
                                     eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
@@ -146,7 +150,7 @@
                         <div class="carousel-container">
                             <div class="container">
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
-                                        class="text-success">AGRICULTURE</strong> EXTENSION
+                                        class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
                                 <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo
                                     enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
@@ -172,7 +176,7 @@
                         <div class="carousel-container">
                             <div class="container">
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
-                                        class="text-success">AGRICULTURE</strong> EXTENSION
+                                        class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
                                 <p class="animate__animated animate__fadeInUp">Neque porro quisquam est, qui dolorem
                                     ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
@@ -198,7 +202,7 @@
                         <div class="carousel-container">
                             <div class="container">
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
-                                        class="text-success">AGRICULTURE</strong> EXTENSION
+                                        class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
                                 <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -232,7 +236,8 @@
 
             </div>
         </div>
-    </section><!-- End Hero Section -->
+    </section>
+    <!-- End Hero Section -->
 
 
     <main id="main">
@@ -718,7 +723,7 @@
         </section><!-- End Testimonials Section --> --}}
 
         <!-- ======= Team Section ======= -->
-        <section id="team">
+        {{-- <section id="team">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
                     <h3>Team</h3>
@@ -802,7 +807,7 @@
                 </div>
 
             </div>
-        </section><!-- End Team Section -->
+        </section><!-- End Team Section --> --}}
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="section-bg">
@@ -833,7 +838,7 @@
                 <div class="form">
                     <form id="forumForm" action="{{ route('forum.create') }}" method="post">
                         @csrf
-                        <div class="row">
+                        <div class="row mb-2">
                             <div class="form-group col-md-6">
                                 <input type="text" name="name" class="form-control" id="name"
                                     placeholder="Your Name" required>
@@ -852,7 +857,9 @@
                             <div id="success-message" class="sent-message" style="display: none;">Your message has
                                 been sent. Thank you!</div>
                         </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Send Message</button>
+                        </div>
                     </form>
                 </div>
 
@@ -928,7 +935,7 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-info">
-                        <h3>MAESP</h3>
+                        <h3>MASP</h3>
                         <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
                             valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet
                             proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
@@ -981,7 +988,7 @@
 
         <div class="container">
             <div class="copyright">
-                &copy; Copyright <strong>Municipal Agriculture Extension Service Portal</strong>. All Rights Reserved
+                &copy; Copyright <strong>Municipal Agriculture Service Portal</strong>. All Rights Reserved
             </div>
         </div>
     </footer><!-- End Footer -->
