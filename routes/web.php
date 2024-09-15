@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\BarangayController;
+use App\Http\Controllers\ReactionController;
 use App\Models\Barangay;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
@@ -57,5 +58,7 @@ Route::prefix('Admin')->group(function () {
 
     // Forum
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
+
+    Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
 
 });

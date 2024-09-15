@@ -16,7 +16,7 @@ class BarangayController extends Controller
             'brgy_name' => 'required|string|max:255',
             'municipality' => 'required|string|max:255',
             'zip_code' => 'nullable|string|max:50',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:50000', // Image validation
         ]);
 
         // Handle the image upload

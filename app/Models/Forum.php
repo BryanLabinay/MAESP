@@ -9,4 +9,10 @@ class Forum extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'subject', 'description'];
+
+    public function reactions()
+    {
+        return $this->hasMany(Reactions::class);
+    }
+
 }

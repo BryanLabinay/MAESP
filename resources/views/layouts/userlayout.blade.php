@@ -863,17 +863,93 @@
                     </form>
                 </div>
 
-                <div class="row p-3">
-                    <div class="d-flex bg-white shadow-sm rounded-2">
+                <div class="row p-3" style="max-height: 500px; overflow-y: auto;">
+                    <div class="col-12">
+                      <div class="row bg-white shadow-sm rounded-2 g-3">
                         @foreach ($forums as $forum)
-                        <div class="col-3 p-0">
-                                <h5> {{ $forum->name }}</h5>
-                                <p> {{ $forum->subject }}</p>
-                                <p>{{ $forum->description }}</p>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="card h-100" data-bs-toggle="modal" data-bs-target="#forumModal{{ $forum->id }}" style="cursor: pointer;">
+                                <div class="card-body">
+                                    <!-- Forum Title -->
+                                    <h6 class="card-title">{{ $forum->name }}</h6>
+
+                                    <!-- Forum Subject -->
+                                    <p class="card-subtitle text-muted mb-2">{{ $forum->subject }}</p>
+
+                                    <!-- Forum Description -->
+                                    <p class="card-text">{{ Str::limit($forum->description, 100, '...') }}</p>
+
+                                    <!-- Buttons -->
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Like Button -->
+                                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation();">
+                                            <i class="bi bi-hand-thumbs-up"></i> Like
+                                        </button>
+
+                                        <!-- Comment Button -->
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#commentSection{{ $forum->id }}" onclick="event.stopPropagation();">
+                                            <i class="bi bi-chat"></i> Comment
+                                        </button>
+                                    </div>
+
+                                    <!-- Comment Section (Collapsible) -->
+                                </div>
+                            </div>
                         </div>
-                        @endforeach
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="forumModal{{ $forum->id }}" tabindex="-1" aria-labelledby="forumModalLabel{{ $forum->id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="forumModalLabel{{ $forum->id }}">{{ $forum->name }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Subject:</strong> {{ $forum->subject }}</p>
+                                        <p><strong>Description:</strong> {{ $forum->description }}</p>
+
+                                        <!-- Display Reactions for this Forum -->
+                                        <ul>
+                                            @forelse($forum->reactions as $reaction)
+                                                <li>
+                                                    Anonymous: {{ $reaction->comment_text }} <br>
+                                                    {{-- Reaction Type: {{ $reaction->reaction_type }} <br>
+                                                    Created At: {{ $reaction->created_at->format('Y-m-d H:i:s') }} --}}
+                                                </li>
+                                            @empty
+                                                <li>No reactions found.</li>
+                                            @endforelse
+                                        </ul>
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="collapse mt-3" id="commentSection{{ $forum->id }}">
+                                            <form method="POST" action="{{ route('reactions.store') }}">
+                                                @csrf
+                                                <input type="hidden" name="forum_id" value="{{ $forum->id }}" />
+
+                                                <div class="mb-2 d-flex">
+                                                    <input
+                                                        type="text"
+                                                        name="comment_text"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Write a comment" required
+                                                    />
+
+                                                    <button type="submit" class="btn btn-primary btn-sm">Post</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                      </div>
                     </div>
-                </div>
+                  </div>
+
                 <script>
                     document.getElementById('forumForm').addEventListener('submit', function(e) {
                         e.preventDefault();
@@ -1011,6 +1087,10 @@
 
     <!-- Main JS File -->
     <script src="{{ url('assets/js/main.js') }}"></script>
+
+    <!-- Bootstrap JS (with Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 </body>
 
