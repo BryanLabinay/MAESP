@@ -9,7 +9,6 @@
     @section('content_header')
     <h5 class="fw-semibold text-md">Brgy. {{ $barangay_list->brgy_name }}</h5>
     <hr class="mt-0">
-    @stop
 
     @section('content')
 
