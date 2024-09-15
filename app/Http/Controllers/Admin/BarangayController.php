@@ -51,4 +51,10 @@ class BarangayController extends Controller
         // Pass the barangay data to the view
         return view('admin.brgy-offices', compact('barangays'));
     }
+
+    public function editbrgy($id)
+    {
+        $barangays = Barangay::findOrFail($id);
+        return view('admin.brgy-edit', ['barangay_list' => $barangays]);
+    }
 }

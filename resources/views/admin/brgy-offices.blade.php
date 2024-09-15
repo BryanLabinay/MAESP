@@ -27,7 +27,7 @@
                 <div class="row mt-3">
                     @foreach ($barangays as $barangay)
                         <div class="col-2">
-                            <a href="#" class="text-decoration-none">
+                            <a href="{{ 'edit/' .$barangay['id'] }}" class="text-decoration-none">
                                 <div class="card-group">
                                     <div class="card p-0">
                                         <img src="{{ $barangay->image ? asset('brgy_images/' . $barangay->image) : asset('assets/img/offices/default.jpg') }}"

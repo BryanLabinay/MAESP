@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\BarangayController;
-
+use App\Models\Barangay;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
 Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
@@ -49,8 +49,8 @@ Route::prefix('Admin')->group(function () {
     // Brgy.Offices
     // Route::get('/Brgy', [EventController::class, 'brgy'])->name('brgy');
     Route::get('/Brgy', [BarangayController::class, 'show'])->name('barangays.index');
-
     Route::post('/add-brgy', [BarangayController::class, 'store'])->name('store.brgy');
+    Route::get('edit/{id}', [BarangayController::class, 'editbrgy'])->name('edit.brgy');
 
     // Report
     Route::get('/Reports', [ReportController::class, 'report'])->name('report');
