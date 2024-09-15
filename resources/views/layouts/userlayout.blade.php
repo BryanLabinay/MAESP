@@ -42,8 +42,8 @@
 
             <div class="row justify-content-center align-items-center">
                 <div class="col-xl-11 d-flex align-items-center justify-content-between">
-                    <a href="index.html" class="logo"><img src="assets/img/doa-logo.png" alt=""
-                            class="img-fluid me-1"><strong class="text-light">MASP</strong></a>
+                    <a href="index.html" class="logo"><img src="assets/img/masp-logo.jpg" alt=""
+                            class="img-fluid rounded-circle me-1"><strong class="text-light">MASP</strong></a>
                     {{-- <h1 class="logo"><a href="index.html">MAESP</a></h1> --}}
 
 
@@ -100,10 +100,10 @@
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
                                         class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
-                                <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat.</p>
+                                <p class="animate__animated animate__fadeInUp">"Supporting local farmers with
+                                    sustainable practices, empowering communities with resources, and ensuring fresh,
+                                    organic produce. Our portal connects you to essential agricultural services,
+                                    fostering growth and resilience for a thriving future."</p>
                                 @if (Route::has('login'))
                                     @auth
                                         <a href="{{ url('/home') }}"
@@ -126,10 +126,10 @@
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
                                         class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
-                                <p class="animate__animated animate__fadeInUp">Nam libero tempore, cum soluta nobis est
-                                    eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
-                                    possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-                                    quibusdam et aut officiis debitis aut.</p>
+                                <p class="animate__animated animate__fadeInUp">"Connecting farmers and residents with
+                                    essential agricultural resources, promoting sustainable practices, and fostering
+                                    local food production. Together, we strengthen our community’s agricultural
+                                    foundation for a healthier, greener tomorrow."</p>
                                 @if (Route::has('login'))
                                     @auth
                                         <a href="{{ url('/dashboard') }}"
@@ -152,10 +152,10 @@
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
                                         class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
-                                <p class="animate__animated animate__fadeInUp">Beatae vitae dicta sunt explicabo. Nemo
-                                    enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt omnis iste
-                                    natus error sit voluptatem accusantium.</p>
+                                <p class="animate__animated animate__fadeInUp">"Your gateway to agricultural resources
+                                    and support. We connect local farmers, promote eco-friendly practices, and ensure
+                                    access to fresh, local produce, cultivating a healthier, sustainable community for
+                                    generations to come."</p>
                                 @if (Route::has('login'))
                                     @auth
                                         <a href="{{ url('/dashboard') }}"
@@ -178,10 +178,10 @@
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
                                         class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
-                                <p class="animate__animated animate__fadeInUp">Neque porro quisquam est, qui dolorem
-                                    ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius
-                                    modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim
-                                    ad minima veniam, quis nostrum.</p>
+                                <p class="animate__animated animate__fadeInUp">"Strengthening local agriculture with
+                                    modern solutions, sustainable practices, and accessible resources. Our portal is
+                                    dedicated to supporting farmers and promoting a healthier, more resilient community
+                                    through sustainable food production."</p>
                                 @if (Route::has('login'))
                                     @auth
                                         <a href="{{ url('/dashboard') }}"
@@ -204,10 +204,10 @@
                                 <h2 class="animate__animated animate__fadeInDown">MUNICIPAL <strong
                                         class="text-success">AGRICULTURE</strong>
                                     SERVICE PORTAL</h2>
-                                <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat.</p>
+                                <p class="animate__animated animate__fadeInUp">"Empowering local farmers with tools and
+                                    knowledge to promote sustainable agriculture. Our portal provides easy access to
+                                    resources, services, and support, building a stronger, self-sufficient agricultural
+                                    community for everyone."</p>
                                 @if (Route::has('login'))
                                     @auth
                                         <a href="{{ url('/dashboard') }}"
@@ -275,9 +275,8 @@
 
                 <header class="section-header">
                     <h3>About Us</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Our portal supports local farmers with resources, sustainable practices, and essential services,
+                        fostering a thriving, eco-friendly agricultural community.</p>
                 </header>
 
                 <div class="row about-cols">
@@ -290,9 +289,9 @@
                             </div>
                             <h2 class="title"><a href="#">Our Mission</a></h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat.
+                                To empower local farmers by providing access to essential resources, sustainable
+                                practices, and support services, fostering a thriving agricultural community that
+                                benefits the entire municipality.
                             </p>
                         </div>
                     </div>
@@ -305,9 +304,9 @@
                             </div>
                             <h2 class="title"><a href="#">Our Plan</a></h2>
                             <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium,
-                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                                beatae vitae dicta sunt explicabo.
+                                To build a resilient, innovative agricultural sector that promotes sustainability,
+                                community engagement, and economic growth, ensuring a healthy and prosperous future for
+                                our local farming community.
                             </p>
                         </div>
                     </div>
@@ -320,9 +319,9 @@
                             </div>
                             <h2 class="title"><a href="#">Our Vision</a></h2>
                             <p>
-                                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores
-                                eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum
-                                quia dolor sit amet.
+                                Our plan involves enhancing the platform for easier access, promoting sustainable
+                                farming practices, providing comprehensive support services, fostering community
+                                engagement, and continuously updating resources based on user.
                             </p>
                         </div>
                     </div>
@@ -345,7 +344,7 @@
                     @endforeach
                 </header>
 
-                <div class="row">
+                {{-- <div class="row">
 
                     <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon"><i class="bi bi-briefcase"></i></div>
@@ -384,7 +383,7 @@
                             tempore, cum soluta nobis est eligendi</p>
                     </div>
 
-                </div>
+                </div> --}}
 
             </div>
         </section><!-- End events Section -->
@@ -865,90 +864,97 @@
 
                 <div class="row p-3" style="max-height: 500px; overflow-y: auto;">
                     <div class="col-12">
-                      <div class="row bg-white shadow-sm rounded-2 g-3">
-                        @foreach ($forums as $forum)
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="card h-100" data-bs-toggle="modal" data-bs-target="#forumModal{{ $forum->id }}" style="cursor: pointer;">
-                                <div class="card-body">
-                                    <!-- Forum Title -->
-                                    <h6 class="card-title">{{ $forum->name }}</h6>
+                        <div class="row bg-white shadow-sm rounded-2 g-3">
+                            @foreach ($forums as $forum)
+                                <div class="col-12 col-sm-6 col-md-3">
+                                    <div class="card h-100" data-bs-toggle="modal"
+                                        data-bs-target="#forumModal{{ $forum->id }}" style="cursor: pointer;">
+                                        <div class="card-body">
+                                            <!-- Forum Title -->
+                                            <h6 class="card-title">{{ $forum->name }}</h6>
 
-                                    <!-- Forum Subject -->
-                                    <p class="card-subtitle text-muted mb-2">{{ $forum->subject }}</p>
+                                            <!-- Forum Subject -->
+                                            <p class="card-subtitle text-muted mb-2">{{ $forum->subject }}</p>
 
-                                    <!-- Forum Description -->
-                                    <p class="card-text">{{ Str::limit($forum->description, 100, '...') }}</p>
+                                            <!-- Forum Description -->
+                                            <p class="card-text">{{ Str::limit($forum->description, 100, '...') }}</p>
 
-                                    <!-- Buttons -->
-                                    <div class="d-flex justify-content-between">
-                                        <!-- Like Button -->
-                                        <button type="button" class="btn btn-outline-primary btn-sm" onclick="event.stopPropagation();">
-                                            <i class="bi bi-hand-thumbs-up"></i> Like
-                                        </button>
+                                            <!-- Buttons -->
+                                            <div class="d-flex justify-content-between">
+                                                <!-- Like Button -->
+                                                <button type="button" class="btn btn-outline-primary btn-sm"
+                                                    onclick="event.stopPropagation();">
+                                                    <i class="bi bi-hand-thumbs-up"></i> Like
+                                                </button>
 
-                                        <!-- Comment Button -->
-                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#commentSection{{ $forum->id }}" onclick="event.stopPropagation();">
-                                            <i class="bi bi-chat"></i> Comment
-                                        </button>
-                                    </div>
+                                                <!-- Comment Button -->
+                                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#commentSection{{ $forum->id }}"
+                                                    onclick="event.stopPropagation();">
+                                                    <i class="bi bi-chat"></i> Comment
+                                                </button>
+                                            </div>
 
-                                    <!-- Comment Section (Collapsible) -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="forumModal{{ $forum->id }}" tabindex="-1" aria-labelledby="forumModalLabel{{ $forum->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="forumModalLabel{{ $forum->id }}">{{ $forum->name }}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p><strong>Subject:</strong> {{ $forum->subject }}</p>
-                                        <p><strong>Description:</strong> {{ $forum->description }}</p>
-
-                                        <!-- Display Reactions for this Forum -->
-                                        <ul>
-                                            @forelse($forum->reactions as $reaction)
-                                                <li>
-                                                    Anonymous: {{ $reaction->comment_text }} <br>
-                                                    {{-- Reaction Type: {{ $reaction->reaction_type }} <br>
-                                                    Created At: {{ $reaction->created_at->format('Y-m-d H:i:s') }} --}}
-                                                </li>
-                                            @empty
-                                                <li>No reactions found.</li>
-                                            @endforelse
-                                        </ul>
-                                    </div>
-                                    <div class="p-4">
-                                        <div class="collapse mt-3" id="commentSection{{ $forum->id }}">
-                                            <form method="POST" action="{{ route('reactions.store') }}">
-                                                @csrf
-                                                <input type="hidden" name="forum_id" value="{{ $forum->id }}" />
-
-                                                <div class="mb-2 d-flex">
-                                                    <input
-                                                        type="text"
-                                                        name="comment_text"
-                                                        class="form-control form-control-sm"
-                                                        placeholder="Write a comment" required
-                                                    />
-
-                                                    <button type="submit" class="btn btn-primary btn-sm">Post</button>
-                                                </div>
-                                            </form>
+                                            <!-- Comment Section (Collapsible) -->
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
 
-                      </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="forumModal{{ $forum->id }}" tabindex="-1"
+                                    aria-labelledby="forumModalLabel{{ $forum->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="forumModalLabel{{ $forum->id }}">
+                                                    {{ $forum->name }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Subject:</strong> {{ $forum->subject }}</p>
+                                                <p><strong>Description:</strong> {{ $forum->description }}</p>
+
+                                                <!-- Display Reactions for this Forum -->
+                                                <ul>
+                                                    @forelse($forum->reactions as $reaction)
+                                                        <li>
+                                                            Anonymous: {{ $reaction->comment_text }} <br>
+                                                            {{-- Reaction Type: {{ $reaction->reaction_type }} <br>
+                                                    Created At: {{ $reaction->created_at->format('Y-m-d H:i:s') }} --}}
+                                                        </li>
+                                                    @empty
+                                                        <li>No reactions found.</li>
+                                                    @endforelse
+                                                </ul>
+                                            </div>
+                                            <div class="p-4">
+                                                <div class="collapse mt-3" id="commentSection{{ $forum->id }}">
+                                                    <form method="POST" action="{{ route('reactions.store') }}">
+                                                        @csrf
+                                                        <input type="hidden" name="forum_id"
+                                                            value="{{ $forum->id }}" />
+
+                                                        <div class="mb-2 d-flex">
+                                                            <input type="text" name="comment_text"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Write a comment" required />
+
+                                                            <button type="submit"
+                                                                class="btn btn-primary btn-sm">Post</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
                     </div>
-                  </div>
+                </div>
 
                 <script>
                     document.getElementById('forumForm').addEventListener('submit', function(e) {
@@ -1089,8 +1095,8 @@
     <script src="{{ url('assets/js/main.js') }}"></script>
 
     <!-- Bootstrap JS (with Popper.js) -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 </body>
 

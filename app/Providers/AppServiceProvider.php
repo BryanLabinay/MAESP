@@ -22,15 +22,15 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-{
-    $events = Event::all();
-    $forums = Forum::all();
-    $reactions = Reactions::with('forum')->get();
+    {
+        $events = Event::all();
+        $forums = Forum::all();
+        $reactions = Reactions::with('forum')->get();
 
-    View::share([
-        'events' => $events,
-        'forums' => $forums,
-        'reactions' => $reactions,
-    ]);
-}
+        View::share([
+            'events' => $events,
+            'forums' => $forums,
+            'reactions' => $reactions,
+        ]);
+    }
 }
