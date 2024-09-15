@@ -13,8 +13,8 @@
     <link href="{{ url('assets/img/doa-logo.png') }}" rel="icon">
 
     {{-- Boostrap CDN --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> --}}
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
@@ -835,7 +835,7 @@
                     </div>
                 @endif
 
-                <div class="form">
+                <div class="form mb-3">
                     <form id="forumForm" action="{{ route('forum.create') }}" method="post">
                         @csrf
                         <div class="row mb-2">
@@ -863,15 +863,16 @@
                     </form>
                 </div>
 
-
-                <div class="div">
-                    @foreach ($forums as $forum)
-                        <div>
-                            <h1> {{ $forum->name }}</h1>
-                            <h6> {{ $forum->subject }}</h6>
-                            <p>{{ $forum->description }}</p>
+                <div class="row p-3">
+                    <div class="d-flex bg-white shadow-sm rounded-2">
+                        @foreach ($forums as $forum)
+                        <div class="col-3 p-0">
+                                <h5> {{ $forum->name }}</h5>
+                                <p> {{ $forum->subject }}</p>
+                                <p>{{ $forum->description }}</p>
                         </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
                 <script>
                     document.getElementById('forumForm').addEventListener('submit', function(e) {
