@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Event;
 use App\Models\Forum;
 use App\Models\Reactions;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Share common data with views
         $events = Event::all();
         $forums = Forum::all();
         $reactions = Reactions::with('forum')->get();
@@ -32,5 +34,17 @@ class AppServiceProvider extends ServiceProvider
             'forums' => $forums,
             'reactions' => $reactions,
         ]);
+
+        // Load role-specific AdminLTE configuration
+        if (Auth::check()) {
+            $role = Auth::user()->usertype; // Assuming the User model has a 'role' field
+
+            if ($role === 'admin') {
+                config(['adminlte' => config('adminlte')]);
+            } elseif ($role === 'barangay') {
+                config(['adminlte_barangay' => config('adminlte_barangay')]);
+            }
+            // You can add other role-based logic here
+        }
     }
 }
