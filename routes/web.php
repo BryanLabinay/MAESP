@@ -22,9 +22,9 @@ Route::get('/', function () {
 })->name('homepage');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
@@ -40,9 +40,13 @@ require __DIR__ . '/auth.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'auth'])
+    ->middleware(['auth'])->name('home');
 
-Route::prefix('Admin')->group(function () {
+
+
+    // For admin routes
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Event
     Route::get('/Event', [EventController::class, 'event'])->name('event');
     Route::post('/Event', [EventController::class, 'storeEvent'])->name('store.event');
@@ -60,5 +64,14 @@ Route::prefix('Admin')->group(function () {
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
+
+});
+
+
+
+
+// para sa barangay roles
+Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
+
 
 });
