@@ -339,6 +339,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Brgy. Account',
+            'url' => 'Admin/Brgy/Account',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'Reports',
             'url' => 'Admin/Reports',
             'icon' => 'fa-solid fa-clipboard',

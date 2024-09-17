@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Barangay;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rules\Password;
 
 class BarangayController extends Controller
 {
@@ -56,5 +62,40 @@ class BarangayController extends Controller
     {
         $barangays = Barangay::findOrFail($id);
         return view('admin.brgy-edit', ['barangay_list' => $barangays]);
+    }
+
+    // Create Account
+    public function account()
+    {
+        return view('admin.brgy-account');
+    }
+
+    /**
+     * Handle an incoming registration request.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+
+    public function storeBrgyAcct(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Password::defaults()],
+            'usertype' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'usertype' => $request->usertype,
+        ]);
+
+        // event(new Registered($user));
+
+        // Auth::login($user);
+
+        return redirect(route('brgy.create', absolute: false));
     }
 }

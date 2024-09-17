@@ -132,7 +132,7 @@
                                     foundation for a healthier, greener tomorrow."</p>
                                 @if (Route::has('login'))
                                     @auth
-                                        <a href="{{ url('/dashboard') }}"
+                                        <a href="{{ url('/home') }}"
                                             class="btn-get-started scrollto animate__animated animate__fadeInUp">Dashboard</a>
                                     @else
                                         <a href="{{ route('login') }}"

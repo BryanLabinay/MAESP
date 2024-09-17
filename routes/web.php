@@ -45,8 +45,8 @@ Route::get('/home', [HomeController::class, 'auth'])
 
 
 
-    // For admin routes
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+// For admin routes
+Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // Event
     Route::get('/Event', [EventController::class, 'event'])->name('event');
     Route::post('/Event', [EventController::class, 'storeEvent'])->name('store.event');
@@ -57,6 +57,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/add-brgy', [BarangayController::class, 'store'])->name('store.brgy');
     Route::get('edit/{id}', [BarangayController::class, 'editbrgy'])->name('edit.brgy');
 
+    // Brgy. Account
+    Route::get('/Brgy/Account', [BarangayController::class, 'account'])->name('brgy.create');
+    Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
+
+
     // Report
     Route::get('/Reports', [ReportController::class, 'report'])->name('report');
 
@@ -64,7 +69,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
-
 });
 
 
@@ -72,6 +76,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 // para sa barangay roles
 Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
-
-
+    // Logout
+    // Route::post('logout', [BarangayController::class, 'destroy'])
+    //     ->name('logout');
 });
