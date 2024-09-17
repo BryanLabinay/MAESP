@@ -36,15 +36,15 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         // Load role-specific AdminLTE configuration
-        if (Auth::check()) {
-            $role = Auth::user()->usertype; // Assuming the User model has a 'role' field
+        // if (Auth::check()) {
+        //     $role = Auth::user()->usertype;
 
-            if ($role === 'admin') {
-                config(['adminlte' => config('adminlte')]);
-            } elseif ($role === 'barangay') {
-                config(['adminlte_barangay' => config('adminlte_barangay')]);
-            }
-            // You can add other role-based logic here
-        }
+        //     if ($role === 'admin') {
+        //         config(['adminlte' => config('adminlte')]);
+        //     } elseif ($role === 'barangay') {
+        //         config(['adminlte_barangay' => config('adminlte_barangay')]);
+        //     }
+
+        // }
     }
 }
