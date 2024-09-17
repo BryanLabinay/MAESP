@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,24 @@ class HomeController extends Controller
     public function index()
     {
         return view('admin.home');
+    }
+
+
+    public function auth()
+    {
+        if (Auth::id()) {
+
+            $usertype = Auth::user()->usertype;
+
+            if($usertype == 'admin') {
+                return view ('admin.home');
+            }
+            else if($usertype == 'barangay') {
+                return view ('barangay.dashboard');
+            }
+                else return redirect()->back();
+
+        }
+
     }
 }
