@@ -8,11 +8,11 @@
             </a>
 
             <div class="sb-sidenav-menu-heading">FARMERS</div>
-            <a class="nav-link text-dark" href="#">
+            <a class="nav-link text-dark" href="{{ route('add.farmers') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
                 Add Farmers
             </a>
-            <a class="nav-link text-dark" href="#">
+            <a class="nav-link text-dark" href="{{ route('list.farmers') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-address-book"></i></div>
                 Farmers List
             </a>
@@ -27,7 +27,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                 Tables
             </a> --}}
-            {{-- 
+            {{--
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>

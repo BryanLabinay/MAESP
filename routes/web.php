@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\BarangayController;
+use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\ReactionController;
 use App\Models\Barangay;
 
@@ -79,4 +80,8 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     // Logout
     // Route::post('logout', [BarangayController::class, 'destroy'])
     //     ->name('logout');
+
+    Route::get('/add-farmers', [FarmersControlller::class, 'index'])->name('add.farmers');
+    Route::get('/list-farmers', [FarmersControlller::class, 'show'])->name('list.farmers');
+
 });
