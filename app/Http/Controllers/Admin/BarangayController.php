@@ -32,7 +32,6 @@ class BarangayController extends Controller
             $image = $request->file('image');
             // Create a unique name for the image
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            // Move the image to the public/images directory
             $image->move(public_path('brgy_images'), $imageName);
         } else {
             $imageName = null; // Set to null if no image is uploaded
@@ -46,25 +45,16 @@ class BarangayController extends Controller
             'image' => $imageName, // Save the image file name or null
         ]);
 
-        // Redirect back with a success message
         return redirect()->back()->with('success', 'Barangay added successfully!');
     }
 
     public function show()
     {
-        // Fetch all barangays from the database
         $barangays = User::where('usertype', 'barangay')->get();
-
-
-        // Pass the barangay data to the view
         return view('admin.brgy-offices', compact('barangays'));
     }
 
-    // public function editbrgy($id)
-    // {
-    //     $barangays = Barangay::findOrFail($id);
-    //     return view('admin.brgy-edit', ['barangay_list' => $barangays]);
-    // }
+
 
     // Create Account
     public function account()
@@ -103,11 +93,9 @@ class BarangayController extends Controller
 
     public function barangaydetails($user_id)
     {
-        // Fetch all farmers
-        // Fetch farmer data based on user_id
+
         $farmers = Farmer::where('user_id', $user_id)->get();
 
-        // Pass the data to a view
         return view('admin.brgy-details', compact('farmers'));
     }
 }
