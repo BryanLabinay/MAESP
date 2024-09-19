@@ -56,8 +56,8 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // Route::get('/Brgy', [EventController::class, 'brgy'])->name('brgy');
     Route::get('/Brgy', [BarangayController::class, 'show'])->name('barangays.index');
     Route::post('/add-brgy', [BarangayController::class, 'store'])->name('store.brgy');
-    Route::get('edit/{id}', [BarangayController::class, 'editbrgy'])->name('edit.brgy');
-
+    // Route::get('edit/{id}', [BarangayController::class, 'editbrgy'])->name('edit.brgy');
+    Route::get('/details/{user_id}', [BarangayController::class, 'barangaydetails'])->name('brgy.details');
     // Brgy. Account
     Route::get('/Brgy/Account', [BarangayController::class, 'account'])->name('brgy.create');
     Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
@@ -83,5 +83,5 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     Route::get('/add-farmers', [FarmersControlller::class, 'index'])->name('add.farmers');
     Route::get('/list-farmers', [FarmersControlller::class, 'show'])->name('list.farmers');
-
+    Route::post('/store-farmers', [FarmersControlller::class, 'store'])->name('store.farmers');
 });

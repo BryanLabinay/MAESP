@@ -27,14 +27,14 @@
                 <div class="row mt-3">
                     @foreach ($barangays as $barangay)
                         <div class="col-2">
-                            <a href="{{ 'edit/' .$barangay['id'] }}" class="text-decoration-none">
+                            <a href="{{ 'details/' . $barangay['id'] }}" class="text-decoration-none">
                                 <div class="card-group">
                                     <div class="card p-0">
                                         <img src="{{ $barangay->image ? asset('brgy_images/' . $barangay->image) : asset('assets/img/offices/default.jpg') }}"
-                                            class="card-img-top" alt="Image of {{ $barangay->brgy_name }}" height="120"
+                                            class="card-img-top" alt="Image of {{ $barangay->name }}" height="120"
                                             style="object-fit:cover;">
                                         <div class="text-center mt-1">
-                                            <h6 class="fw-semibold">{{ $barangay->brgy_name }}</h6>
+                                            <h6 class="fw-semibold">{{ $barangay->name }}</h6>
                                         </div>
                                     </div>
                                 </div>

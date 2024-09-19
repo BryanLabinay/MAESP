@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Barangay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Farmer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -52,17 +53,18 @@ class BarangayController extends Controller
     public function show()
     {
         // Fetch all barangays from the database
-        $barangays = Barangay::all();
+        $barangays = User::where('usertype', 'barangay')->get();
+
 
         // Pass the barangay data to the view
         return view('admin.brgy-offices', compact('barangays'));
     }
 
-    public function editbrgy($id)
-    {
-        $barangays = Barangay::findOrFail($id);
-        return view('admin.brgy-edit', ['barangay_list' => $barangays]);
-    }
+    // public function editbrgy($id)
+    // {
+    //     $barangays = Barangay::findOrFail($id);
+    //     return view('admin.brgy-edit', ['barangay_list' => $barangays]);
+    // }
 
     // Create Account
     public function account()
@@ -97,5 +99,15 @@ class BarangayController extends Controller
         // Auth::login($user);
 
         return redirect(route('brgy.create', absolute: false));
+    }
+
+    public function barangaydetails($user_id)
+    {
+        // Fetch all farmers
+        // Fetch farmer data based on user_id
+        $farmers = Farmer::where('user_id', $user_id)->get();
+
+        // Pass the data to a view
+        return view('admin.brgy-details', compact('farmers'));
     }
 }
