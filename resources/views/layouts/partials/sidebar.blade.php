@@ -2,23 +2,36 @@
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">NAVIGATION</div>
-            <a class="nav-link text-dark {{ Request::is('home') ? 'active' : '' }}" href="{{ url('/home') }}">
+            <a class="nav-link text-dark {{ Request::is('home') ? 'active' : '' }}" href="{{ url('/home') }}"
+                style="{{ Request::is('home') ? 'color: blue; background-color: #A2CA71;' : '' }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                 Dashboard
             </a>
 
+
             <div class="sb-sidenav-menu-heading">FARMERS</div>
-            <a class="nav-link text-dark" href="{{ route('add.farmers') }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
+            {{-- Add Farmers --}}
+            <a class="nav-link text-dark {{ Request::is('barangay/add-farmers') ? 'active' : '' }}"
+                href="{{ url('/barangay/add-farmers') }}"
+                style="{{ Request::is('barangay/add-farmers') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                 Add Farmers
             </a>
-            <a class="nav-link text-dark" href="{{ route('list.farmers') }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-address-book"></i></div>
+
+            {{-- Farmer List --}}
+            <a class="nav-link text-dark {{ Request::is('barangay/list-farmers') ? 'active' : '' }}"
+                href="{{ url('/barangay/list-farmers') }}"
+                style="{{ Request::is('barangay/list-farmers') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
                 Farmers List
             </a>
 
 
             <div class="sb-sidenav-menu-heading">Other</div>
+            <a class="nav-link text-dark" href="#">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
+                News & Reports
+            </a>
             <a class="nav-link text-dark" href="#">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                 Activity Log
