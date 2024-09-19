@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Farmer extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'sex',
+        'marital_status',
+        'birth_date',
+        'address',
+        'phone_number',
+        'email',
+        'farm_name',
+        'farm_location',
+        'farm_size',
+        'crop_type',
+        'user_id', // Add this to the fillable array
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
