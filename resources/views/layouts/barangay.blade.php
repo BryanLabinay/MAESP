@@ -28,9 +28,10 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     {{-- Font Awesome --}}
     {{-- <script src="https://kit.fontawesome.com/5c14b0052b.js" crossorigin="anonymous"></script> --}}
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{ asset('barangay/css/styles.css') }}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
         body {

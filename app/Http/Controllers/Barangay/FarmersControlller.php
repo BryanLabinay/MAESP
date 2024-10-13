@@ -16,7 +16,9 @@ class FarmersControlller extends Controller
 
     public function show()
     {
-        return view('barangay.farmers.list');
+        $auth = Auth::id();
+        $farmers = Farmer::where('user_id', $auth)->paginate(10);
+        return view('barangay.farmers.list', compact('farmers'));
     }
 
     public function store(Request $request)
@@ -35,6 +37,9 @@ class FarmersControlller extends Controller
             'farm_location' => 'nullable|string|max:255',
             'farm_size' => 'nullable|string|max:255',
             'crop_type' => 'nullable|string|max:255',
+            'ownership_type' => 'nullable|in:Registered Owner,Tenant,Lessee,Others',
+            'name_of_owner' => 'nullable|string|max:255',
+            'farm_type' => 'nullable|in:Irrigated,Rainfed Upland,Rainfed Lowland',
         ]);
 
         // Add the authenticated user's ID
@@ -44,6 +49,6 @@ class FarmersControlller extends Controller
         Farmer::create($validatedData);
 
         // Redirect or return a response
-        return redirect()->back()->with('success', 'Farmer added successfully');
+        return redirect()->back()->with('success', 'success');
     }
 }

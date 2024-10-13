@@ -23,6 +23,9 @@ class Farmer extends Model
         'farm_size',
         'crop_type',
         'user_id', // Add this to the fillable array
+        'ownership_type',
+        'name_of_owner',
+        'farm_type',
     ];
 
     public function user()
