@@ -21,8 +21,11 @@
                              <img src="{{ asset('assets/img/masp-logo.jpg') }}" alt="logo"
                                  class="rounded-circle border border-1" width="120" height="120">
                          </div>
-                         <div class="col-6 d-flex align-items-center">
-                             <h1 class="fw-bold">Barangay</h1>
+                         <div class="col-9 d-flex align-items-center">
+                             <div class="d-flex flex-row">
+                                 <h1 class="fw-bold me-2">BARANGAY</h1>
+                                 <h1 class="fw-bold text-uppercase">{{ $barangay->name }}</h1>
+                             </div>
                          </div>
                      </div>
                  </div>
