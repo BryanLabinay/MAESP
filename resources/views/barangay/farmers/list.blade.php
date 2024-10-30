@@ -1,12 +1,8 @@
 @extends('layouts.barangay')
 
-
 @section('content')
     <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>List of Farmers</h6>
     <hr class="mt-0">
-    {{-- <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Dashboard</li>
-    </ol> --}}
     <div class="container-fluid">
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
@@ -50,31 +46,10 @@
                         <td>{{ $farmer->farm_type }}</td>
                     </tr>
                 @endforeach
-
-
             </tbody>
-
-
         </table>
 
-        <div class="d-flex justify-content-center">
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item {{ $farmers->onFirstPage() ? 'disabled' : '' }}">
-                        <a class="page-link" href="{{ $farmers->previousPageUrl() }}" tabindex="-1">Previous</a>
-                    </li>
-                    @foreach ($farmers->links()->elements[0] as $page => $url)
-                        <li class="page-item {{ $page == $farmers->currentPage() ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                        </li>
-                    @endforeach
-                    <li class="page-item {{ $farmers->hasMorePages() ? '' : 'disabled' }}">
-                        <a class="page-link" href="{{ $farmers->nextPageUrl() }}">Next</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-
+        <!-- Pagination links -->
+        {{ $farmers->links() }}
     </div>
 @endsection
