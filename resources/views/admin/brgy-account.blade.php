@@ -80,10 +80,31 @@
                         </div>
                     </div>
 
-                    <div class="col-5 bg-secondary bg-opacity-25 text-dark">
+                    <div class="col-5 bg-secondary rounded-1 bg-opacity-25 text-dark">
                         <div class="d-flex justify-content-center p-2">
                             <h5>Barangay Account List</h5>
                         </div>
+                        <table class="table table-striped table-bordered">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col">Barangay Name</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($barangay as $data)
+                                    <tr>
+                                        <td>{{ $data->name }}</td>
+                                        <td>{{ $data->email }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td>No Barangay Account</td>
+                                    </tr>
+                                @endforelse
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
