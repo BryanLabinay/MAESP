@@ -18,6 +18,7 @@ class FarmersControlller extends Controller
     {
         $auth = Auth::id();
         $farmers = Farmer::where('user_id', $auth)->paginate(10);
+        // dd($farmers);
         return view('barangay.farmers.list', compact('farmers'));
     }
 
@@ -26,7 +27,9 @@ class FarmersControlller extends Controller
         // Validate the incoming request
         $validatedData = $request->validate([
             'first_name' => 'nullable|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
+            'suffix' => 'nullable|string|max:255',
             'sex' => 'nullable|in:male,female',
             'marital_status' => 'nullable|string|max:255',
             'birth_date' => 'nullable|date',

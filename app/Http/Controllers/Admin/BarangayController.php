@@ -59,8 +59,12 @@ class BarangayController extends Controller
     // Create Account
     public function account()
     {
-        return view('admin.brgy-account');
+        $barangay = User::where('usertype', 'barangay')
+            ->where('email', 'like', '%@gmail.com')
+            ->get(['name', 'email']);
+        return view('admin.brgy-account', compact('barangay'));
     }
+
 
     /**
      * Handle an incoming registration request.

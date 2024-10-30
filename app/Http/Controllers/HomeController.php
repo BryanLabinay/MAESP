@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,18 +33,18 @@ class HomeController extends Controller
     public function auth()
     {
         if (Auth::id()) {
-
             $usertype = Auth::user()->usertype;
 
-            if($usertype == 'admin') {
-                return view ('admin.home');
+            if ($usertype == 'admin') {
+                // Count only 'barangay' user types and pass it to the view
+                $countall = User::where('usertype', 'barangay')->count();
+                $farmer = Farmer::count();
+                return view('admin.home', compact('countall', 'farmer'));
+            } elseif ($usertype == 'barangay') {
+                return view('barangay.dashboard');
+            } else {
+                return redirect()->back();
             }
-            else if($usertype == 'barangay') {
-                return view ('barangay.dashboard');
-            }
-                else return redirect()->back();
-
         }
-
     }
 }
