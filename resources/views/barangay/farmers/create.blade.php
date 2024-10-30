@@ -26,13 +26,21 @@
                     @csrf
                     <h6 class="mb-3"><i class="fa-solid fa-caret-right me-1"></i>Farmers Personal Information</h6>
                     <div class="row px-3 mb-3">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mb-2">
                             <label for="first_name" class="form-label ms-1 mb-0">First Name</label>
                             <input type="text" class="form-control" name="first_name" placeholder="Enter first name">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 mb-2">
+                            <label for="middle_name" class="form-label ms-1 mb-0">Middle Name</label>
+                            <input type="text" class="form-control" name="middle_name" placeholder="Enter middle name">
+                        </div>
+                        <div class="col-md-4 mb-2">
                             <label for="last_name" class="form-label ms-1 mb-0">Last Name</label>
                             <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="suffix" class="form-label ms-1 mb-0">Suffix</label>
+                            <input type="text" class="form-control" name="suffix" placeholder="">
                         </div>
                         <div class="col-md-4">
                             <label for="sex" class="form-label ms-1 mb-0">Sex</label><br>
