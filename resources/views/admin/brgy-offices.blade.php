@@ -29,7 +29,7 @@
 
             <div class="row mt-3">
                 @foreach ($barangays as $barangay)
-                    <div class="col-2">
+                    <div class="col-2 mb-3">
                         <a href="{{ 'details/' . $barangay['id'] }}" class="text-decoration-none">
                             <div class="card-group">
                                 <div class="card p-0">
