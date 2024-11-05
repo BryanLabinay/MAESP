@@ -97,9 +97,13 @@ class BarangayController extends Controller
 
     public function barangaydetails($user_id)
     {
-
+        // Fetch farmers associated with the user
         $farmers = Farmer::where('user_id', $user_id)->get();
 
-        return view('admin.brgy-details', compact('farmers'));
+        // Fetch barangay details only if usertype is 'barangay'
+        $barangay = User::where('id', $user_id)->where('usertype', 'barangay')->first();
+
+        // Pass both farmers and barangay data to the view
+        return view('admin.brgy-details', compact('farmers', 'barangay'));
     }
 }
