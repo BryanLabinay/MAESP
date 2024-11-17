@@ -328,11 +328,11 @@ return [
             'url' => '/home',
             'icon' => 'fas fa-fw fa-house',
         ],
-        [
-            'text' => 'Events',
-            'url' => 'Admin/Event',
-            'icon' => 'fa-regular fa-calendar-plus',
-        ],
+        // [
+        //     'text' => 'Events',
+        //     'url' => 'Admin/Event',
+        //     'icon' => 'fa-regular fa-calendar-plus',
+        // ],
         [
             'text' => 'Brgy. Offices',
             'url' => 'Admin/Brgy',
@@ -344,17 +344,13 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Reports',
+            'text' => 'Crop Assessment Reports',
             'url' => 'Admin/Reports',
             'icon' => 'fa-solid fa-clipboard',
         ],
+
         [
-            'text' => 'Forum',
-            'url' => 'Admin/Forum',
-            'icon' => 'fa-solid fa-envelope',
-        ],
-        [
-            'text' => 'Manage User',
+            'text' => 'Media Resources',
             'url' => '',
             'icon' => 'fa-solid fa-users',
         ],
@@ -395,6 +391,11 @@ return [
                     'url' => '#',
                 ],
             ],
+        ],
+        [
+            'text' => 'Feedback',
+            'url' => 'Admin/Forum',
+            'icon' => 'fa-solid fa-envelope',
         ],
         // ['header' => 'OTHER'],
         [
