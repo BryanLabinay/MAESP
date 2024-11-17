@@ -19,7 +19,7 @@
                      <div class="row">
                          <div class="col-sm-3">
                              <img src="{{ asset('assets/img/masp-logo.jpg') }}" alt="logo"
-                                 class="rounded-circle border border-1" width="120" height="120">
+                                 class="rounded-circle border border-1" width="110" height="110">
                          </div>
                          <div class="col-9 d-flex align-items-center">
                              <div class="d-flex flex-row">
@@ -30,9 +30,53 @@
                      </div>
                  </div>
              </div>
-             <hr class="mt-2 text-danger">
+             {{-- <hr class="mt-2 text-danger"> --}}
+             <div class="row mb-2 mt-2">
+                 <div class="col-12 d-flex justify-content-end">
+                     <form action="" method="GET" class="form-inline">
+                         <div class="form-group">
+                             <input type="text" name="name" class="form-control me-2" placeholder="Search Farmers"
+                                 value="">
+                         </div>
+                         <button type="submit" class="btn btn-primary fw-semibold"><i
+                                 class="fa-solid fa-magnifying-glass me-1"></i>Search</button>
+                     </form>
+                 </div>
+             </div>
+             {{-- <hr class="mt-0"> --}}
+             <div class="row p-0">
+                 <div class="col-12 bg-success p-1 mx-2 rounded-1">
+                     <table class="table table-bordered table-striped">
+                         <thead class="table-success">
+                             <tr>
+                                 <th>Farmers Name</th>
+                                 <th>Address</th>
+                                 <th>Contact Number</th>
+                                 <th>Acres Own</th>
+                                 <th>Farm Type</th>
+                                 <th>Ownership Type</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             @foreach ($farmers as $farmer)
+                                 <tr>
+                                     <td>{{ $farmer->first_name }} {{ $farmer->middle_name }} {{ $farmer->last_name }}
+                                         {{ $farmer->suffix }}</td>
+                                     <td>{{ $farmer->address }}</td>
+                                     <td>{{ $farmer->phone_number }}</td>
+                                     <td>{{ $farmer->farm_size }}</td>
+                                     <td>{{ $farmer->crop_type }}</td>
+                                     <td>{{ $farmer->ownership_type }}</td>
+                                 </tr>
+                             @endforeach
 
-             <div class="row mb-2">
+                         </tbody>
+                     </table>
+                 </div>
+             </div>
+
+
+             {{-- <div class="row mb-2">
                  <div class="col-12">
                      <h5 class="fw-semibold">Local Farmers Records</h5>
                  </div>
@@ -60,7 +104,7 @@
                                  class="bg-secondary px-2 rounded-1 me-1">{{ $totalFarmSize }}</b>hectares</p>
                      @endif
                  </div>
-             </div>
+             </div> --}}
          </div>
 
 
