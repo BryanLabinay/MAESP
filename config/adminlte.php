@@ -344,11 +344,15 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Crop Assessment Reports',
-            'url' => 'Admin/Reports',
+            'text' => 'Crop Assessment',
+            'url' => 'Admin/Crop-Assessment',
             'icon' => 'fa-solid fa-clipboard',
         ],
-
+        [
+            'text' => 'Services',
+            'url' => 'Admin/Services',
+            'icon' => 'fa-solid fa-users',
+        ],
         [
             'text' => 'Media Resources',
             'url' => '',
@@ -359,37 +363,45 @@ return [
             'icon' => 'fa-solid fa-newspaper',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Weather Updates',
                     'url' => '#',
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Pest & Disease Alerts',
                     'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Market Prices',
                     'url' => '#',
                 ],
+                [
+                    'text' => 'Seed & Fertilize',
+                    'url' => '#',
+                ],
+                // [
+                //     'text' => 'Pest & Disease Alerts',
+                //     'url' => '#',
+                //     'submenu' => [
+                //         [
+                //             'text' => 'level_two',
+                //             'url' => '#',
+                //         ],
+                //         [
+                //             'text' => 'level_two',
+                //             'url' => '#',
+                //             'submenu' => [
+                //                 [
+                //                     'text' => 'level_three',
+                //                     'url' => '#',
+                //                 ],
+                //                 [
+                //                     'text' => 'level_three',
+                //                     'url' => '#',
+                //                 ],
+                //             ],
+                //         ],
+                //     ],
+                // ],
             ],
         ],
         [
