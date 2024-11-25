@@ -1,17 +1,19 @@
 <?php
 
+use App\Models\Barangay;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
+use App\Http\Controllers\Admin\CropAssessmentCTRL;
 use App\Http\Controllers\Barangay\FarmersControlller;
-use App\Http\Controllers\ReactionController;
-use App\Models\Barangay;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
 Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
@@ -61,11 +63,10 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // Brgy. Account
     Route::get('/Brgy/Account', [BarangayController::class, 'account'])->name('brgy.create');
     Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
-
-
-    // Report
-    Route::get('/Reports', [ReportController::class, 'report'])->name('report');
-
+    // Cropping
+    Route::get('/Crop-Assessment', [CropAssessmentCTRL::class, 'index'])->name('crop');
+    // Services
+    Route::get('/Services', [ServiceController::class, 'index'])->name('service');
     // Forum
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 
