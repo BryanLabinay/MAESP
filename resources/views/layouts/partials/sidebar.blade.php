@@ -28,11 +28,11 @@
 
 
             <div class="sb-sidenav-menu-heading">Other</div>
-            <a class="nav-link text-dark" href="#">
+            <a class="nav-link text-dark" href="{{ url('/barangay/News&Reports') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
                 News & Reports
             </a>
-            <a class="nav-link text-dark" href="#">
+            <a class="nav-link text-dark" href="{{ url('/barangay/Activity-log') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                 Activity Log
             </a>
