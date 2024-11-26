@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
+use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\Barangay\NewsUpdateController;
@@ -73,6 +74,19 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
+
+    // NEWS $ UPDATE
+    // Weather & Updates
+    Route::get('/Weather_Updates', [NewsUpdatesController::class, 'indexWeather']);
+
+    // Pest & Disease Alerts
+    Route::get('/Pest&Disease', [NewsUpdatesController::class, 'indexPest']);
+
+    // Market Prices
+    Route::get('/Market_Prices', [NewsUpdatesController::class, 'indexMarket']);
+
+    // Seed & Fertilizer
+    Route::get('/Seed_Fertilizer', [NewsUpdatesController::class, 'indexSeed']);
 });
 
 

@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="row bg-olive rounded shadow-lg py-3">
-                    <div class="col-7 border border-1 border-light rounded ms-2 px-3">
+                    <div class="col-7 bg-secondary bg-opacity-75 rounded ms-2 px-3">
                         <div class="d-flex justify-content-center align-items-center mt-2">
                             <h6 class="text-dark p-0 bg-light px-5 rounded-pill">Add Service</h6>
                         </div>
@@ -60,7 +60,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-4 border border-1 border-light rounded mx-4">
+                    <div class="col-4 bg-secondary bg-opacity-75 rounded mx-4">
                         <div class="d-flex justify-content-center align-items-center mt-2">
                             <h6 class="text-dark p-0 bg-light px-5 rounded-pill">Services List</h6>
                         </div>
