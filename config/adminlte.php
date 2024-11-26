@@ -364,19 +364,23 @@ return [
             'submenu' => [
                 [
                     'text' => 'Weather Updates',
-                    'url' => '#',
+                    'url' => 'Admin/Weather_Updates',
+                    'icon' => 'fa-solid fa-cloud-sun-rain'
                 ],
                 [
                     'text' => 'Pest & Disease Alerts',
-                    'url' => '#',
+                    'url' => 'Admin/Pest&Disease',
+                    'icon' => 'fa-solid fa-bug-slash'
                 ],
                 [
                     'text' => 'Market Prices',
-                    'url' => '#',
+                    'url' => 'Admin/Market_Prices',
+                    'icon' => 'fa-solid fa-peseta-sign'
                 ],
                 [
                     'text' => 'Seed & Fertilize',
-                    'url' => '#',
+                    'url' => 'Admin/Seed_Fertilizer',
+                    'icon' => 'fa-solid fa-seedling'
                 ],
                 // [
                 //     'text' => 'Pest & Disease Alerts',
