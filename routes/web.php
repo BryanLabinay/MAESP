@@ -104,7 +104,7 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     Route::post('/store-farmers', [FarmersControlller::class, 'store'])->name('store.farmers');
 
     // CROPPING REPORTS
-    Route::get('/Cropping-Reports', [CroppingController::class, 'index']);
+    Route::get('/cropping-reports', [CroppingController::class, 'index'])->name('cropping.reports');
 
     // NEWS & UPDATES
     Route::get('/News&Reports', [NewsUpdateController::class, 'index']);

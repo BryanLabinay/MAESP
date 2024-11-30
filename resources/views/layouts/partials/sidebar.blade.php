@@ -27,9 +27,9 @@
             </a>
 
             {{-- Cropping Reports --}}
-            <a class="nav-link text-dark {{ Request::is('barangay/Cropping-Reports') ? 'active' : '' }}"
-                href="{{ url('/barangay/Cropping-Reports') }}"
-                style="{{ Request::is('/barangay/Cropping-Reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+            <a class="nav-link text-dark {{ Request::is('barangay/cropping-reports') ? 'active' : '' }}"
+                href="{{ url('/barangay/cropping-reports') }}"
+                style="{{ Request::is('barangay/cropping-reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file-pen"></i></div>
                 Cropping Reports
             </a>

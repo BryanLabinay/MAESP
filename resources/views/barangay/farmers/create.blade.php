@@ -56,7 +56,15 @@
                     </div>
                     <div class="row px-3 mb-3">
                         <div class="col-md-4">
-                            <label for="marital_status" class="form-label ms-1 mb-0">Marital Status</label>
+                            <label for="birth_date" class="form-label ms-1 mb-0">Date of Birth</label>
+                            <input type="date" class="form-control" name="birth_date">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
+                            <input type="text" class="form-control" name="phone_number">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="marital_status" class="form-label ms-1 mb-0">Civil Status</label>
                             <select class="form-select" name="marital_status" id="marital_status">
                                 <option value="" disabled selected>Select</option>
                                 <option value="single">Single</option>
@@ -65,27 +73,32 @@
                                 <option value="widowed">Widowed</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label for="birth_date" class="form-label ms-1 mb-0">Date of Birth</label>
-                            <input type="date" class="form-control" name="birth_date">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="address" class="form-label ms-1 mb-0">Place Of Birth</label>
-                            <input type="text" class="form-control" name="placeOfbirth">
-                        </div>
                     </div>
                     <div class="row px-3 mb-3">
-                        <div class="col-md-4">
-                            <label for="address" class="form-label ms-1 mb-0">Address</label>
-                            <input type="text" class="form-control" name="address">
+                        <div class="col-md-8">
+                            <label for="address" class="form-label ms-1 mb-0">Name of Spouse(If Married)</label>
+                            <input type="text" class="form-control" name="">
                         </div>
                         <div class="col-md-4">
                             <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
-                            <input type="text" class="form-control" name="phone_number">
+                            <input type="text" class="form-control" name="">
+                        </div>
+                    </div>
+                    <div class="row px-3 mb-3">
+                        <div class="col-md-8">
+                            <label for="address" class="form-label ms-1 mb-0">Mother/Fathers Name</label>
+                            <input type="text" class="form-control" name="">
                         </div>
                         <div class="col-md-4">
-                            <label for="email" class="form-label ms-1 mb-0">Email Address</label>
-                            <input type="email" class="form-control" name="email" placeholder="example@gmail.com">
+                            <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
+                            <input type="text" class="form-control" name="">
+                        </div>
+                    </div>
+                    <div class="row px-3 mb-3">
+                        <div class="col-md-12">
+                            <label for="address" class="form-label ms-1 mb-0">Address</label>
+                            <input type="text" class="form-control" name="address"
+                                placeholder="Barangay/Municipality/City">
                         </div>
                     </div>
                     {{-- PARCEL --}}
