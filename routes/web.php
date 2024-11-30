@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
 use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Barangay\ActivityLogController;
+use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\Barangay\NewsUpdateController;
 
@@ -101,6 +102,9 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     Route::get('/add-farmers', [FarmersControlller::class, 'index'])->name('add.farmers');
     Route::get('/list-farmers', [FarmersControlller::class, 'show'])->name('list.farmers');
     Route::post('/store-farmers', [FarmersControlller::class, 'store'])->name('store.farmers');
+
+    // CROPPING REPORTS
+    Route::get('/Cropping-Reports', [CroppingController::class, 'index']);
 
     // NEWS & UPDATES
     Route::get('/News&Reports', [NewsUpdateController::class, 'index']);
