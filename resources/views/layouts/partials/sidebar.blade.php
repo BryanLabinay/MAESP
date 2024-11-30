@@ -14,7 +14,7 @@
             <a class="nav-link text-dark {{ Request::is('barangay/add-farmers') ? 'active' : '' }}"
                 href="{{ url('/barangay/add-farmers') }}"
                 style="{{ Request::is('barangay/add-farmers') ? 'color: blue; background-color: #A2CA71;' : '' }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
                 Add Farmers
             </a>
 
@@ -22,10 +22,17 @@
             <a class="nav-link text-dark {{ Request::is('barangay/list-farmers') ? 'active' : '' }}"
                 href="{{ url('/barangay/list-farmers') }}"
                 style="{{ Request::is('barangay/list-farmers') ? 'color: blue; background-color: #A2CA71;' : '' }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-house"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                 Farmers List
             </a>
 
+            {{-- Cropping Reports --}}
+            <a class="nav-link text-dark {{ Request::is('barangay/Cropping-Reports') ? 'active' : '' }}"
+                href="{{ url('/barangay/Cropping-Reports') }}"
+                style="{{ Request::is('/barangay/Cropping-Reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-pen"></i></div>
+                Cropping Reports
+            </a>
 
             <div class="sb-sidenav-menu-heading">Other</div>
             <a class="nav-link text-dark" href="{{ url('/barangay/News&Reports') }}">

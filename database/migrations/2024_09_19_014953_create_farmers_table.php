@@ -21,10 +21,10 @@ return new class extends Migration
             $table->enum('sex', ['male', 'female'])->nullable();
             $table->string('marital_status')->nullable();
             $table->date('birth_date')->nullable();
+            $table->string('placeOfbirth')->nullable();
             $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
-
             $table->string('farm_name')->nullable();
             $table->string('farm_location')->nullable();
             $table->string('farm_size')->nullable(); // Acres or Hectares

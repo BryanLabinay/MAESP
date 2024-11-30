@@ -16,7 +16,7 @@
             });
         </script>
     @endif
-    <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>Add Farmers</h6>
+    <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>Cropping Reports</h6>
     <hr class="mt-0">
 
     <div class="container-fluid">
@@ -44,77 +44,47 @@
                         </div>
                         <div class="col-md-4">
                             <label for="sex" class="form-label ms-1 mb-0">Sex</label><br>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="radio" name="sex" value="male">
                                 <label class="form-check-label" for="sex">Male</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="radio" name="sex" value="female">
                                 <label class="form-check-label" for="sex">Female</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row px-3 mb-3">
-                        <div class="col-md-4">
-                            <label for="marital_status" class="form-label ms-1 mb-0">Marital Status</label>
-                            <select class="form-select" name="marital_status" id="marital_status">
-                                <option value="" disabled selected>Select</option>
-                                <option value="single">Single</option>
-                                <option value="married">Married</option>
-                                <option value="divorced">Divorced</option>
-                                <option value="widowed">Widowed</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="birth_date" class="form-label ms-1 mb-0">Date of Birth</label>
-                            <input type="date" class="form-control" name="birth_date">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="address" class="form-label ms-1 mb-0">Place Of Birth</label>
-                            <input type="text" class="form-control" name="placeOfbirth">
-                        </div>
-                    </div>
-                    <div class="row px-3 mb-3">
-                        <div class="col-md-4">
-                            <label for="address" class="form-label ms-1 mb-0">Address</label>
-                            <input type="text" class="form-control" name="address">
                         </div>
                         <div class="col-md-4">
                             <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
                             <input type="text" class="form-control" name="phone_number">
                         </div>
-                        <div class="col-md-4">
-                            <label for="email" class="form-label ms-1 mb-0">Email Address</label>
-                            <input type="email" class="form-control" name="email" placeholder="example@gmail.com">
+                    </div>
+                    <div class="row px-3 mb-3">
+                        <div class="col-md-12">
+                            <label for="address" class="form-label ms-1 mb-0">Address</label>
+                            <input type="text" class="form-control" name="address"
+                                placeholder="Barangay/Municipality/City">
                         </div>
+
                     </div>
                     {{-- PARCEL --}}
                     <hr class="mt-0">
-                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>Farm Land Description</h6>
+                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>Cropping Description</h6>
 
                     {{-- PAREL 1 --}}
                     <div class="card shadow-sm mb-2 mt-3">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>PARCEL NO.1</h6>
                             <button class="btn btn-sm btn-light toggle-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#farmLandCardBody1" aria-expanded="false"
-                                aria-controls="farmLandCardBody1">
+                                data-bs-target="#farmLandCardBody1" aria-expanded="false" aria-controls="farmLandCardBody1">
                                 <i class="fa-solid fa-plus toggle-icon" id="toggleIcon1"></i>
                             </button>
                         </div>
                         <div class="collapse" id="farmLandCardBody1">
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm Location</label>
-                                        <input type="text" class="form-control" name="farm_location"
-                                            placeholder="Barangay/Municipality/City">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Total Farm Area <small>(In
-                                                Hectares)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
+                                                Rice)</small></label>
                                         <input type="text" class="form-control" name="">
                                     </div>
                                     <div class="col-md-4">
@@ -131,29 +101,43 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Crop/Commodity</label>
+                                        <label for="" class="form-label ms-1 mb-0">Area</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Sowing/DS Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Transplanting Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Date Harvested</label>
+                                        <input type="date" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="farm_area" class="form-label ms-1 mb-0">
-                                            Ownership Type
-                                        </label>
-                                        <select class="form-select" name="farm_area" id="farm_area">
-                                            <option value="" selected disabled>Select Ownership Type</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4</option>
-                                            <option value="">5</option>
-                                        </select>
+                                        <label for="" class="form-label ms-1 mb-0">Gross</label>
+                                        <input type="text" class="form-control" name="">
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
-                                                Rice)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Average</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm
+                                            Location/Association</label>
+                                        <input type="text" class="form-control" name="farm_location"
+                                            placeholder="Barangay/Municipality/City">
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +147,7 @@
                     {{-- PARCEL 2 --}}
                     <div class="card shadow-sm mb-2 mt-3">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>PARCEL NO.2</h6>
+                            <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>PARCEL N0.2</h6>
                             <button class="btn btn-sm btn-light toggle-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#farmLandCardBody2" aria-expanded="false"
                                 aria-controls="farmLandCardBody2">
@@ -173,16 +157,9 @@
                         <div class="collapse" id="farmLandCardBody2">
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm Location</label>
-                                        <input type="text" class="form-control" name="farm_location"
-                                            placeholder="Barangay/Municipality/City">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Total Farm Area <small>(In
-                                                Hectares)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
+                                                Rice)</small></label>
                                         <input type="text" class="form-control" name="">
                                     </div>
                                     <div class="col-md-4">
@@ -199,29 +176,43 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Crop/Commodity</label>
+                                        <label for="" class="form-label ms-1 mb-0">Area</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Sowing/DS Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Transplanting Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Date Harvested</label>
+                                        <input type="date" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="farm_area" class="form-label ms-1 mb-0">
-                                            Ownership Type
-                                        </label>
-                                        <select class="form-select" name="farm_area" id="farm_area">
-                                            <option value="" selected disabled>Select Ownership Type</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4</option>
-                                            <option value="">5</option>
-                                        </select>
+                                        <label for="" class="form-label ms-1 mb-0">Gross</label>
+                                        <input type="text" class="form-control" name="">
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
-                                                Rice)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Average</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm
+                                            Location/Association</label>
+                                        <input type="text" class="form-control" name="farm_location"
+                                            placeholder="Barangay/Municipality/City">
                                     </div>
                                 </div>
                             </div>
@@ -241,16 +232,9 @@
                         <div class="collapse" id="farmLandCardBody3">
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm Location</label>
-                                        <input type="text" class="form-control" name="farm_location"
-                                            placeholder="Barangay/Municipality/City">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Total Farm Area <small>(In
-                                                Hectares)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
+                                                Rice)</small></label>
                                         <input type="text" class="form-control" name="">
                                     </div>
                                     <div class="col-md-4">
@@ -267,29 +251,43 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Crop/Commodity</label>
+                                        <label for="" class="form-label ms-1 mb-0">Area</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Sowing/DS Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Transplanting Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Date Harvested</label>
+                                        <input type="date" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="farm_area" class="form-label ms-1 mb-0">
-                                            Ownership Type
-                                        </label>
-                                        <select class="form-select" name="farm_area" id="farm_area">
-                                            <option value="" selected disabled>Select Ownership Type</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4</option>
-                                            <option value="">5</option>
-                                        </select>
+                                        <label for="" class="form-label ms-1 mb-0">Gross</label>
+                                        <input type="date" class="form-control" name="">
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
-                                                Rice)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Average</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm
+                                            Location/Association</label>
+                                        <input type="text" class="form-control" name="farm_location"
+                                            placeholder="Barangay/Municipality/City">
                                     </div>
                                 </div>
                             </div>
@@ -309,16 +307,9 @@
                         <div class="collapse" id="farmLandCardBody4">
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm Location</label>
-                                        <input type="text" class="form-control" name="farm_location"
-                                            placeholder="Barangay/Municipality/City">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Total Farm Area <small>(In
-                                                Hectares)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
+                                                Rice)</small></label>
                                         <input type="text" class="form-control" name="">
                                     </div>
                                     <div class="col-md-4">
@@ -335,29 +326,43 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Crop/Commodity</label>
+                                        <label for="" class="form-label ms-1 mb-0">Area</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Sowing/DS Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Transplanting Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Date Harvested</label>
+                                        <input type="date" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="farm_area" class="form-label ms-1 mb-0">
-                                            Ownership Type
-                                        </label>
-                                        <select class="form-select" name="farm_area" id="farm_area">
-                                            <option value="" selected disabled>Select Ownership Type</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4</option>
-                                            <option value="">5</option>
-                                        </select>
+                                        <label for="" class="form-label ms-1 mb-0">Gross</label>
+                                        <input type="text" class="form-control" name="">
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
-                                                Rice)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Average</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm
+                                            Location/Association</label>
+                                        <input type="text" class="form-control" name="farm_location"
+                                            placeholder="Barangay/Municipality/City">
                                     </div>
                                 </div>
                             </div>
@@ -377,16 +382,9 @@
                         <div class="collapse" id="farmLandCardBody5">
                             <div class="card-body">
                                 <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm Location</label>
-                                        <input type="text" class="form-control" name="farm_location"
-                                            placeholder="Barangay/Municipality/City">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Total Farm Area <small>(In
-                                                Hectares)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
+                                                Rice)</small></label>
                                         <input type="text" class="form-control" name="">
                                     </div>
                                     <div class="col-md-4">
@@ -403,29 +401,43 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Crop/Commodity</label>
+                                        <label for="" class="form-label ms-1 mb-0">Area</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Sowing/DS Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Transplanting Date</label>
+                                        <input type="text" class="form-control" name="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="" class="form-label ms-1 mb-0">Date Harvested</label>
+                                        <input type="date" class="form-control" name="">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label for="farm_area" class="form-label ms-1 mb-0">
-                                            Ownership Type
-                                        </label>
-                                        <select class="form-select" name="farm_area" id="farm_area">
-                                            <option value="" selected disabled>Select Ownership Type</option>
-                                            <option value="">1</option>
-                                            <option value="">2</option>
-                                            <option value="">3</option>
-                                            <option value="">4</option>
-                                            <option value="">5</option>
-                                        </select>
+                                        <label for="" class="form-label ms-1 mb-0">Gross</label>
+                                        <input type="text" class="form-control" name="">
                                     </div>
 
                                     <div class="col-md-4">
-                                        <label for="" class="form-label ms-1 mb-0">Variety <small>(Type of
-                                                Rice)</small></label>
+                                        <label for="" class="form-label ms-1 mb-0">Average</label>
                                         <input type="text" class="form-control" name="">
+                                    </div>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="farm_location" class="form-label ms-1 mb-0">Farm
+                                            Location/Association</label>
+                                        <input type="text" class="form-control" name="farm_location"
+                                            placeholder="Barangay/Municipality/City">
                                     </div>
                                 </div>
                             </div>
