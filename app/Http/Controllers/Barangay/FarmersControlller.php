@@ -15,43 +15,61 @@ class FarmersControlller extends Controller
     }
 
     public function show()
-    {
-        $auth = Auth::id();
-        $farmers = Farmer::where('user_id', $auth)->paginate(10);
-        // dd($farmers);
-        return view('barangay.farmers.list', compact('farmers'));
-    }
+{
+    $auth = Auth::id();
+    $farmers = Farmer::where('user_id', $auth)->paginate(10);
+
+    return view('barangay.farmers.list', compact('farmers'));
+}
+
 
     public function store(Request $request)
-    {
-        // Validate the incoming request
-        $validatedData = $request->validate([
-            'first_name' => 'nullable|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'last_name' => 'nullable|string|max:255',
-            'suffix' => 'nullable|string|max:255',
-            'sex' => 'nullable|in:male,female',
-            'marital_status' => 'nullable|string|max:255',
-            'birth_date' => 'nullable|date',
-            'address' => 'nullable|string|max:255',
-            'phone_number' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255|unique:farmers',
-            'farm_name' => 'nullable|string|max:255',
-            'farm_location' => 'nullable|string|max:255',
-            'farm_size' => 'nullable|string|max:255',
-            'crop_type' => 'nullable|string|max:255',
-            'ownership_type' => 'nullable|in:Registered Owner,Tenant,Lessee,Others',
-            'name_of_owner' => 'nullable|string|max:255',
-            'farm_type' => 'nullable|in:Irrigated,Rainfed Upland,Rainfed Lowland',
-        ]);
-
-        // Add the authenticated user's ID
-        $validatedData['user_id'] = Auth::id();
-
-        // Create the farmer record
-        Farmer::create($validatedData);
-
-        // Redirect or return a response
-        return redirect()->back()->with('success', 'success');
+{
+    // Ensure the user is authenticated
+    $user_id = Auth::id();
+    if (!$user_id) {
+        return redirect()->back()->with('error', 'User is not authenticated.');
     }
+
+    $parcels = [];
+    $farm_location = $request->input('farm_location', []);
+    $farm_area = $request->input('farm_area', []);
+    $farm_type = $request->input('farm_type', []);
+    $crop_commodity = $request->input('crop_commodity', []);
+
+    // Build parcels array
+    foreach ($farm_location as $index => $location) {
+        $parcels[] = [
+            'farm_location' => $location,
+            'farm_area' => $farm_area[$index] ?? null,
+            'farm_type' => $farm_type[$index] ?? null,
+            'crop_commodity' => $crop_commodity[$index] ?? null,
+        ];
+    }
+
+    // Save farmer with parcels as JSON
+    Farmer::create([
+        'user_id' => $user_id,
+        'first_name' => $request->input('first_name'),
+        'middle_name' => $request->input('middle_name'),
+        'last_name' => $request->input('last_name'),
+        'suffix' => $request->input('suffix'),
+        'sex' => $request->input('sex'),
+        'birth_date' => $request->input('birth_date'),
+        'phone_number' => $request->input('phone_number'),
+        'marital_status' => $request->input('marital_status'),
+        'name_of_spouse' => $request->input('name_of_spouse'),
+        'spouse_number' => $request->input('spouse_number'),
+
+        'parent_name' => $request->input('parent_name'),
+        'parent_number' => $request->input('parent_number'),
+        'address' => $request->input('address'),
+        'parcels' => $parcels, // Store parcels as JSON
+    ]);
+
+    return redirect()->back()->with('success', 'Farmer and parcels added successfully!');
+}
+
+
+
 }

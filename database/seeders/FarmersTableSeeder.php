@@ -14,32 +14,42 @@ class FarmersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+                $faker = Faker::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        foreach (range(1, 10) as $index) { // Seed 10 farmers
             DB::table('farmers')->insert([
-                'user_id' => $faker->numberBetween(2, 6), // Assuming you have users with IDs from 1 to 50
+                'user_id' => $faker->numberBetween(2, 6), // Adjust based on your user IDs
                 'first_name' => $faker->firstName,
+                'middle_name' => $faker->lastName,
                 'last_name' => $faker->lastName,
+                'suffix' => $faker->suffix,
                 'sex' => $faker->randomElement(['male', 'female']),
-                'marital_status' => $faker->randomElement(['Single', 'Married', 'Divorced']),
-                'birth_date' => $faker->date,
-                'address' => $faker->address,
+                'birth_date' => $faker->date(),
                 'phone_number' => $faker->phoneNumber,
-                'email' => $faker->unique()->safeEmail,
-
-                'farm_name' => $faker->company,
-                'farm_location' => $faker->city,
-                'farm_size' => $faker->randomFloat(2, 1, 100), // Random size between 1 to 100 acres
-                'crop_type' => $faker->word(['Rice', 'Corn', 'Vegetables', 'Fruits']),
-
-                'ownership_type' => $faker->randomElement(['Registered Owner', 'Tenant', 'Lessee', 'Others']),
-                'name_of_owner' => $faker->name,
-
-                'farm_type' => $faker->randomElement(['Irrigated', 'Rainfed Upland', 'Rainfed Lowland']),
+                'marital_status' => $faker->randomElement(['single', 'married', 'divorced', 'widowed']),
+                'name_of_spouse' => $faker->name,
+                'spouse_number' => $faker->phoneNumber,
+                'parent_name' => $faker->name,
+                'parent_number' => $faker->phoneNumber,
+                'address' => $faker->address,
+                'parcels' => json_encode([
+                    [
+                        'farm_location' => $faker->address,
+                        'farm_area' => $faker->randomFloat(2, 1, 100),  // A number
+                        'farm_type' => $faker->randomElement(['Organic', 'Conventional', 'Hydroponic']),
+                        'crop_commodity' => $faker->randomElement(['Rice', 'Corn', 'Wheat', 'Vegetables']),
+                    ],
+                    [
+                        'farm_location' => $faker->address,
+                        'farm_area' => $faker->randomFloat(2, 1, 100),  // A number
+                        'farm_type' => null,  // This can be null
+                        'crop_commodity' => $faker->randomElement(['Rice', 'Corn', 'Wheat', 'Vegetables']),
+                    ]
+                ]),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }
+
     }
 }
