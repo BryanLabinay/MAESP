@@ -10,6 +10,8 @@ class Farmer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+
         'first_name',
         'middle_name',
         'last_name',
@@ -19,15 +21,17 @@ class Farmer extends Model
         'birth_date',
         'address',
         'phone_number',
-        'email',
-        'farm_name',
-        'farm_location',
-        'farm_size',
-        'crop_type',
-        'user_id', // Add this to the fillable array
-        'ownership_type',
-        'name_of_owner',
-        'farm_type',
+
+        'name_of_spouse',
+        'spouse_number',
+
+        'parent_name',
+        'parent_number',
+        'parcels',
+    ];
+
+    protected $casts = [
+        'parcels' => 'array', // Automatically handle JSON encoding/decoding
     ];
 
     public function user()

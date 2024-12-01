@@ -17,38 +17,46 @@
                         {{-- <th>Address</th> --}}
                         <th>Phone Number</th>
                         {{-- <th>Email</th> --}}
-                        <th>Farm Name</th>
+
                         <th>Farm Location</th>
                         <th>Farm Size</th>
-                        <th>Crop Type</th>
-                        <th>Ownership Type</th>
-                        <th>Name of Owner</th>
                         <th>Farm Type</th>
+                        <th>Crop Commodity</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($farmers as $farmer)
+                        {{-- Farmer's Name --}}
                         <tr>
-                            <td>{{ $farmer->id }}</td>
-                            <td>{{ $farmer->first_name }}</td>
-                            <td>{{ $farmer->last_name }}</td>
-                            {{-- <td>{{ ucfirst($farmer->sex) }}</td> --}}
-                            {{-- <td>{{ $farmer->marital_status }}</td> --}}
-                            {{-- <td>{{ $farmer->birth_date }}</td> --}}
-                            {{-- <td>{{ $farmer->address }}</td> --}}
-                            <td>{{ $farmer->phone_number }}</td>
-                            {{-- <td>{{ $farmer->email }}</td> --}}
-                            <td>{{ $farmer->farm_name }}</td>
-                            <td>{{ $farmer->farm_location }}</td>
-                            <td>{{ $farmer->farm_size }}</td>
-                            <td>{{ $farmer->crop_type }}</td>
-                            <td>{{ $farmer->ownership_type }}</td>
-                            <td>{{ $farmer->name_of_owner }}</td>
-                            <td>{{ $farmer->farm_type }}</td>
-                        </tr>
+                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->id }} </td>
+                            <!-- Name spans multiple rows -->
+                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->first_name }} </td>
+                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->last_name }}</td>
+                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->phone_number }}</td>
+
+
+                            {{-- Loop over each parcel --}}
+                            @foreach ($farmer->parcels as $index => $parcel)
+                                @if ($index > 0)
+                        <tr>
+                            <!-- Start a new row for subsequent parcels -->
+                    @endif
+
+                    {{-- Farm Location, Area, Type, and Crop --}}
+                    <td>{{ $index + 1 }}. {{ $parcel['farm_location'] }}</td>
+                    <td>{{ $parcel['farm_area'] }}</td>
+                    <td>{{ $parcel['farm_type'] }}</td>
+                    <td>{{ $parcel['crop_commodity'] }}</td>
+
+                    @if ($index > 0)
+                        </tr> <!-- Close the row for subsequent parcels -->
+                    @endif
+                    @endforeach
+                    </tr>
                     @endforeach
                 </tbody>
             </table>
+
 
             <!-- Pagination links -->
             {{ $farmers->links() }}

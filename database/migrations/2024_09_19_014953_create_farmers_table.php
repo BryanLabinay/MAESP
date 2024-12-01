@@ -19,23 +19,22 @@ return new class extends Migration
             $table->string('last_name')->nullable();
             $table->string('suffix')->nullable();
             $table->enum('sex', ['male', 'female'])->nullable();
-            $table->string('marital_status')->nullable();
             $table->date('birth_date')->nullable();
-            $table->string('placeOfbirth')->nullable();
-            $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('email')->nullable();
-            $table->string('farm_name')->nullable();
-            $table->string('farm_location')->nullable();
-            $table->string('farm_size')->nullable(); // Acres or Hectares
-            $table->string('crop_type')->nullable();
+            $table->string('marital_status')->nullable();
 
-            $table->enum('ownership_type', ['Registered Owner', 'Tenant', 'Lessee', 'Others'])->nullable();
-            $table->string('name_of_owner')->nullable();
+            $table->string('name_of_spouse')->nullable();
+            $table->string('spouse_number')->nullable();
 
-            $table->enum('farm_type', ['Irrigated', 'Rainfed Upland', 'Rainfed Lowland'])->nullable();
+            $table->string('parent_name')->nullable();
+            $table->string('parent_number')->nullable();
 
+            $table->string('address')->nullable();
 
+            // start parcel
+             // Store parcels as JSON
+    $table->json('parcels')->nullable();
+            // end parcel
 
             $table->timestamps();
 
