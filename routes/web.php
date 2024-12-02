@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\CroppingController;
@@ -75,6 +76,9 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
+
+    // MEDIA RESOURCES
+    Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
 
     // NEWS $ UPDATE
     // Weather & Updates
