@@ -105,6 +105,8 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     // CROPPING REPORTS
     Route::get('/cropping-reports', [CroppingController::class, 'index'])->name('cropping.reports');
+    Route::get('/cropping-list', [CroppingController::class, 'show'])->name('cropping.list');
+
 
     // NEWS & UPDATES
     Route::get('/News&Reports', [NewsUpdateController::class, 'index']);
