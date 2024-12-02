@@ -103,8 +103,13 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     Route::get('/list-farmers', [FarmersControlller::class, 'show'])->name('list.farmers');
     Route::post('/store-farmers', [FarmersControlller::class, 'store'])->name('store.farmers');
 
+    // Cropping
+    // Route::get('/add-cropping-reports', [CroppingController::class, 'create'])->name('add.cropping');
+    Route::get('/list-cropping reports', [CroppingController::class, 'index'])->name('list.cropping');
+    Route::post('/store-cropping', [CroppingController::class, 'store'])->name('store.cropping');
+
     // CROPPING REPORTS
-    Route::get('/cropping-reports', [CroppingController::class, 'index'])->name('cropping.reports');
+    Route::get('/cropping-reports', [CroppingController::class, 'create'])->name('cropping.reports');
 
     // NEWS & UPDATES
     Route::get('/News&Reports', [NewsUpdateController::class, 'index']);

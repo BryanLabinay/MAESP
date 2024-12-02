@@ -34,6 +34,13 @@
                 Cropping Reports
             </a>
 
+            <a class="nav-link text-dark {{ Request::is('barangay/list-cropping reports') ? 'active' : '' }}"
+                href="{{ url('/barangay/list-cropping reports') }}"
+                style="{{ Request::is('barangay/list-cropping reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-pen"></i></div>
+                Cropping list
+            </a>
+
             <div class="sb-sidenav-menu-heading">Other</div>
             <a class="nav-link text-dark" href="{{ url('/barangay/News&Reports') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>

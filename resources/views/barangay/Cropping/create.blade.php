@@ -16,13 +16,13 @@
             });
         </script>
     @endif
-    <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>Add Farmers</h6>
+    <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>Cropping Reports</h6>
     <hr class="mt-0">
 
     <div class="container-fluid">
         <div class="row">
             <div class="bg-secondary bg-opacity-25 shadow-sm py-2 rounded-1">
-                <form action="{{ route('store.farmers') }}" method="POST">
+                <form action="{{ route('store.cropping') }}" method="POST">
                     @csrf
                     <h6 class="mb-3"><i class="fa-solid fa-caret-right me-1"></i>Farmers Personal Information</h6>
                     <div class="row px-3 mb-3">
@@ -44,54 +44,18 @@
                         </div>
                         <div class="col-md-4">
                             <label for="sex" class="form-label ms-1 mb-0">Sex</label><br>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="radio" name="sex" value="male">
                                 <label class="form-check-label" for="sex">Male</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="radio" name="sex" value="female">
                                 <label class="form-check-label" for="sex">Female</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="row px-3 mb-3">
-                        <div class="col-md-4">
-                            <label for="birth_date" class="form-label ms-1 mb-0">Date of Birth</label>
-                            <input type="date" class="form-control" name="birth_date">
-                        </div>
                         <div class="col-md-4">
                             <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
                             <input type="text" class="form-control" name="phone_number">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="marital_status" class="form-label ms-1 mb-0">Civil Status</label>
-                            <select class="form-select" name="marital_status" id="marital_status">
-                                <option value="" disabled selected>Select</option>
-                                <option value="single">Single</option>
-                                <option value="married">Married</option>
-                                <option value="divorced">Divorced</option>
-                                <option value="widowed">Widowed</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row px-3 mb-3">
-                        <div class="col-md-8">
-                            <label for="address" class="form-label ms-1 mb-0">Name of Spouse(If Married)</label>
-                            <input type="text" class="form-control" name="name_of_spouse">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
-                            <input type="text" class="form-control" name="spouse_number">
-                        </div>
-                    </div>
-                    <div class="row px-3 mb-3">
-                        <div class="col-md-8">
-                            <label for="address" class="form-label ms-1 mb-0">Mother/Fathers Name</label>
-                            <input type="text" class="form-control" name="parent_name">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
-                            <input type="text" class="form-control" name="parent_number">
                         </div>
                     </div>
                     <div class="row px-3 mb-3">
@@ -100,56 +64,75 @@
                             <input type="text" class="form-control" name="address"
                                 placeholder="Barangay/Municipality/City">
                         </div>
+
                     </div>
                     {{-- PARCEL --}}
                     <hr class="mt-0">
-                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>Farm Land Description</h6>
+                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>Cropping Description</h6>
 
-
-
+                    {{-- PAREL 1 --}}
                     <!-- Container for parcels -->
                     <div id="parcelContainer">
                         <!-- Initial Parcel 1 -->
                         <div class="parcel-card" id="parcel-1">
                             <div class="card shadow-sm mb-2 mt-3">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>PARCEL NO.1</h6>
-                                    <button class="btn btn-sm btn-light toggle-btn" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#farmLandCardBody1"
-                                        aria-expanded="false" aria-controls="farmLandCardBody1">
+                                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>PARCEL NO. 1</h6>
+                                    <button class="btn btn-sm btn-light toggle-btn" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#farmLandCardBody1" aria-expanded="false"
+                                        aria-controls="farmLandCardBody1">
                                         <i class="fa-solid fa-plus toggle-icon"></i>
                                     </button>
                                 </div>
                                 <div class="collapse" id="farmLandCardBody1">
                                     <div class="card-body">
                                         <div class="row mb-3">
-                                            <div class="col-md-12">
-                                                <label for="farm_location_1" class="form-label ms-1 mb-0">Farm
-                                                    Location</label>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Farm Location</label>
                                                 <input type="text" class="form-control" name="farm_location[]"
                                                     placeholder="Barangay/Municipality/City">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Variety</label>
+                                                <input type="text" class="form-control" name="variety[]"
+                                                    placeholder="Variety">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Farm Type</label>
+                                                <input type="text" class="form-control" name="farm_type[]"
+                                                    placeholder="Farm Type">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label ms-1 mb-0">Total Farm Area <small>(In
+                                                <label class="form-label ms-1 mb-0">Area <small>(In
                                                         Hectares)</small></label>
-                                                <input type="text" class="form-control" name="farm_area[]">
+                                                <input type="text" class="form-control" name="area[]"
+                                                    placeholder="Area">
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label ms-1 mb-0">Farm Type</label>
-                                                <select class="form-select" name="farm_type[]">
-                                                    <option value="" selected disabled>Select Farm Type</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
+                                                <label class="form-label ms-1 mb-0">Sowing Date</label>
+                                                <input type="date" class="form-control" name="sowing_date[]">
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label ms-1 mb-0">Crop/Commodity</label>
-                                                <input type="text" class="form-control" name="crop_commodity[]">
+                                                <label class="form-label ms-1 mb-0">Transplanting Date</label>
+                                                <input type="date" class="form-control" name="transplanting_date[]">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Date Harvested</label>
+                                                <input type="date" class="form-control" name="date_harvested[]">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Gross Yield</label>
+                                                <input type="text" class="form-control" name="gross[]"
+                                                    placeholder="Gross Yield">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Average Yield</label>
+                                                <input type="text" class="form-control" name="average[]"
+                                                    placeholder="Average Yield">
                                             </div>
                                         </div>
                                     </div>
@@ -158,13 +141,15 @@
                         </div>
                     </div>
 
-                    <!-- Template for new parcels -->
+
                     <template id="parcelTemplate">
                         <div class="parcel-card">
                             <div class="card shadow-sm mb-2 mt-3">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="mb-0"><i class="fa-solid fa-caret-right me-1"></i>PARCEL NO.<span
-                                            class="parcel-number"></span></h6>
+                                    <h6 class="mb-0">
+                                        <i class="fa-solid fa-caret-right me-1"></i>PARCEL NO. <span
+                                            class="parcel-number"></span>
+                                    </h6>
                                     <div>
                                         <button class="btn btn-sm btn-light toggle-btn" type="button"
                                             data-bs-toggle="collapse">
@@ -179,32 +164,52 @@
                                 <div class="collapse">
                                     <div class="card-body">
                                         <div class="row mb-3">
-                                            <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <label class="form-label ms-1 mb-0">Farm Location</label>
                                                 <input type="text" class="form-control" name="farm_location[]"
                                                     placeholder="Barangay/Municipality/City">
                                             </div>
-                                        </div>
-                                        <div class="row mb-3">
                                             <div class="col-md-4">
-                                                <label class="form-label ms-1 mb-0">Total Farm Area <small>(In
-                                                        Hectares)</small></label>
-                                                <input type="text" class="form-control" name="farm_area[]">
+                                                <label class="form-label ms-1 mb-0">Variety</label>
+                                                <input type="text" class="form-control" name="variety[]"
+                                                    placeholder="Variety">
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label ms-1 mb-0">Farm Type</label>
-                                                <select class="form-select" name="farm_type[]">
-                                                    <option value="" selected disabled>Select Farm Type</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
+                                                <input type="text" class="form-control" name="farm_type[]"
+                                                    placeholder="Farm Type">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Area <small>(In
+                                                        Hectares)</small></label>
+                                                <input type="text" class="form-control" name="area[]"
+                                                    placeholder="Area">
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="form-label ms-1 mb-0">Crop/Commodity</label>
-                                                <input type="text" class="form-control" name="crop_commodity[]">
+                                                <label class="form-label ms-1 mb-0">Sowing Date</label>
+                                                <input type="date" class="form-control" name="sowing_date[]">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Transplanting Date</label>
+                                                <input type="date" class="form-control" name="transplanting_date[]">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Date Harvested</label>
+                                                <input type="date" class="form-control" name="date_harvested[]">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Gross Yield</label>
+                                                <input type="text" class="form-control" name="gross[]"
+                                                    placeholder="Gross Yield">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label ms-1 mb-0">Average Yield</label>
+                                                <input type="text" class="form-control" name="average[]"
+                                                    placeholder="Average Yield">
                                             </div>
                                         </div>
                                     </div>
@@ -212,6 +217,13 @@
                             </div>
                         </div>
                     </template>
+
+                    <script>
+                        function deleteParcel(button) {
+                            const parcelCard = button.closest('.parcel-card');
+                            parcelCard.remove();
+                        }
+                    </script>
 
 
 
@@ -224,19 +236,10 @@
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
-
-
-    <script>
-        function deleteParcel(button) {
-            const parcelCard = button.closest('.parcel-card');
-            parcelCard.remove();
-        }
-    </script>
 
     <script>
         document.getElementById('addParcelBtn').addEventListener('click', function() {
@@ -258,7 +261,6 @@
             document.getElementById('parcelContainer').appendChild(template);
         });
     </script>
-
     <script>
         document.querySelectorAll('.toggle-btn').forEach(button => {
             button.addEventListener('click', function() {
