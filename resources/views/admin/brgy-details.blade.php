@@ -15,32 +15,39 @@
 
          <div class="row p-2 bg-white shadow-sm">
              <div class="bg-secondary bg-opacity-10 rounded-1 p-2">
-                 <div class="col-sm-6">
-                     <div class="row">
-                         <div class="col-sm-3">
-                             <img src="{{ asset('assets/img/masp-logo.jpg') }}" alt="logo"
-                                 class="rounded-circle border border-1" width="110" height="110">
-                         </div>
-                         <div class="col-9 d-flex align-items-center">
-                             <div class="d-flex flex-row">
-                                 <h1 class="fw-bold me-2">BARANGAY</h1>
-                                 <h1 class="fw-bold text-uppercase">{{ $barangay->name }}</h1>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="{{ asset('assets/img/masp-logo.jpg') }}" alt="logo"
+                                class="rounded-circle border border-1" width="110" height="110">
+                        </div>
+                        <div class="col-9 d-flex align-items-center">
+                            <div class="d-flex flex-column"> <!-- Changed flex direction to column -->
+                                <div class="d-flex flex-row">
+                                    <h1 class="fw-bold me-2">BARANGAY</h1>
+                                    <h1 class="fw-bold text-uppercase">{{ $barangay->name }}</h1>
+                                </div>
+                                <h6>Total Farmers: 60</h6> <!-- Moved below the h1 tags -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
              </div>
              {{-- <hr class="mt-2 text-danger"> --}}
              <div class="row mb-2 mt-2">
-                 <div class="col-12 d-flex justify-content-end">
+                 <div class="col-6 d-flex justify-content-start">
                      <form action="" method="GET" class="form-inline">
                          <div class="form-group">
-                             <input type="text" name="name" class="form-control me-2" placeholder="Search Farmers"
-                                 value="">
+                            <input type="text" name="name" class="form-control me-2" style="width: 400px;" placeholder="Search Farmers" value="">
+
                          </div>
                          <button type="submit" class="btn btn-primary fw-semibold"><i
                                  class="fa-solid fa-magnifying-glass me-1"></i>Search</button>
                      </form>
+                 </div>
+                 <div class="col-6 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-1"><i class="fa-solid fa-file-arrow-down me-1"></i> Export Excel</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-file-pdf me-1"></i> Generate PDF</button>
                  </div>
              </div>
              {{-- <hr class="mt-0"> --}}
