@@ -33,19 +33,19 @@
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-file-pen"></i></div>
                 Cropping Reports
             </a>
-            <a class="nav-link text-dark {{ Request::is('barangay/cropping-list') ? 'active' : '' }}"
+            {{-- <a class="nav-link text-dark {{ Request::is('barangay/cropping-list') ? 'active' : '' }}"
                 href="{{ url('/barangay/cropping-list') }}"
                 style="{{ Request::is('barangay/cropping-list') ? 'color: blue; background-color: #A2CA71;' : '' }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                 Cropping List
-            </a>
+            </a> --}}
 
 
 
             <a class="nav-link text-dark {{ Request::is('barangay/list-cropping reports') ? 'active' : '' }}"
                 href="{{ url('/barangay/list-cropping reports') }}"
                 style="{{ Request::is('barangay/list-cropping reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-file-pen"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                 Cropping list
             </a>
 
