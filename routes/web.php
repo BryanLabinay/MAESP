@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\CroppingController;
@@ -76,6 +77,9 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
 
+    // MEDIA RESOURCES
+    Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
+
     // NEWS $ UPDATE
     // Weather & Updates
     Route::get('/Weather_Updates', [NewsUpdatesController::class, 'indexWeather']);
@@ -105,11 +109,12 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     // Cropping
     // Route::get('/add-cropping-reports', [CroppingController::class, 'create'])->name('add.cropping');
+    Route::get('/cropping-reports', [CroppingController::class, 'create'])->name('cropping.reports');
+  
     Route::get('/list-cropping reports', [CroppingController::class, 'index'])->name('list.cropping');
     Route::post('/store-cropping', [CroppingController::class, 'store'])->name('store.cropping');
 
-    // CROPPING REPORTS
-    Route::get('/cropping-reports', [CroppingController::class, 'create'])->name('cropping.reports');
+    
 
     // NEWS & UPDATES
     Route::get('/News&Reports', [NewsUpdateController::class, 'index']);

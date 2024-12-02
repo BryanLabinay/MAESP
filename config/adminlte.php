@@ -295,11 +295,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
-            'type' => 'navbar-search',
-            'text' => 'Search',
-            'topnav_right' => true,
-        ],
+        // [
+        //     'type' => 'navbar-search',
+        //     'text' => 'Search',
+        //     'topnav_right' => true,
+        // ],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
@@ -355,7 +355,7 @@ return [
         ],
         [
             'text' => 'Media Resources',
-            'url' => '',
+            'url' => 'Admin/Media-Resources',
             'icon' => 'fa-solid fa-users',
         ],
         [

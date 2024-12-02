@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Municipal-Agriculture-Office-Aparri'),
+    'name' => env('APP_NAME', 'Municipal_Agriculture_Office_Aparri'),
 
     /*
     |--------------------------------------------------------------------------
