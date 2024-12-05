@@ -9,24 +9,27 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="assets/img/masp-logo.jpg" rel="icon">
+    <link href="{{ asset('assets/img/masp-logo.jpg') }}" rel="icon">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
+    {{-- Fontawesome --}}
+    <script src="https://kit.fontawesome.com/5c14b0052b.js" crossorigin="anonymous"></script>
+
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
 
     <!-- Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
 </head>
 
@@ -44,10 +47,47 @@
                 <ul>
                     <li><a href="#index.html" class="active">Home</a></li>
                     <li><a href="#about.html">About Us</a></li>
-                    <li><a href="services.html">Our Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i
+                    {{-- <li><a href="services.html">Our Services</a></li> --}}
+                    <li class="dropdown"><a href="#"><span>Services</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#">Dropdown 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
+                                        class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dropdown 2</a></li>
+                            <li><a href="#">Dropdown 3</a></li>
+                            <li><a href="#">Dropdown 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><span>Media Resources</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#">Dropdown 1</a></li>
+                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
+                                        class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Dropdown 1</a></li>
+                                    <li><a href="#">Deep Dropdown 2</a></li>
+                                    <li><a href="#">Deep Dropdown 3</a></li>
+                                    <li><a href="#">Deep Dropdown 4</a></li>
+                                    <li><a href="#">Deep Dropdown 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dropdown 2</a></li>
+                            <li><a href="#">Dropdown 3</a></li>
+                            <li><a href="#">Dropdown 4</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Portfolio</a></li>
+                    <li class="dropdown"><a href="#"><span>Transparency</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -72,8 +112,8 @@
                             <a href="{{ url('/home') }}"
                                 class="btn btn-success py-1 text-uppercase fw-bold text-light">Home</a>
                         @else
-                            <a href="{{ route('login') }}"
-                                class="btn btn-success py-1 text-uppercase fw-bold text-light">Get Started</a>
+                            <a href="{{ route('login') }}" class="btn"><i
+                                    class="fa-solid fa-lock text-success fa-xl"></i></a>
                         @endauth
                     @endif
                 </ul>
@@ -92,47 +132,45 @@
                 data-bs-interval="5000">
 
                 <div class="carousel-item active">
-                    <img src="assets/img/hero_1.jpg" alt="">
+                    <img src="{{ asset('assets/img/bg.jpg') }}" alt="">
                     <div class="carousel-container">
-                        <h2>Farming is the best solution of worlds starvation</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
+                        <h2 class="text-center text-uppercase">Municipal Agriculture Service Portal - Aparri</h2>
                     </div>
                 </div><!-- End Carousel Item -->
 
                 <div class="carousel-item">
                     <img src="assets/img/hero_2.jpg" alt="">
                     <div class="carousel-container">
-                        <h2>Organic vegetables is good for health</h2>
+                        {{-- <h2>Organic vegetables is good for health</h2>
                         <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
-                            quod maxime placeat facere possimus.</p>
+                            quod maxime placeat facere possimus.</p> --}}
                     </div>
                 </div><!-- End Carousel Item -->
 
                 <div class="carousel-item">
                     <img src="assets/img/hero_3.jpg" alt="">
                     <div class="carousel-container">
-                        <h2>Providing Fresh Produce Every Single Day</h2>
+                        {{-- <h2>Providing Fresh Produce Every Single Day</h2>
                         <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                            aut odit aut fugit.</p>
+                            aut odit aut fugit.</p> --}}
                     </div>
                 </div><!-- End Carousel Item -->
 
                 <div class="carousel-item">
                     <img src="assets/img/hero_4.jpg" alt="">
                     <div class="carousel-container">
-                        <h2>Farming as a Passione</h2>
+                        {{-- <h2>Farming as a Passione</h2>
                         <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                            sed quia non numquam eius.</p>
+                            sed quia non numquam eius.</p> --}}
                     </div>
                 </div><!-- End Carousel Item -->
 
                 <div class="carousel-item">
                     <img src="assets/img/hero_5.jpg" alt="">
                     <div class="carousel-container">
-                        <h2>Good Food For All</h2>
+                        {{-- <h2>Good Food For All</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
+                            labore et dolore magna aliqua.</p> --}}
                     </div>
                 </div><!-- End Carousel Item -->
 
@@ -461,42 +499,12 @@
             </div>
         </section><!-- /About Section -->
 
-        <!-- About 3 Section -->
-        <section id="about-3" class="about-3 section">
-
-            <div class="container">
-                <div class="row gy-4 justify-content-between align-items-center">
-                    <div class="col-lg-6 order-lg-2 position-relative" data-aos="zoom-out">
-                        <img src="assets/img/img_sq_1.jpg" alt="Image" class="img-fluid">
-                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn">
-                            <span class="play"><i class="bi bi-play-fill"></i></span>
-                        </a>
-                    </div>
-                    <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-                        <h2 class="content-title mb-4">Plants Make Life Better</h2>
-                        <p class="mb-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-                            necessitatibus placeat, atque qui voluptatem velit explicabo vitae
-                            repellendus architecto provident nisi ullam minus asperiores commodi!
-                            Tenetur, repellat aliquam nihil illo.
-                        </p>
-                        <ul class="list-unstyled list-check">
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Velit explicabo vitae repellendu</li>
-                            <li>Repellat aliquam nihil illo</li>
-                        </ul>
-
-                        <p><a href="#" class="btn-cta">Get in touch</a></p>
-                    </div>
-                </div>
-            </div>
-        </section><!-- /About 3 Section -->
 
         <!-- Services 2 Section -->
         <section id="services-2" class="services-2 section dark-background">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Services</h2>
+                <h2>Portfolio</h2>
                 <p>Necessitatibus eius consequatur</p>
             </div><!-- End Section Title -->
 
@@ -624,80 +632,13 @@
             </div>
         </section><!-- /Services 2 Section -->
 
-        <!-- Testimonials Section -->
-        <section class="testimonials-12 testimonials section" id="testimonials">
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>TESTIMONIALS</h2>
-                <p>Necessitatibus eius consequatur</p>
-            </div><!-- End Section Title -->
-
-            <div class="testimonial-wrap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 mb-4 mb-md-4">
-                            <div class="testimonial">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" alt="Testimonial author">
-                                <blockquote>
-                                    <p>
-                                        “Lorem ipsum dolor sit, amet consectetur adipisicing
-                                        elit. Provident deleniti iusto molestias, dolore vel fugiat
-                                        ab placeat ea?”
-                                    </p>
-                                </blockquote>
-                                <p class="client-name">James Smith</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 mb-md-4">
-                            <div class="testimonial">
-                                <img src="assets/img/testimonials/testimonials-2.jpg" alt="Testimonial author">
-                                <blockquote>
-                                    <p>
-                                        “Lorem ipsum dolor sit, amet consectetur adipisicing
-                                        elit. Provident deleniti iusto molestias, dolore vel fugiat
-                                        ab placeat ea?”
-                                    </p>
-                                </blockquote>
-                                <p class="client-name">Kate Smith</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 mb-md-4">
-                            <div class="testimonial">
-                                <img src="assets/img/testimonials/testimonials-3.jpg" alt="Testimonial author">
-                                <blockquote>
-                                    <p>
-                                        “Lorem ipsum dolor sit, amet consectetur adipisicing
-                                        elit. Provident deleniti iusto molestias, dolore vel fugiat
-                                        ab placeat ea?”
-                                    </p>
-                                </blockquote>
-                                <p class="client-name">Claire Anderson</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 mb-md-4">
-                            <div class="testimonial">
-                                <img src="assets/img/testimonials/testimonials-4.jpg" alt="Testimonial author">
-                                <blockquote>
-                                    <p>
-                                        “Lorem ipsum dolor sit, amet consectetur adipisicing
-                                        elit. Provident deleniti iusto molestias, dolore vel fugiat
-                                        ab placeat ea?”
-                                    </p>
-                                </blockquote>
-                                <p class="client-name">Dan Smith</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- /Testimonials Section -->
 
         <!-- Recent Posts Section -->
         <section id="recent-posts" class="recent-posts section">
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Recent Posts</h2>
+                <h2 class="text-uppercase">Agriculture Office Team in Action</h2>
                 <p>Necessitatibus eius consequatur</p>
             </div><!-- End Section Title -->
 
@@ -814,7 +755,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <h3>Subscribe To Our Newsletter</h3>
+                            <h3 class="text-uppercase">Feedback</h3>
                             <p class="opacity-50">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Nesciunt, reprehenderit!
@@ -848,7 +789,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6 footer-about">
                         <a href="index.html" class="logo d-flex align-items-center">
-                            <span class="sitename">Municipal Agriculture Service Portal</span>
+                            <span class="sitename">MASP - Aparri Agriculture Office</span>
                         </a>
                         <div class="footer-contact pt-3">
                             <p>A108 Adam Street</p>
@@ -912,7 +853,7 @@
 
                 <div class="d-flex flex-column align-items-center align-items-lg-start">
                     <div>
-                        © Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved
+                        © Copyright <strong><span>MASP - Aparri</span></strong>. All Rights Reserved
                     </div>
                     {{-- <div class="credits">
                        
@@ -940,14 +881,14 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
