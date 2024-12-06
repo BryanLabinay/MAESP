@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cropping extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
 
     protected $fillable = [
@@ -25,6 +27,13 @@ class Cropping extends Model
     protected $casts = [
         'parcels' => 'array', // Automatically handle JSON encoding/decoding
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['first_name',  'last_name', 'sex', 'address', 'phone_number', 'address', 'parcels']);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * Relationship with User model (if applicable).
