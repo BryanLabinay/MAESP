@@ -16,106 +16,117 @@
     @stop
 
     @section('content_header')
-        <h5 class="fw-semibold text-md">Services</h5>
+        <h5 class="fw-semibold text-md">Activity Log</h5>
         <hr class="mt-0">
     @stop
 
     @section('content')
         <div class="container-fluid">
-            <div class="container">
-                <div class="row bg-olive rounded shadow-lg py-3">
-                    <div class="col-7 bg-secondary bg-opacity-75 rounded ms-2 px-3">
-                        <div class="d-flex justify-content-center align-items-center mt-2">
-                            <h6 class="text-dark p-0 bg-light px-5 rounded-pill">Add Service</h6>
-                        </div>
-                        <div class="">
-                            <form action="" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="mb-3">
-                                            <label for="text" class="form-label fw-medium">Service Name:</label>
-                                            <input type="text" name="service_name" class="form-control" id="service_name"
-                                                required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="mb-3">
-                                            <label for="description" class="form-label fw-medium">Description:</label>
-                                            <textarea name="description" id="description" class="form-control" cols="30" rows="2"
-                                                placeholder="Enter service description here"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="mb-3">
-                                            <label for="img" class="form-label">Service Image:</label>
-                                            <input type="file" class="form-control" name="image" id="image">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-4 bg-secondary bg-opacity-75 rounded mx-4">
-                        <div class="d-flex justify-content-center align-items-center mt-2">
-                            <h6 class="text-dark p-0 bg-light px-5 rounded-pill">Services List</h6>
-                        </div>
-                        {{-- Put the forelse here --}}
-                        <div class="clickable-container position-relative mb-1">
-                            <a href="#" class="stretched-link text-decoration-none">
-                                <div class="d-flex align-items-center bg-light rounded-1 px-3">
-                                    <div class="list-group">
-                                        <div class="p-2">
-                                            <div class="flex-grow-1">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h6 class="mb-0 text-dark fw-bold">Free Fertilizer</h6>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <p class="mb-0 text-muted">
-                                                            Lorem ipsum dolor sit amet.
-                                                            {{-- {{ strlen($data->email) > 40 ? substr($data->email, 0, 40) . '...' : $data->email }} --}}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+            <div class="row">
+                <div class="col-8 d-flex justify-content-center">
+                    <div class="bg-secondary p-2 text-black px-3 rounded-1 bg-opacity-25" style="width: 650px;">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <h5 class="fw-semibold text-dark">Service Form</h5>
+                            <hr class="mt-0 text-black">
+                            <div class="form-group">
+                                <label for="">Service Name:</label>
+                                <input name="service" type="text" required class="form-control"
+                                    placeholder="Enter the name here..." autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" id="description" name="description" placeholder="Type your description here..."
+                                    rows="1" style="height: auto; overflow-y: hidden;" required></textarea>
+                            </div>
 
-                        {{-- Put the forelse here --}}
-                        <div class="clickable-container position-relative mb-1">
-                            <a href="#" class="stretched-link text-decoration-none">
-                                <div class="d-flex align-items-center bg-light rounded-1 px-3">
-                                    <div class="list-group">
-                                        <div class="p-2">
-                                            <div class="flex-grow-1">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h6 class="mb-0 text-dark fw-bold">Goverment</h6>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <p class="mb-0 text-muted">
-                                                            Lorem ipsum dolor sit amet.
-                                                            {{-- {{ strlen($data->email) > 40 ? substr($data->email, 0, 40) . '...' : $data->email }} --}}
-                                                        </p>
-                                                    </div>
+                            <div class="form-group">
+                                <label for="">Image</label>
+                                <input type="file" name="img" id="img" class="form-control">
+                            </div>
+                            <div class="d-flex justify-content-start">
+                                <button class="btn btn-primary px-5 ">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-4 p-0">
+                    <div class="bg-secondary bg-opacity-25 p-0 rounded-1 text-black">
+                        <h5 class="text-center">Service List</h5>
+                    </div>
+                    {{-- @forelse ($services as $service) --}}
+                    <div class="clickable-container position-relative mb-1">
+                        <a href="" class="stretched-link text-decoration-none">
+                            <div class="d-flex align-items-center bg-secondary bg-opacity-25 rounded-1 px-3">
+                                <div class="me-3">
+                                    {{-- <img src="{{ asset('uploads/service/' . $service->img) }}"
+                                            class="border border-1 border-secondary object-fit" height="50"
+                                            width="50" alt="{{ $service->service }}"
+                                            style="border-radius:50%; object-fit: cover;"> --}}
+                                </div>
+                                <div class="list-group">
+                                    <div class="p-2">
+                                        <div class="flex-grow-1">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h6 class="mb-0 text-dark fw-bold">Fertilizer</h6>
+                                                </div>
+                                                <div class="col-12">
+                                                    <p class="mb-0 text-muted">
+                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                        Praesentium, hic.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     </div>
+                    {{-- @empty
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-5">
+                                <div class="bg-secondary bg-opacity-25 rounded-1 shadow-sm">
+                                    <h5 class="text-center text-black">No Service</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse --}}
                 </div>
             </div>
         </div>
+    @stop
+
+
+    @section('js')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                bsCustomFileInput.init();
+            });
+        </script>
+        {{-- TextArea --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const descriptionTextarea = document.getElementById('description');
+
+                function adjustTextareaHeight() {
+                    descriptionTextarea.style.height = 'auto';
+                    descriptionTextarea.style.height = descriptionTextarea.scrollHeight + 'px';
+                }
+
+                descriptionTextarea.addEventListener('input', function() {
+                    adjustTextareaHeight();
+                });
+
+                adjustTextareaHeight();
+            });
+        </script>
     @stop
 </x-app-layout>

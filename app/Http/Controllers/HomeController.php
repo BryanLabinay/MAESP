@@ -32,18 +32,36 @@ class HomeController extends Controller
 
     public function auth()
     {
-        if (Auth::id()) {
-            $usertype = Auth::user()->usertype;
+        if (Auth::check()) {
 
-            if ($usertype == 'admin') {
-                // Count only 'barangay' user types and pass it to the view
-                $countall = User::where('usertype', 'barangay')->count();
-                $farmer = Farmer::count();
-                return view('admin.home', compact('countall', 'farmer'));
-            } elseif ($usertype == 'barangay') {
-                return view('barangay.dashboard');
-            } else {
-                return redirect()->back();
+            $user = Auth::user();
+
+
+            if ($user instanceof User) {
+                $usertype = $user->usertype;
+
+                if ($usertype === 'admin') {
+                    $countall = User::where('usertype', 'barangay')->count();
+                    $farmer = Farmer::count();
+
+
+                    activity()
+                        ->causedBy($user)
+                        ->performedOn($user)
+                        ->log('Logged in');
+
+                    return view('admin.home', compact('countall', 'farmer'));
+                } elseif ($usertype === 'barangay') {
+
+                    activity()
+                        ->causedBy($user)
+                        ->performedOn($user)
+                        ->log('Logged in');
+
+                    return view('barangay.dashboard');
+                } else {
+                    return redirect()->back();
+                }
             }
         }
     }

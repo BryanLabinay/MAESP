@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Farmer extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
 
     protected $fillable = [
         'user_id',
@@ -33,6 +35,13 @@ class Farmer extends Model
     protected $casts = [
         'parcels' => 'array', // Automatically handle JSON encoding/decoding
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['first_name', 'last_name', 'sex', 'address', 'phone_number', 'parcels']);
+        // Chain fluent methods for configuration options
+    }
 
     public function user()
     {

@@ -418,7 +418,7 @@ return [
             'text' => 'Activity Log',
             'icon' => 'fa-solid fa-clock-rotate-left',
             'icon_color' => 'blue',
-            'url' => '#',
+            'url' => 'Admin/Activity-Log',
         ],
 
     ],

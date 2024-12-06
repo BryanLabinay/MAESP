@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogCTRL;
 use App\Models\Barangay;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +93,9 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     // Seed & Fertilizer
     Route::get('/Seed_Fertilizer', [NewsUpdatesController::class, 'indexSeed']);
+
+    // ACTIVITY LOG
+    Route::get('/Activity-Log', [ActivityLogCTRL::class, 'index']);
 });
 
 
@@ -110,11 +114,11 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     // Cropping
     // Route::get('/add-cropping-reports', [CroppingController::class, 'create'])->name('add.cropping');
     Route::get('/cropping-reports', [CroppingController::class, 'create'])->name('cropping.reports');
-  
+
     Route::get('/list-cropping reports', [CroppingController::class, 'index'])->name('list.cropping');
     Route::post('/store-cropping', [CroppingController::class, 'store'])->name('store.cropping');
 
-    
+
 
     // NEWS & UPDATES
     Route::get('/News&Reports', [NewsUpdateController::class, 'index']);
