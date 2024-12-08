@@ -73,6 +73,8 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Crop-Assessment', [CropAssessmentCTRL::class, 'index'])->name('crop');
     // Services
     Route::get('/Services', [ServiceController::class, 'index'])->name('service');
+    Route::get('/Services/List', [ServiceController::class, 'list'])->name('service.list');
+
     // Forum
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 

@@ -9,7 +9,7 @@ class ActivityLogCTRL extends Controller
 {
     public function index()
     {
-        $activities = Activity::latest()->paginate(10);
+        $activities = Activity::latest()->get();
         return view('admin.activity-log', compact('activities'));
     }
 }
