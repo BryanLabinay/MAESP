@@ -18,9 +18,9 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function list()
     {
-        //
+        return view('admin.Service.service-list');
     }
 
     /**
