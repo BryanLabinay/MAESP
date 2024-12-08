@@ -33,96 +33,31 @@
             </div>
             {{-- <hr class="mt-0"> --}}
             <div class="row">
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                @foreach ($services as $service)
+                    @php
+                        $images = json_decode($service->image); // Decode the image JSON array
+                    @endphp
+                    <div class="col-3 mb-4">
+                        <div class="card service-card">
+                            <!-- Show the first image if available -->
+                            @if ($images && count($images) > 0)
+                                <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top" alt="Service Image">
+                            @else
+                                <img src="https://via.placeholder.com/200" class="card-img-top" alt="Placeholder Image">
+                            @endif
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $service->service_name }}</h5>
+                                <p class="card-text">{{ $service->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
+
+
 
         <!-- Modal Structure -->
         <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel"
@@ -136,14 +71,15 @@
                     </div>
                     <!-- Modal Body -->
                     <div class="modal-body">
-                        <form id="addServiceForm" method="POST" action="/services/store">
+                        <form id="addServiceForm" method="POST" action="{{ route('service.store') }}"
+                            enctype="multipart/form-data">
                             <!-- CSRF Token -->
                             @csrf
                             <!-- Service Name Field -->
                             <div class="mb-3">
                                 <label for="serviceName" class="form-label">Service Name</label>
                                 <input type="text" class="form-control" id="serviceName" name="service_name"
-                                    placeholder="Enter service name" required>
+                                    placeholder="Enter service name">
                             </div>
                             <!-- Description Field -->
                             <div class="mb-3">
@@ -154,8 +90,8 @@
                             <!-- Price Field -->
                             <div class="mb-3">
                                 <label for="servicePrice" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="img" name="img"
-                                    placeholder="Enter price" required>
+                                <input type="file" class="form-control" id="img" name="image[]" required
+                                    placeholder="add file" multiple>
                             </div>
                             <!-- Submit Button -->
                             <button type="submit" class="btn btn-primary">Add Service</button>
