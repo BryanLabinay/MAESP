@@ -73,6 +73,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Crop-Assessment', [CropAssessmentCTRL::class, 'index'])->name('crop');
     // Services
     Route::get('/Services', [ServiceController::class, 'index'])->name('service');
+    Route::resource('/service', ServiceController::class);
     Route::get('/Services/List', [ServiceController::class, 'list'])->name('service.list');
 
     // Forum
@@ -82,6 +83,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     // MEDIA RESOURCES
     Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
+    Route::resource('/media', MediaController::class);
 
     // NEWS $ UPDATE
     // Weather & Updates

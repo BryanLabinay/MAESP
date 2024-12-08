@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MediaController extends Controller
 {
@@ -12,7 +14,8 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('admin.Media.index');
+        $mediaItems = Media::all();
+        return view('admin.Media.index', compact('mediaItems'));
     }
 
     /**
@@ -28,8 +31,31 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'file.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,xlsx,txt', // Validate each file
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $uploadedFiles = $request->file('file'); // Retrieve multiple files
+        $mediaRecords = [];
+
+        foreach ($uploadedFiles as $file) {
+            // Store each file in the `public/uploads` directory
+            $filePath = $file->store('uploads', 'public');
+
+            // Save each file information to the database
+            $mediaRecords[] = Media::create([
+                'title' => $request->input('title', $file->getClientOriginalName()),
+                'file' => $filePath,
+                'description' => $request->input('description', $file->getClientOriginalName()),
+                'user_id' => Auth::id(),
+            ]);
+        }
+
+        return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.

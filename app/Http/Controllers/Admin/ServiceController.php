@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -12,7 +14,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.Service.service');
+        $services = Service::all();
+        return view('admin.Service.service', compact('services'));
     }
 
     /**
@@ -26,17 +29,45 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function store(Request $request)
     {
-        //
+        // $request->validate([
+        //     'service_name' => 'nullable|string|max:255',
+        //     'image.*' => 'required|image|mimes:jpg,jpeg,png,gif',
+        //     'description' => 'nullable|string',
+        // ]);
+
+        $uploadedFiles = $request->file('image');
+        $imagePaths = [];
+
+        // Store each uploaded image and get the path
+        foreach ($uploadedFiles as $file) {
+            $filePath = $file->store('uploads/services', 'public');
+            $imagePaths[] = $filePath;  // Add the file path to the array
+        }
+
+        // Save service record with all image paths as a JSON array
+        Service::create([
+            'service_name' => $request->input('service_name'),
+            'image' => json_encode($imagePaths),  // Convert the array to JSON
+            'user_id' => Auth::id(),
+            'description' => $request->input('description'),
+        ]);
+
+        // Redirect with success message
+        return redirect()->back()->with('success', 'Service and images uploaded successfully');
+    }
+
+    public function show($id)
+    {
+        // Fetch the service by ID
+        $service = Service::find($id);
+
+        // Pass the service data to the view
+        return view('services.show', compact('service'));
     }
 
     /**
