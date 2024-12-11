@@ -362,11 +362,11 @@ return [
             'text' => 'News & Update',
             'icon' => 'fa-solid fa-newspaper',
             'submenu' => [
-                [
-                    'text' => 'Weather Updates',
-                    'url' => 'Admin/Weather_Updates',
-                    'icon' => 'fa-solid fa-cloud-sun-rain'
-                ],
+                // [
+                //     'text' => 'Weather Updates',
+                //     'url' => 'Admin/Weather_Updates',
+                //     'icon' => 'fa-solid fa-cloud-sun-rain'
+                // ],
                 [
                     'text' => 'Pest & Disease Alerts',
                     'url' => 'Admin/Pest&Disease',

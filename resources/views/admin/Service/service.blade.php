@@ -44,7 +44,8 @@
                             @if ($images && count($images) > 0)
                                 <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top" alt="Service Image">
                             @else
-                                <img src="https://via.placeholder.com/200" class="card-img-top" alt="Placeholder Image">
+                                <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top"
+                                    alt="Placeholder Image">
                             @endif
 
                             <div class="card-body">
