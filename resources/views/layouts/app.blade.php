@@ -46,6 +46,9 @@
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
             </script>
 
+            {{-- Fontawesome --}}
+            <script src="https://kit.fontawesome.com/5c14b0052b.js" crossorigin="anonymous"></script>
+
             <!-- Bootstrap JavaScript (necessary for modal functionality) -->
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js"></script>
