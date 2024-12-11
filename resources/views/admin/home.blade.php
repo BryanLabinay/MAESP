@@ -66,6 +66,46 @@
                 </div>
             </div>
 
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <div style="width: 80%; margin: auto;">
+                <canvas id="cropsChart"></canvas>
+            </div>
+
+            <script>
+                const labels = @json($formattedData->pluck('month'));
+                const data = @json($formattedData->pluck('count'));
+
+                const ctx = document.getElementById('cropsChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Number of Crops',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
         </div>
     @endsection
 </x-app-layout>

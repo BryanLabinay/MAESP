@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Farmer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,8 +28,34 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+
+        $countall = User::where('usertype', 'barangay')->count();
+        $farmer = Farmer::count();
+
+        // Get raw data from database grouped by month
+        $cropsData = DB::table('croppings')
+            ->select(DB::raw('MONTH(created_at) as month, COUNT(user_id) as crop_count'))
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->get();
+
+        // Create a full list of months
+        $months = collect(range(1, 12))->mapWithKeys(function ($month) {
+            return [$month => date("F", mktime(0, 0, 0, $month, 10))];
+        });
+
+        // Match data to all months, fill missing months with 0
+        $formattedData = $months->map(function ($monthName, $monthNumber) use ($cropsData) {
+            $cropCount = $cropsData->firstWhere('month', $monthNumber)->crop_count ?? 0;
+            return [
+                'month' => $monthName,
+                'count' => $cropCount,
+            ];
+        });
+
+
+        return view('admin.home', compact('formattedData', 'countall', 'farmer'));
     }
+
 
 
     public function auth()
@@ -41,16 +69,12 @@ class HomeController extends Controller
                 $usertype = $user->usertype;
 
                 if ($usertype === 'admin') {
-                    $countall = User::where('usertype', 'barangay')->count();
-                    $farmer = Farmer::count();
-
 
                     activity()
                         ->causedBy($user)
                         ->performedOn($user)
                         ->log('Logged in');
-
-                    return view('admin.home', compact('countall', 'farmer'));
+                    return redirect()->route('admin.dashboard');
                 } elseif ($usertype === 'barangay') {
 
                     activity()

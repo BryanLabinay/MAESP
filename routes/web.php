@@ -54,6 +54,7 @@ Route::get('/home', [HomeController::class, 'auth'])
 
 
 
+
 // For admin routes
 Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // Event
@@ -100,6 +101,8 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     // ACTIVITY LOG
     Route::get('/Activity-Log', [ActivityLogCTRL::class, 'index']);
+
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 });
 
 
