@@ -30,8 +30,61 @@
                             class="fa-solid fa-plus me-1"></i>Add Prices</button>
                 </div>
             </div>
+            <hr class="mt-0">
+            <div class="row">
+                @if ($prices->isEmpty())
+                    <div class="col-12">
+                        <h6>No News and Updates available at the moment.</h6>
+                    </div>
+                @else
+                    @foreach ($prices as $data)
+                        <div class="col-md-3 mb-3">
+                            <div class="card h-100">
+                                @if ($data->data)
+                                    <img src="{{ asset('storage/' . $data->image) }}" class="card-img-top img-fluid"
+                                        style="height: 200px; object-fit: cover;" alt="{{ $data->title }}">
+                                @else
+                                    <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
+                                        style="height: 200px; object-fit: cover;" alt="{{ $data->title }}">
+                                @endif
 
-            <!-- Modal -->
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $data->title }}</h5>
+                                    <p class="card-text">{{ $data->content }}</p>
+                                    <p class="text-muted mt-0">
+                                        {{ \Carbon\Carbon::parse($data->date)->format('F j, Y') }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            {{-- <div class="row">
+                @forelse($prices as $item)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ $item->image ? asset('storage/' . $item->image) : 'https://via.placeholder.com/150' }}"
+                                class="card-img-top" alt="News Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->title }}</h5>
+                                <p class="card-text">{{ Str::limit($item->content, 100) }}</p>
+                                <p class="text-muted">Date: {{ $item->date }}</p>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12">
+                        <div class="alert alert-info">No news available.</div>
+                    </div>
+                @endforelse
+            </div> --}}
+
+            <!-- Add News Modal -->
             <div class="modal fade" id="addNewsModal" tabindex="-1" aria-labelledby="addNewsModalLabel" aria-hidden="true"
                 data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
@@ -41,7 +94,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="newsForm">
+                            <form id="newsForm" action="{{ route('prices.store') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="newsTitle" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="newsTitle" name="title" required>
@@ -55,18 +110,19 @@
                                     <input type="date" class="form-control" id="newsDate" name="date" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="newsDate" class="form-label">Images</label>
-                                    <input type="file" class="form-control" id="newsDate" name="date" required>
+                                    <label for="newsImage" class="form-label">Image</label>
+                                    <input type="file" class="form-control" id="newsImage" name="image">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Upload News</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" form="newsForm">Save News</button>
                         </div>
                     </div>
                 </div>
             </div>
+
 
         </div>
     @stop

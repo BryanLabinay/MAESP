@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
 
         $this->call(FarmersTableSeeder::class);
+
+        $this->call(PestTableSeeder::class);
+
+        $this->call(SeedTableSeeder::class);
+
+        $this->call(MarketTableSeeder::class);
     }
 }

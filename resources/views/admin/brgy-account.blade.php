@@ -26,7 +26,7 @@
                 <div class="row p-1 g-0 h-100">
                     <!-- Image Carousel Section -->
                     <!-- Register Form Section -->
-                    <div class="col-7 d-flex align-items-center">
+                    <div class="col-6 d-flex align-items-center">
                         <div class="px-5 w-100">
                             <h5 class="text-center mb-4 fw-semibold">Create Barangay Account</h5>
                             <form action="{{ route('barangays.account') }}" method="post">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="col-5 bg-secondary rounded-1 bg-opacity-25 text-dark">
+                    <div class="col-6 bg-secondary rounded-1 bg-opacity-25 text-dark">
                         <div class="d-flex justify-content-center p-2">
                             <h5>Barangay Account List</h5>
                         </div>
@@ -94,7 +94,7 @@
                             <tbody>
                                 @forelse ($barangay as $data)
                                     <tr>
-                                        <td>{{ $data->name }}</td>
+                                        <td class="text-uppercase">{{ $data->name }}</td>
                                         <td>{{ $data->email }}</td>
                                     </tr>
                                 @empty

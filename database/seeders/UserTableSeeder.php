@@ -66,6 +66,14 @@ class UserTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Macanaya',
+                'email' => 'macanaya@gmail.com',
+                'password' => Hash::make('password'),
+                'usertype' => 'barangay',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

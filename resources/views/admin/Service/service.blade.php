@@ -33,29 +33,30 @@
             </div>
             {{-- <hr class="mt-0"> --}}
             <div class="row">
-
                 @foreach ($services as $service)
                     @php
                         $images = json_decode($service->image); // Decode the image JSON array
                     @endphp
-                    <div class="col-3 mb-4">
-                        <div class="card service-card">
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100 service-card">
                             <!-- Show the first image if available -->
                             @if ($images && count($images) > 0)
-                                <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top" alt="Service Image">
+                                <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top img-fluid"
+                                    style="height: 200px; object-fit: cover;" alt="Service Image">
                             @else
-                                <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top"
-                                    alt="Placeholder Image">
+                                <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
+                                    style="height: 200px; object-fit: cover;" alt="Placeholder Image">
                             @endif
 
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">{{ $service->service_name }}</h5>
-                                <p class="card-text">{{ $service->description }}</p>
+                                <p class="card-text flex-grow-1">{{ $service->description }}</p>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
+
         </div>
 
 

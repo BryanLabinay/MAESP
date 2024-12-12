@@ -193,7 +193,7 @@ return [
     'classes_body' => '',
     'classes_brand' => 'bg-olive',
     'classes_brand_text' => 'text-md',
-    'classes_content_wrapper' => 'text-sm',
+    'classes_content_wrapper' => 'text-md',
     'classes_content_header' => '',
     'classes_content' => 'text-sm',
     'classes_sidebar' => 'sidebar-light-olive elevation-2',

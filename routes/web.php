@@ -14,8 +14,11 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
+use App\Http\Controllers\Admin\MarketPricesCTRL;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsUpdatesController;
+use App\Http\Controllers\Admin\PestDiseaseController;
+use App\Http\Controllers\Admin\SeedFertilizerCTRL;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\FarmersControlller;
@@ -91,13 +94,19 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Weather_Updates', [NewsUpdatesController::class, 'indexWeather']);
 
     // Pest & Disease Alerts
-    Route::get('/Pest&Disease', [NewsUpdatesController::class, 'indexPest']);
+    Route::get('/Pest&Disease', [PestDiseaseController::class, 'index']);
+    Route::post('/news/store', [PestDiseaseController::class, 'store'])->name('news.store');
+
 
     // Market Prices
-    Route::get('/Market_Prices', [NewsUpdatesController::class, 'indexMarket']);
+    Route::get('/Market_Prices', [MarketPricesCTRL::class, 'index']);
+    Route::post('/Market/Prices/store', [MarketPricesCTRL::class, 'store'])->name('prices.store');
+
 
     // Seed & Fertilizer
-    Route::get('/Seed_Fertilizer', [NewsUpdatesController::class, 'indexSeed']);
+    Route::get('/Seed_Fertilizer', [SeedFertilizerCTRL::class, 'index']);
+    Route::post('/Seed/Fertilizer/Store', [SeedFertilizerCTRL::class, 'store'])->name('seed.store');
+
 
     // ACTIVITY LOG
     Route::get('/Activity-Log', [ActivityLogCTRL::class, 'index']);

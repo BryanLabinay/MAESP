@@ -30,6 +30,37 @@
                             class="fa-solid fa-plus me-1"></i>Add Seed</button>
                 </div>
             </div>
+            <hr class="mt-0">
+            <div class="row">
+                @if ($news->isEmpty())
+                    <div class="col-12">
+                        <h6>No News and Updates available at the moment.</h6>
+                    </div>
+                @else
+                    @foreach ($news as $data)
+                        <div class="col-md-3 mb-3">
+                            <div class="card h-100">
+                                @if ($data->images)
+                                    <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top img-fluid"
+                                        style="height: 200px; object-fit: cover;" alt="{{ $data->title }}">
+                                @else
+                                    <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
+                                        style="height: 200px; object-fit: cover;" alt="{{ $data->title }}">
+                                @endif
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $data->title }}</h5>
+                                    <p class="card-text">{{ $data->content }}</p>
+                                    <p class="text-muted mt-0">
+                                        {{ \Carbon\Carbon::parse($data->date)->format('F j, Y') }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+
 
             <!-- Modal -->
             <div class="modal fade" id="addNewsModal" tabindex="-1" aria-labelledby="addNewsModalLabel" aria-hidden="true"
@@ -41,7 +72,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="newsForm">
+                            <form id="newsForm" action="{{ route('seed.store') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="newsTitle" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="newsTitle" name="title" required>
@@ -55,14 +88,16 @@
                                     <input type="date" class="form-control" id="newsDate" name="date" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="newsDate" class="form-label">Images</label>
-                                    <input type="file" class="form-control" id="newsDate" name="date" required>
+                                    <label for="newsImage" class="form-label">Images</label>
+                                    <input type="file" class="form-control" id="newsImage" name="image">
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn btn-danger me-2"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" form="newsForm">Upload News</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" form="newsForm">Save News</button>
+
                         </div>
                     </div>
                 </div>

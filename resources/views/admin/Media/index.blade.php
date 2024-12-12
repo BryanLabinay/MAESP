@@ -29,8 +29,6 @@
                     </button>
                 </div>
             </div>
-
-
             <div class="row">
                 @foreach ($mediaItems as $media)
                     <div class="col-3">
@@ -41,7 +39,6 @@
                                 <p class="card-text">{{ $media->description }}</p>
                                 <a class="btn btn-primary" href="{{ asset('storage/' . $media->file) }}"
                                     target="_blank">View File</a>
-
                             </div>
                         </div>
                     </div>
@@ -72,7 +69,7 @@
                             <!-- Media File Upload -->
                             <div class="mb-3">
                                 <label for="mediaFile" class="form-label">Upload Media</label>
-                                <input type="file" class="form-control" id="mediaFile" name="file[]" multiple>
+                                <input type="file" class="form-control" id="mediaFile" name="file[]" required multiple>
                             </div>
                             <!-- Description Field -->
                             <div class="mb-3">

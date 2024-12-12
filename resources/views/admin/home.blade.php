@@ -66,12 +66,16 @@
                 </div>
             </div>
 
-
+            {{-- Chart --}}
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-            <div style="width: 80%; margin: auto;">
-                <canvas id="cropsChart"></canvas>
+            <div class="row">
+                <div class="col" style="width: 80%; margin: auto;">
+                    <h5 class="text-center">Total Cropping Every Year</h5>
+                    <canvas id="cropsChart"></canvas>
+                </div>
             </div>
+
 
             <script>
                 const labels = @json($formattedData->pluck('month'));
