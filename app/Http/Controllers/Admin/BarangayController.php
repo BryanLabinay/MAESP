@@ -97,13 +97,21 @@ class BarangayController extends Controller
 
     public function barangaydetails($user_id)
     {
-        // Fetch farmers associated with the user
+        // Retrieve the farmers associated with the user
         $farmers = Farmer::where('user_id', $user_id)->get();
 
-        // Fetch barangay details only if usertype is 'barangay'
+        // Loop through each farmer and handle the parcels field
+        foreach ($farmers as $farmer) {
+            // Check if parcels is a string (i.e., JSON string)
+            if (is_string($farmer->parcels)) {
+                $farmer->parcels = json_decode($farmer->parcels, true); // Decode as an object (false for array)
+            }
+        }
+
+        // Retrieve the barangay data
         $barangay = User::where('id', $user_id)->where('usertype', 'barangay')->first();
 
-        // Pass both farmers and barangay data to the view
+        // Pass the data to the view
         return view('admin.brgy-details', compact('farmers', 'barangay'));
     }
 }

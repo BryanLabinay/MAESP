@@ -75,9 +75,9 @@
                                  <th>Farmers Name</th>
                                  <th>Address</th>
                                  <th>Contact Number</th>
-                                 <th>Acres Own</th>
+                                 {{-- <th>Acres Own</th> --}}
                                  <th>Farm Type</th>
-                                 <th>Ownership Type</th>
+                                 {{-- <th>Ownership Type</th> --}}
                              </tr>
                          </thead>
                          <tbody>
@@ -89,13 +89,26 @@
                                          {{ $farmer->suffix }}</td>
                                      <td>{{ $farmer->address }}</td>
                                      <td>{{ $farmer->phone_number }}</td>
-                                     <td>{{ $farmer->farm_size }}</td>
-                                     <td>{{ $farmer->crop_type }}</td>
-                                     <td>{{ $farmer->ownership_type }}</td>
+                                     {{-- <td>{{ $farmer->farm_size }}</td> --}}
+                                     <td>
+                                         @if ($farmer->parcels)
+                                             @foreach ($farmer->parcels as $parcel)
+                                                 <p><strong>Farm Location:</strong>
+                                                     {{ htmlspecialchars($parcel['farm_location']) }}</p>
+                                                 <p><strong>Farm Area:</strong> {{ $parcel['farm_area'] }} acres</p>
+                                                 <p><strong>Farm Type:</strong> {{ $parcel['farm_type'] ?? 'N/A' }}</p>
+                                                 <p><strong>Crop Commodity:</strong> {{ $parcel['crop_commodity'] }}</p>
+                                                 <hr>
+                                             @endforeach
+                                         @else
+                                             <p>No parcels available</p>
+                                         @endif
+                                     </td>
+                                     {{-- <td>{{ $farmer->ownership_type }}</td> --}}
                                  </tr>
                              @endforeach
-
                          </tbody>
+
                      </table>
                  </div>
              </div>

@@ -16,7 +16,7 @@
     @stop
 
     @section('content_header')
-        <h5 class="fw-semibold text-md">Media Resources</h5>
+        <h5 class="fw-semibold text-md">News & Updates</h5>
         <hr class="mt-0">
     @stop
 
@@ -33,7 +33,8 @@
                 @foreach ($mediaItems as $media)
                     <div class="col-3">
                         <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
+                            <img src="{{ asset('storage/' . $media->file) }}" class="card-img-top"
+                                alt="{{ $media->title }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $media->title }}</h5>
                                 <p class="card-text">{{ $media->description }}</p>

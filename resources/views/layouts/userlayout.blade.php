@@ -47,8 +47,9 @@
                 <ul>
                     <li><a href="#index.html" class="active">Home</a></li>
                     <li><a href="#about.html">About Us</a></li>
+                    <li><a href="#about.html">Services</a></li>
                     {{-- <li><a href="services.html">Our Services</a></li> --}}
-                    <li class="dropdown"><a href="#"><span>Services</span> <i
+                    {{-- <li class="dropdown"><a href="#"><span>Services</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -66,7 +67,7 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown"><a href="#"><span>Media Resources</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
@@ -194,7 +195,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>SERVICES</h2>
-                <p>Providing Fresh Produce Every Single Day</p>
+                <p>List of Services</p>
             </div><!-- End Section Title -->
             <div class="content">
                 <div class="container">
@@ -255,7 +256,7 @@
                                     </svg>
                                 </div>
                                 <div class="service-item-content">
-                                    <h3 class="service-heading">Mulching</h3>
+                                    <h3 class="service-heading">Cropping</h3>
                                     <p>
                                         Gravida sodales condimentum pellen tesq accumsan orci quam
                                         sagittis sapie
@@ -289,7 +290,7 @@
                                     </svg>
                                 </div>
                                 <div class="service-item-content">
-                                    <h3 class="service-heading">Plowing</h3>
+                                    <h3 class="service-heading"></h3>
                                     <p>
                                         Gravida sodales condimentum pellen tesq accumsan orci quam
                                         sagittis sapie
@@ -460,10 +461,9 @@
                                 data-aos="zoom-out">
                         </div>
                         <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-                            <h3 class="content-subtitle text-white opacity-50">Why Choose Us</h3>
+                            <h3 class="content-subtitle text-white opacity-50">Why Choose</h3>
                             <h2 class="content-title mb-4">
-                                More than <strong>50 year experience</strong> in agriculture
-                                industry
+                                Municipal<strong>Agriculture</strong> Service Portal
                             </h2>
                             <p class="opacity-50">
                                 Reprehenderit, odio laboriosam? Blanditiis quae ullam quasi illum
@@ -505,7 +505,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Portfolio</h2>
-                <p>Necessitatibus eius consequatur</p>
+                {{-- <p>Necessitatibus eius consequatur</p> --}}
             </div><!-- End Section Title -->
 
             <div class="services-carousel-wrap">
@@ -639,7 +639,7 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2 class="text-uppercase">Agriculture Office Team in Action</h2>
-                <p>Necessitatibus eius consequatur</p>
+                {{-- <p>Necessitatibus eius consequatur</p> --}}
             </div><!-- End Section Title -->
 
             <div class="container">

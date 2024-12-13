@@ -17,7 +17,7 @@
     @stop
 
     @section('content_header')
-        <h5 class="fw-semibold text-md">Seed & Fertilizer</h5>
+        <h5 class="fw-semibold text-md">Seed & Fertilizer Distribution</h5>
         <hr class="mt-0">
     @stop
 
@@ -44,12 +44,12 @@
                                     <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top img-fluid"
                                         style="height: 200px; object-fit: cover;" alt="{{ $data->title }}">
                                 @else
-                                    <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
+                                    <img src="{{ asset('assets/img/seed.jpg') }}" class="card-img-top img-fluid"
                                         style="height: 200px; object-fit: cover;" alt="{{ $data->title }}">
                                 @endif
 
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $data->title }}</h5>
+                                    <h5 class="card-title fw-bold">{{ $data->title }}</h5>
                                     <p class="card-text">{{ $data->content }}</p>
                                     <p class="text-muted mt-0">
                                         {{ \Carbon\Carbon::parse($data->date)->format('F j, Y') }}

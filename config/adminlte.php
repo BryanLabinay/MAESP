@@ -355,11 +355,6 @@ return [
         ],
         [
             'text' => 'Media Resources',
-            'url' => 'Admin/Media-Resources',
-            'icon' => 'fa-solid fa-users',
-        ],
-        [
-            'text' => 'News & Update',
             'icon' => 'fa-solid fa-newspaper',
             'submenu' => [
                 // [
@@ -407,6 +402,11 @@ return [
                 //     ],
                 // ],
             ],
+        ],
+        [
+            'text' => 'News & Update',
+            'url' => 'Admin/Media-Resources',
+            'icon' => 'fa-solid fa-users',
         ],
         [
             'text' => 'Feedback',

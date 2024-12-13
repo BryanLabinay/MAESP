@@ -34,7 +34,7 @@ class SeedFertilizerCTRL extends Controller
         // Validate the request
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|text',
+            'content' => 'required|string',
             'date' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image is nullable
         ]);

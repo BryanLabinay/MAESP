@@ -33,7 +33,7 @@ class PestDiseaseController extends Controller
         // Validate form data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|text',
+            'content' => 'required|string',
             'date' => 'required|date',
             'images' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

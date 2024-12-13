@@ -33,7 +33,7 @@ class MarketPricesCTRL extends Controller
         // Validate the incoming request data
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|text',
+            'content' => 'required|string',
             'date' => 'required|date',
             'image' => 'nullable|file|mimes:jpeg,png,jpg,gif|max:2048', // Image is now optional
         ]);

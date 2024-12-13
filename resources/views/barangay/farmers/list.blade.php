@@ -17,31 +17,35 @@
             <table class="table table-bordered mb-0 table-striped" id="myTable">
                 <thead class="table-secondary">
                     <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>No</th>
+                        <th>Name</th>
+                        {{-- <th>Last Name</th> --}}
                         {{-- <th>Sex</th> --}}
                         {{-- <th>Marital Status</th> --}}
                         {{-- <th>Birth Date</th> --}}
                         {{-- <th>Address</th> --}}
-                        <th>Phone Number</th>
+                        {{-- <th>Phone Number</th> --}}
                         {{-- <th>Email</th> --}}
 
-                        <th>Farm Location</th>
+                        <th>Farm Location <sup>(per parcel)</sup></th>
                         <th>Farm Size</th>
                         <th>Farm Type</th>
                         <th>Crop Commodity</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php $counter = 1; @endphp
+
                     @foreach ($farmers as $farmer)
                         {{-- Farmer's Name --}}
                         <tr>
-                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->id }} </td>
+                            <td rowspan="{{ count($farmer->parcels) }}">{{ $counter++ }}</td>
                             <!-- Name spans multiple rows -->
-                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->first_name }} </td>
-                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->last_name }}</td>
-                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->phone_number }}</td>
+                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->first_name }} {{ $farmer->last_name }}
+                            </td>
+                            {{-- <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->last_name }}</td> --}}
+                            {{-- <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->phone_number }}</td> --}}
 
 
                             {{-- Loop over each parcel --}}
@@ -58,6 +62,11 @@
                     <td>{{ $parcel['crop_commodity'] }}</td>
 
                     @if ($index > 0)
+                        <td class="text-center">
+                            <a href="#">
+                                <i class="fas fa-fw fa-magnifying-glass fs-5 text-success me-3"></i>
+                            </a>
+                        </td>
                         </tr> <!-- Close the row for subsequent parcels -->
                     @endif
                     @endforeach
@@ -68,7 +77,7 @@
 
 
             <!-- Pagination links -->
-            {{ $farmers->links() }}
+            {{-- {{ $farmers->links() }} --}}
         </div>
     </div>
 @endsection
