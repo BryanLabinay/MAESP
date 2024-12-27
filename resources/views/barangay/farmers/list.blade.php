@@ -1,89 +1,81 @@
 @extends('layouts.barangay')
-
-@section('css')
-    {{-- Data Table --}}
-    <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.7.1.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/js/dataTables.js">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js">
-@endsection
-
 @section('content')
     <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>List of Farmers</h6>
     <hr class="mt-0">
     <div class="container-fluid">
-        <div class="col bg-success-subtle p-2 rounded-2 shadow-sm">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-sm btn-danger me-1"><i class="fa-solid fa-file-pdf me-1"></i>Generate PDF</button>
+                <button class="btn btn-sm btn-success"><i class="fa-solid fa-file-excel me-1"></i>Export Excel</button>
+            </div>
+        </div>
+        <div class="col bg-success-subtle p-2 mt-3 rounded-2 shadow-sm">
             <table class="table table-bordered mb-0 table-striped" id="myTable">
                 <thead class="table-secondary">
-                    <tr>
-                        <th>No</th>
+                    <tr class="text-center">
+                        <th>No.</th>
                         <th>Name</th>
-                        {{-- <th>Last Name</th> --}}
-                        {{-- <th>Sex</th> --}}
-                        {{-- <th>Marital Status</th> --}}
-                        {{-- <th>Birth Date</th> --}}
-                        {{-- <th>Address</th> --}}
-                        {{-- <th>Phone Number</th> --}}
-                        {{-- <th>Email</th> --}}
-
-                        <th>Farm Location <sup>(per parcel)</sup></th>
-                        <th>Farm Size</th>
-                        <th>Farm Type</th>
-                        <th>Crop Commodity</th>
+                        <th>Sex</th>
+                        <th>Contact</th>
+                        <th>Date of Birth</th>
+                        <th>Address</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $counter = 1; @endphp
-
-                    @foreach ($farmers as $farmer)
-                        {{-- Farmer's Name --}}
-                        <tr>
-                            <td rowspan="{{ count($farmer->parcels) }}">{{ $counter++ }}</td>
-                            <!-- Name spans multiple rows -->
-                            <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->first_name }} {{ $farmer->last_name }}
+                    @foreach ($farmers as $data)
+                        <tr class="text-center">
+                            <td>{{ $counter++ }}</td>
+                            <td class="text-start">{{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}
+                                {{ $data->suffix }}
                             </td>
-                            {{-- <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->last_name }}</td> --}}
-                            {{-- <td rowspan="{{ count($farmer->parcels) }}">{{ $farmer->phone_number }}</td> --}}
-
-
-                            {{-- Loop over each parcel --}}
-                            @foreach ($farmer->parcels as $index => $parcel)
-                                @if ($index > 0)
-                        <tr>
-                            <!-- Start a new row for subsequent parcels -->
-                    @endif
-
-                    {{-- Farm Location, Area, Type, and Crop --}}
-                    <td>{{ $index + 1 }}. {{ $parcel['farm_location'] }}</td>
-                    <td>{{ $parcel['farm_area'] }}</td>
-                    <td>{{ $parcel['farm_type'] }}</td>
-                    <td>{{ $parcel['crop_commodity'] }}</td>
-
-                    @if ($index > 0)
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fas fa-fw fa-magnifying-glass fs-5 text-success me-3"></i>
-                            </a>
-                        </td>
-                        </tr> <!-- Close the row for subsequent parcels -->
-                    @endif
-                    @endforeach
-                    </tr>
+                            <td class="text-uppercase">{{ $data->sex }}</td>
+                            <td>{{ $data->phone_number }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->birth_date)->format('F j, Y') }}</td>
+                            <td>{{ $data->address }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#viewModal">View</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
-
-
             <!-- Pagination links -->
-            {{-- {{ $farmers->links() }} --}}
+            {{ $farmers->links() }}
+
+
+            <!-- Modal structure -->
+
+            <!-- Modal structure -->
+            <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewModalLabel">Modal Title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Modal content goes here -->
+                            <p>This is the content inside the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 @endsection
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

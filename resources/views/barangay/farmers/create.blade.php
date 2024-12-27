@@ -1,19 +1,25 @@
 @extends('layouts.barangay')
 
-
-
-
-
 @section('content')
     @if (session('success'))
         <script>
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Data saved",
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500,
+                timerPr0ogressBar: true,
             });
+            (async () => {
+                await Toast.fire({
+                    icon: 'success',
+                    title: 'Farmers Added'
+                })
+            })()
         </script>
     @endif
     <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>Add Farmers</h6>
@@ -28,7 +34,8 @@
                     <div class="row px-3 mb-3">
                         <div class="col-md-4 mb-2">
                             <label for="first_name" class="form-label ms-1 mb-0">First Name</label>
-                            <input type="text" class="form-control" name="first_name" placeholder="Enter first name">
+                            <input type="text" class="form-control" name="first_name" placeholder="Enter first name"
+                                required>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="middle_name" class="form-label ms-1 mb-0">Middle Name</label>
@@ -36,7 +43,8 @@
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="last_name" class="form-label ms-1 mb-0">Last Name</label>
-                            <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
+                            <input type="text" class="form-control" name="last_name" placeholder="Enter last name"
+                                required>
                         </div>
                         <div class="col-md-4">
                             <label for="suffix" class="form-label ms-1 mb-0">Suffix</label>
@@ -45,11 +53,11 @@
                         <div class="col-md-4">
                             <label for="sex" class="form-label ms-1 mb-0">Sex</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sex" value="male">
+                                <input class="form-check-input" type="radio" name="sex" value="male" required>
                                 <label class="form-check-label" for="sex">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="sex" value="female">
+                                <input class="form-check-input" type="radio" name="sex" value="female" required>
                                 <label class="form-check-label" for="sex">Female</label>
                             </div>
                         </div>
@@ -57,15 +65,22 @@
                     <div class="row px-3 mb-3">
                         <div class="col-md-4">
                             <label for="birth_date" class="form-label ms-1 mb-0">Date of Birth</label>
-                            <input type="date" class="form-control" name="birth_date">
+                            <input type="date" class="form-control" name="birth_date" required>
                         </div>
                         <div class="col-md-4">
                             <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
-                            <input type="text" class="form-control" name="phone_number">
+                            <input type="tel" class="form-control @error('phone_number') is-invalid @enderror"
+                                name="phone_number" id="phone_number" required>
+
+                            @error('phone_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="marital_status" class="form-label ms-1 mb-0">Civil Status</label>
-                            <select class="form-select" name="marital_status" id="marital_status">
+                            <select class="form-select" name="marital_status" id="marital_status" required>
                                 <option value="" disabled selected>Select</option>
                                 <option value="single">Single</option>
                                 <option value="married">Married</option>
@@ -77,28 +92,41 @@
                     <div class="row px-3 mb-3">
                         <div class="col-md-8">
                             <label for="address" class="form-label ms-1 mb-0">Name of Spouse(If Married)</label>
-                            <input type="text" class="form-control" name="name_of_spouse">
+                            <input type="text" class="form-control" name="name_of_spouse" required>
                         </div>
                         <div class="col-md-4">
                             <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
-                            <input type="text" class="form-control" name="spouse_number">
+                            <input type="tel" class="form-control @error('spouse_number') is-invalid @enderror"
+                                name="spouse_number" required>
+                            @error('spouse_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+
                     </div>
                     <div class="row px-3 mb-3">
                         <div class="col-md-8">
                             <label for="address" class="form-label ms-1 mb-0">Mother/Fathers Name</label>
-                            <input type="text" class="form-control" name="parent_name">
+                            <input type="text" class="form-control" name="parent_name" required>
                         </div>
                         <div class="col-md-4">
                             <label for="phone_number" class="form-label ms-1 mb-0">Phone Number</label>
-                            <input type="text" class="form-control" name="parent_number">
+                            <input type="tel" class="form-control @error('parent_number') is-invalid @enderror"
+                                name="parent_number" required>
+                            @error('parent_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row px-3 mb-3">
                         <div class="col-md-12">
                             <label for="address" class="form-label ms-1 mb-0">Address</label>
                             <input type="text" class="form-control" name="address"
-                                placeholder="Barangay/Municipality/City">
+                                placeholder="Barangay/Municipality/City" required>
                         </div>
                     </div>
                     {{-- PARCEL --}}
@@ -212,11 +240,6 @@
                             </div>
                         </div>
                     </template>
-
-
-
-
-
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-between">
                             <button type="button" class="btn btn-primary" id="addParcelBtn">Add Parcel</button>

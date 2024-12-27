@@ -69,7 +69,9 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Brgy', [BarangayController::class, 'show'])->name('barangays.index');
     Route::post('/add-brgy', [BarangayController::class, 'store'])->name('store.brgy');
     // Route::get('edit/{id}', [BarangayController::class, 'editbrgy'])->name('edit.brgy');
+
     Route::get('/details/{user_id}', [BarangayController::class, 'barangaydetails'])->name('brgy.details');
+    Route::get('/View/farmer/{user_id}', [BarangayController::class, 'farmerView'])->name('farmer.view');
     // Brgy. Account
     Route::get('/Brgy/Account', [BarangayController::class, 'account'])->name('brgy.create');
     Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
@@ -96,7 +98,6 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // Pest & Disease Alerts
     Route::get('/Pest&Disease', [PestDiseaseController::class, 'index']);
     Route::post('/news/store', [PestDiseaseController::class, 'store'])->name('news.store');
-
 
     // Market Prices
     Route::get('/Market_Prices', [MarketPricesCTRL::class, 'index']);

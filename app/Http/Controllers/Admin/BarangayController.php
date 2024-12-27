@@ -51,7 +51,7 @@ class BarangayController extends Controller
     public function show()
     {
         $barangays = User::where('usertype', 'barangay')->get();
-        return view('admin.brgy-offices', compact('barangays'));
+        return view('admin.Brgy.brgy-offices', compact('barangays'));
     }
 
 
@@ -100,18 +100,28 @@ class BarangayController extends Controller
         // Retrieve the farmers associated with the user
         $farmers = Farmer::where('user_id', $user_id)->get();
 
-        // Loop through each farmer and handle the parcels field
         foreach ($farmers as $farmer) {
             // Check if parcels is a string (i.e., JSON string)
             if (is_string($farmer->parcels)) {
                 $farmer->parcels = json_decode($farmer->parcels, true); // Decode as an object (false for array)
             }
         }
+        $barangay = User::where('id', $user_id)->where('usertype', 'barangay')->first();
+        return view('admin.Brgy.brgy-details', compact('farmers', 'barangay'));
+    }
 
-        // Retrieve the barangay data
+    public function farmerView($user_id)
+    {
+        $farmer = Farmer::where('user_id', $user_id)->first();
+
+        if ($farmer && is_string($farmer->parcels)) {
+            $farmer->parcels = json_decode($farmer->parcels, true);
+        }
+
         $barangay = User::where('id', $user_id)->where('usertype', 'barangay')->first();
 
-        // Pass the data to the view
-        return view('admin.brgy-details', compact('farmers', 'barangay'));
+        // $totalFarmers = Farmer::count();
+
+        return view('admin.Brgy.farmer-info', compact('farmer', 'barangay'));
     }
 }

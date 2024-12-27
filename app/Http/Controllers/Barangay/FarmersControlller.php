@@ -17,7 +17,7 @@ class FarmersControlller extends Controller
     public function show()
     {
         $auth = Auth::id();
-        $farmers = Farmer::where('user_id', $auth)->get();
+        $farmers = Farmer::where('user_id', $auth)->paginate(10);
 
         return view('barangay.farmers.list', compact('farmers'));
     }
@@ -31,13 +31,36 @@ class FarmersControlller extends Controller
             return redirect()->back()->with('error', 'User is not authenticated.');
         }
 
+        // Validate all inputs, except for parcel fields
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255', // Optional field
+            'last_name' => 'required|string|max:255',
+            'suffix' => 'nullable|string|max:50', // Optional field
+            'sex' => 'required|in:male,female',
+            'birth_date' => 'required|date',
+            'phone_number' => 'required|string|max:15',
+            'marital_status' => 'required|string',
+            'name_of_spouse' => 'nullable|string|max:255', // Optional field
+            'spouse_number' => 'nullable|string|max:15', // Optional field
+            'parent_name' => 'required|string|max:255',
+            'parent_number' => 'required|string|max:15',
+            'address' => 'required|string|max:255',
+
+            // Parcels inputs without required validation
+            'farm_location.*' => 'nullable|string|max:255',
+            'farm_area.*' => 'nullable|numeric|min:0', // Make it optional
+            'farm_type.*' => 'nullable|string|max:255',
+            'crop_commodity.*' => 'nullable|string|max:255',
+        ]);
+
+        // Build parcels array
         $parcels = [];
         $farm_location = $request->input('farm_location', []);
         $farm_area = $request->input('farm_area', []);
         $farm_type = $request->input('farm_type', []);
         $crop_commodity = $request->input('crop_commodity', []);
 
-        // Build parcels array
         foreach ($farm_location as $index => $location) {
             $parcels[] = [
                 'farm_location' => $location,
@@ -60,7 +83,6 @@ class FarmersControlller extends Controller
             'marital_status' => $request->input('marital_status'),
             'name_of_spouse' => $request->input('name_of_spouse'),
             'spouse_number' => $request->input('spouse_number'),
-
             'parent_name' => $request->input('parent_name'),
             'parent_number' => $request->input('parent_number'),
             'address' => $request->input('address'),
