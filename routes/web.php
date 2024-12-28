@@ -19,8 +19,10 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Admin\PestDiseaseController;
 use App\Http\Controllers\Admin\SeedFertilizerCTRL;
+use App\Http\Controllers\Admin\ExportPDFController;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\CroppingController;
+use App\Http\Controllers\Barangay\ExportController;
 use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\Barangay\NewsUpdateController;
 
@@ -72,7 +74,12 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     Route::get('/details/{user_id}', [BarangayController::class, 'barangaydetails'])->name('brgy.details');
     Route::get('/View/farmer/{user_id}', [BarangayController::class, 'farmerView'])->name('farmer.view');
-    // Brgy. Account
+
+    // PDF and Excel
+    Route::get('/brgy/export-pdf', [ExportPDFController::class, 'exportBarangayPDF'])->name('brgy.export.pdf');
+    Route::get('/brgy/export-excel', [ExportPDFController::class, 'exportBarangayExcel'])->name('brgy.export.excel');
+
+       // Brgy. Account
     Route::get('/Brgy/Account', [BarangayController::class, 'account'])->name('brgy.create');
     Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
     // Cropping
@@ -134,6 +141,11 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     Route::get('/list-cropping reports', [CroppingController::class, 'index'])->name('list.cropping');
     Route::post('/store-cropping', [CroppingController::class, 'store'])->name('store.cropping');
+
+     // Brgy export
+     Route::get('/farmers/export-pdf', [ExportController::class, 'exportFarmersPDF'])->name('farmers.export.pdf');
+     Route::get('/farmers/export-excel', [ExportController::class, 'exportFarmersExcel'])->name('farmers.export.excel');
+
 
 
 

@@ -58,9 +58,9 @@
                      </form>
                  </div> --}}
                  <div class="col-12 d-flex justify-content-end">
-                     <button type="submit" class="btn btn-success me-1"><i class="fa-solid fa-file-arrow-down me-1"></i>
+                     <button type="submit" class="btn btn-success me-1" onclick="window.location='{{ route('brgy.export.excel') }}'"><i class="fa-solid fa-file-arrow-down me-1"></i>
                          Export Excel</button>
-                     <button type="submit" class="btn btn-danger"><i class="fa-solid fa-file-pdf me-1"></i> Generate
+                     <button type="submit" class="btn btn-danger"onclick="window.location='{{ route('brgy.export.pdf') }}'"><i class="fa-solid fa-file-pdf me-1"></i> Generate
                          PDF</button>
                  </div>
                  <hr class="mt-1 text-black">
