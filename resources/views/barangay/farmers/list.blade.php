@@ -5,8 +5,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-sm btn-danger me-1"><i class="fa-solid fa-file-pdf me-1"></i>Generate PDF</button>
-                <button class="btn btn-sm btn-success"><i class="fa-solid fa-file-excel me-1"></i>Export Excel</button>
+                <button class="btn btn-sm btn-danger me-1" onclick="window.location='{{ route('farmers.export.pdf') }}'">
+                    <i class="fa-solid fa-file-pdf me-1"></i>Generate PDF
+                </button>
+                <button class="btn btn-sm btn-success" onclick="window.location='{{ route('farmers.export.excel') }}'">
+                    <i class="fa-solid fa-file-excel me-1"></i>Export Excel
+                </button>
             </div>
         </div>
         <div class="col bg-success-subtle p-2 mt-3 rounded-2 shadow-sm">
