@@ -38,24 +38,26 @@
                         $images = json_decode($service->image); // Decode the image JSON array
                     @endphp
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100 service-card">
-                            <!-- Show the first image if available -->
-                            @if ($images && count($images) > 0)
-                                <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top img-fluid"
-                                    style="height: 200px; object-fit: cover;" alt="Service Image">
-                            @else
-                                <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
-                                    style="height: 200px; object-fit: cover;" alt="Placeholder Image">
-                            @endif
+                        <a href="{{ route('service.create', $service->id) }}" class="text-decoration-none">
+                            <div class="card h-100 service-card">
+                                <!-- Show the first image if available -->
+                                @if ($images && count($images) > 0)
+                                    <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top img-fluid"
+                                         style="height: 200px; object-fit: cover;" alt="Service Image">
+                                @else
+                                    <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
+                                         style="height: 200px; object-fit: cover;" alt="Placeholder Image">
+                                @endif
 
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">{{ $service->service_name }}</h5>
-                                <p class="card-text flex-grow-1">{{ $service->description }}</p>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $service->service_name }}</h5>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
+
 
         </div>
 
@@ -83,16 +85,10 @@
                                 <input type="text" class="form-control" id="serviceName" name="service_name"
                                     placeholder="Enter service name">
                             </div>
-                            <!-- Description Field -->
-                            <div class="mb-3">
-                                <label for="serviceDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="serviceDescription" name="description" rows="3"
-                                    placeholder="Enter service description"></textarea>
-                            </div>
                             <!-- Price Field -->
                             <div class="mb-3">
                                 <label for="servicePrice" class="form-label">Image</label>
-                                <input type="file" class="form-control" id="img" name="image[]" required
+                                <input type="file" class="form-control" id="img" name="image[]"
                                     placeholder="add file" multiple>
                             </div>
                             <!-- Submit Button -->

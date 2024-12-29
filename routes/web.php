@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReactionController;
+use App\Http\Controllers\ServiceWpage;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\ReportController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\ExportController;
 use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\Barangay\NewsUpdateController;
+use App\Http\Controllers\Barangay\ServicesController;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
 Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
@@ -88,6 +90,10 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Services', [ServiceController::class, 'index'])->name('service');
     Route::resource('/service', ServiceController::class);
     Route::get('/Services/List', [ServiceController::class, 'list'])->name('service.list');
+    Route::get('/services/{service}/content/create', [ServiceController::class, 'createContentForm'])
+    ->name('service.create');
+    Route::post('/services/{service}/content', [ServiceController::class, 'storeContent'])->name('service.content.store');
+
 
     // Forum
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
@@ -101,6 +107,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // NEWS $ UPDATE
     // Weather & Updates
     Route::get('/Weather_Updates', [NewsUpdatesController::class, 'indexWeather']);
+
 
     // Pest & Disease Alerts
     Route::get('/Pest&Disease', [PestDiseaseController::class, 'index']);
@@ -122,6 +129,9 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 });
 
+
+//service from user
+Route::get('/services/{id}',[ServiceWpage::class, 'index'])->name('user.service');
 
 
 
@@ -146,7 +156,8 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
      Route::get('/farmers/export-pdf', [ExportController::class, 'exportFarmersPDF'])->name('farmers.export.pdf');
      Route::get('/farmers/export-excel', [ExportController::class, 'exportFarmersExcel'])->name('farmers.export.excel');
 
-
+    //Services
+    Route::get('/services/{id}',[ServicesController::class, 'index'])->name('brgy.service');
 
 
     // NEWS & UPDATES
