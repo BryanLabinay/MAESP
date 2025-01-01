@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceContent;
+use App\Models\User;
+use App\Notifications\UserNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,43 +36,45 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'service_name' => 'nullable|string|max:255',
-            'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
-            'description' => 'nullable|string',
-        ]);
 
-        $uploadedFiles = $request->file('image');
+public function store(Request $request)
+{
+    $request->validate([
+        'service_name' => 'nullable|string|max:255',
+        'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
+        'description' => 'nullable|string',
+    ]);
 
-        if ($uploadedFiles && is_array($uploadedFiles)) {
-            $imagePaths = [];
+    $uploadedFiles = $request->file('image');
+    $imagePaths = [];
 
-            foreach ($uploadedFiles as $file) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('image'), $fileName);
-                $imagePaths[] = 'image/' . $fileName;
-            }
-
-            Service::create([
-                'service_name' => $request->input('service_name'),
-                'image' => json_encode($imagePaths),
-                'user_id' => Auth::id(),
-            ]);
-
-            return redirect()->back()->with('success', 'Service and images uploaded successfully');
-        } else {
-            Service::create([
-                'service_name' => $request->input('service_name'),
-                'image' => null,
-                'user_id' => Auth::id(),
-            ]);
-
-            return redirect()->back()->with('success', 'Service created successfully without images');
+    if ($uploadedFiles && is_array($uploadedFiles)) {
+        foreach ($uploadedFiles as $file) {
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('image'), $fileName);
+            $imagePaths[] = 'image/' . $fileName;
         }
     }
 
+    $service = Service::create([
+        'service_name' => $request->input('service_name'),
+        'image' => $uploadedFiles ? json_encode($imagePaths) : null,
+        'user_id' => Auth::id(),
+    ]);
+
+    // Message to notify users
+    $notificationMessage = "A new service '{$service->service_name}' has been created.";
+
+    // Retrieve users with "barangay" user type
+    $barangayUsers = User::where('usertype', 'barangay')->get();
+
+    // Send notification
+    foreach ($barangayUsers as $user) {
+        $user->notify(new UserNotification($notificationMessage));
+    }
+
+    return redirect()->back()->with('success', 'Service created successfully and users notified');
+}
 
     public function show($id)
     {

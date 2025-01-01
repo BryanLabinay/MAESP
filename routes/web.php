@@ -9,6 +9,8 @@ use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\ServiceWpage;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\NotificationCTRL;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
 use App\Http\Controllers\Admin\ReportController;
@@ -58,6 +60,15 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'auth'])
     ->middleware(['auth'])->name('home');
+
+// For Barangay
+Route::post('/barangay/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+
+// For Admin
+Route::post('/admin/notifications/{id}/read', [NotificationCTRL::class, 'markNotificationAsRead'])->name('notif');
+
+Route::post('/notifications/{id}/read', [NotificationCTRL::class, 'markNotificationAsRead']);
+
 
 
 

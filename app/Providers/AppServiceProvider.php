@@ -8,6 +8,7 @@ use App\Models\Reactions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,7 +34,13 @@ class AppServiceProvider extends ServiceProvider
             'events' => $events,
             'forums' => $forums,
             'reactions' => $reactions,
+
         ]);
+
+        if (Auth::check()) {
+            $unreadCount = $this->getUnreadNotificationCount();
+            View::share('unreadCount', $unreadCount);
+        }
 
         // Load role-specific AdminLTE configuration
         // if (Auth::check()) {
@@ -46,5 +53,20 @@ class AppServiceProvider extends ServiceProvider
         //     }
 
         // }
+    }
+
+
+    private function getUnreadNotificationCount()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $unreadNotifications = $user->unreadNotifications;
+
+            Log::info('Unread Notifications Count: ' . $unreadNotifications->count());
+
+            return $unreadNotifications->count();
+        }
+
+        return 0;
     }
 }
