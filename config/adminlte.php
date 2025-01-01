@@ -301,6 +301,15 @@ return [
         //     'topnav_right' => true,
         // ],
         [
+            'type' => 'navbar-notification',
+            'id' => 'my-notification',
+            'icon' => 'fas fa-bell',
+            'icon_color' => 'black',
+            'url' => 'notifications/show',
+            'topnav_right' => true,
+            'dropdown_mode' => true,
+        ],
+        [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
