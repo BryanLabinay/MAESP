@@ -34,28 +34,29 @@
             {{-- <hr class="mt-0"> --}}
             <div class="row">
                 @foreach ($services as $service)
-                    @php
-                        $images = json_decode($service->image); // Decode the image JSON array
-                    @endphp
-                    <div class="col-md-3 mb-4">
-                        <a href="{{ route('service.create', $service->id) }}" class="text-decoration-none">
-                            <div class="card h-100 service-card">
-                                <!-- Show the first image if available -->
-                                @if ($images && count($images) > 0)
-                                    <img src="{{ asset('storage/' . $images[0]) }}" class="card-img-top img-fluid"
-                                         style="height: 200px; object-fit: cover;" alt="Service Image">
-                                @else
-                                    <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
-                                         style="height: 200px; object-fit: cover;" alt="Placeholder Image">
-                                @endif
+                @php
+                    $images = json_decode($service->image); // Decode the image JSON array
+                @endphp
+                <div class="col-md-3 mb-4">
+                    <a href="{{ route('service.create', $service->id) }}" class="text-decoration-none">
+                        <div class="card h-100 service-card">
+                            <!-- Show the first image if available -->
+                            @if ($images && count($images) > 0)
+                                <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid"
+                                     style="height: 200px; object-fit: cover;" alt="Service Image">
+                            @else
+                                <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
+                                     style="height: 200px; object-fit: cover;" alt="Placeholder Image">
+                            @endif
 
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $service->service_name }}</h5>
-                                </div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ $service->service_name }}</h5>
                             </div>
-                        </a>
-                    </div>
-                @endforeach
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+
             </div>
 
 
