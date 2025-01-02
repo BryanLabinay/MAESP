@@ -92,7 +92,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/brgy/export-pdf', [ExportPDFController::class, 'exportBarangayPDF'])->name('brgy.export.pdf');
     Route::get('/brgy/export-excel', [ExportPDFController::class, 'exportBarangayExcel'])->name('brgy.export.excel');
 
-       // Brgy. Account
+    // Brgy. Account
     Route::get('/Brgy/Account', [BarangayController::class, 'account'])->name('brgy.create');
     Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
     // Cropping
@@ -102,7 +102,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::resource('/service', ServiceController::class);
     Route::get('/Services/List', [ServiceController::class, 'list'])->name('service.list');
     Route::get('/services/{service}/content/create', [ServiceController::class, 'createContentForm'])
-    ->name('service.create');
+        ->name('service.create');
     Route::post('/services/{service}/content', [ServiceController::class, 'storeContent'])->name('service.content.store');
 
 
@@ -142,7 +142,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
 
 //service from user
-Route::get('/services/{id}',[ServiceWpage::class, 'index'])->name('user.service');
+Route::get('/services/{id}', [ServiceWpage::class, 'index'])->name('user.service');
 
 
 
@@ -163,12 +163,12 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     Route::get('/list-cropping reports', [CroppingController::class, 'index'])->name('list.cropping');
     Route::post('/store-cropping', [CroppingController::class, 'store'])->name('store.cropping');
 
-     // Brgy export
-     Route::get('/farmers/export-pdf', [ExportController::class, 'exportFarmersPDF'])->name('farmers.export.pdf');
-     Route::get('/farmers/export-excel', [ExportController::class, 'exportFarmersExcel'])->name('farmers.export.excel');
+    // Brgy export
+    Route::get('/farmers/export-pdf', [ExportController::class, 'exportFarmersPDF'])->name('farmers.export.pdf');
+    Route::get('/farmers/export-excel', [ExportController::class, 'exportFarmersExcel'])->name('farmers.export.excel');
 
     //Services
-    Route::get('/services/{id}',[ServicesController::class, 'index'])->name('brgy.service');
+    Route::get('/services/{id}', [ServicesController::class, 'index'])->name('brgy.service');
 
 
     // NEWS & UPDATES
