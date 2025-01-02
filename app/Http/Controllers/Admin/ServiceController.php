@@ -37,44 +37,44 @@ class ServiceController extends Controller
      * Display the specified resource.
      */
 
-public function store(Request $request)
-{
-    $request->validate([
-        'service_name' => 'nullable|string|max:255',
-        'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
-        'description' => 'nullable|string',
-    ]);
+    public function store(Request $request)
+    {
+        $request->validate([
+            'service_name' => 'nullable|string|max:255',
+            'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
+            'description' => 'nullable|string',
+        ]);
 
-    $uploadedFiles = $request->file('image');
-    $imagePaths = [];
+        $uploadedFiles = $request->file('image');
+        $imagePaths = [];
 
-    if ($uploadedFiles && is_array($uploadedFiles)) {
-        foreach ($uploadedFiles as $file) {
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('image'), $fileName);
-            $imagePaths[] = 'image/' . $fileName;
+        if ($uploadedFiles && is_array($uploadedFiles)) {
+            foreach ($uploadedFiles as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('image'), $fileName);
+                $imagePaths[] = 'image/' . $fileName;
+            }
         }
+
+        $service = Service::create([
+            'service_name' => $request->input('service_name'),
+            'image' => $uploadedFiles ? json_encode($imagePaths) : null,
+            'user_id' => Auth::id(),
+        ]);
+
+        // Message to notify users
+        $notificationMessage = "A new service '{$service->service_name}' has been created.";
+
+        // Retrieve users with "barangay" user type
+        $barangayUsers = User::where('usertype', 'barangay')->get();
+
+        // Send notification
+        foreach ($barangayUsers as $user) {
+            $user->notify(new UserNotification($notificationMessage));
+        }
+
+        return redirect()->back()->with('success', 'Service created successfully and users notified');
     }
-
-    $service = Service::create([
-        'service_name' => $request->input('service_name'),
-        'image' => $uploadedFiles ? json_encode($imagePaths) : null,
-        'user_id' => Auth::id(),
-    ]);
-
-    // Message to notify users
-    $notificationMessage = "A new service '{$service->service_name}' has been created.";
-
-    // Retrieve users with "barangay" user type
-    $barangayUsers = User::where('usertype', 'barangay')->get();
-
-    // Send notification
-    foreach ($barangayUsers as $user) {
-        $user->notify(new UserNotification($notificationMessage));
-    }
-
-    return redirect()->back()->with('success', 'Service created successfully and users notified');
-}
 
     public function show($id)
     {
@@ -96,21 +96,25 @@ public function store(Request $request)
         $request->validate([
             'header' => 'nullable|string|max:255',
             'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $uploadedFiles = $request->file('image');
+        $imagePaths = [];
 
-            $imagePath = $request->file('image')->move(public_path('image'), $imageName);
+        if ($uploadedFiles && is_array($uploadedFiles)) {
+            foreach ($uploadedFiles as $file) {
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('service_content'), $fileName);
+                $imagePaths[] = $fileName;
+            }
         }
 
         ServiceContent::create([
             'service_id' => $serviceId,
             'header' => $request->input('header'),
             'content' => $request->input('content'),
-            'image' => 'image/' . $imageName,
+            'image' => $uploadedFiles ? json_encode($imagePaths) : null,
         ]);
 
         // Redirect with success message
