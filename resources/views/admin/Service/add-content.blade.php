@@ -27,7 +27,8 @@
                 @csrf
                 <div class="mb-3">
                     <label for="header" class="form-label">Header (Optional)</label>
-                    <input type="text" class="form-control" id="header" name="header" value="{{ old('header') }}" placeholder="Enter header">
+                    <input type="text" class="form-control" id="header" name="header" value="{{ old('header') }}"
+                        placeholder="Enter header">
                     @error('header')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -43,7 +44,7 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image (Optional)</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <input type="file" class="form-control" id="image" name="image[]" accept="image/*" multiple>
                     @error('image')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror

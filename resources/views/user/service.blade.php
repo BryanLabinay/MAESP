@@ -4,27 +4,32 @@
 
         <p><strong>Service Name:</strong> {{ $service->service_name }}</p>
 
-        @if($service->image)
+        @if ($service->image)
             <p><strong>Image:</strong></p>
-            <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->service_name }}" class="img-fluid">
+            @foreach ($service->image as $image)
+                <img src="{{ asset('service_content/' . $image) }}" alt="{{ $service->service_name }}" class="img-fluid">
+            @endforeach
         @else
-            <p><strong>No image available for this service.</strong></p>
+            <p>No image available</p>
         @endif
 
         <h5 class="mt-4">Content for this Service</h5>
 
-        @if($serviceContents->isEmpty())
+        @if ($serviceContents->isEmpty())
             <p>No content yet added.</p>
         @else
             @foreach ($serviceContents as $content)
                 <div class="content-item">
-                    @if($content->header)
+                    @if ($content->header)
                         <h6><strong>{{ $content->header }}</strong></h6>
                     @endif
                     <p>{{ $content->content }}</p>
 
-                    @if($content->image)
-                        <img src="{{ asset('storage/' . $content->image) }}" alt="Content Image" class="img-fluid mb-3">
+                    @if ($content->image)
+                        @foreach (json_decode($content->image) as $image)
+                            <img src="{{ asset('service_content/' . $image) }}" alt="Content Image" width="300px"
+                                class="img-fluid mb-3">
+                        @endforeach
                     @else
                         <p><strong>No image available for this content.</strong></p>
                     @endif
