@@ -51,23 +51,25 @@
 
             <div class="sb-sidenav-menu-heading">Other</div>
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
-            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
-            Services
-            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-            @php
-            $services = \App\Models\Service::all();
-        @endphp
+                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                Services
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                @php
+                    $services = \App\Models\Service::all();
+                @endphp
 
-        <nav class="sb-sidenav-menu-nested nav">
-            @foreach ($services as $service)
-            <a class="nav-link" href="{{ route('brgy.service', ['id' => $service->id]) }}">{{ $service->service_name }}</a>
-        @endforeach
-
-        </nav>
-        </div>
+                <nav class="sb-sidenav-menu-nested nav">
+                    @forelse ($services as $service)
+                        <a class="nav-link"
+                            href="{{ route('brgy.service', ['id' => $service->id]) }}">{{ $service->service_name }}</a>
+                    @empty
+                        <span class="nav-link text-muted">No service</span>
+                    @endforelse
+                </nav>
+            </div>
 
 
             <a class="nav-link text-dark" href="{{ url('/barangay/News&Reports') }}">
