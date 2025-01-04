@@ -50,13 +50,14 @@
             </a>
 
             <div class="sb-sidenav-menu-heading">Other</div>
+
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
-                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                data-bs-target="#ServicecollapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
                 Services
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+            <div class="collapse" id="ServicecollapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 @php
                     $services = \App\Models\Service::all();
                 @endphp
@@ -70,6 +71,27 @@
                     @endforelse
                 </nav>
             </div>
+
+            <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
+            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+            <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+            Media Resources
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+        </a>
+        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+            @php
+                $mediatitle = \App\Models\MediaTitle::all();
+            @endphp
+
+            <nav class="sb-sidenav-menu-nested nav">
+                @forelse ($mediatitle as $media)
+                    <a class="nav-link"
+                        href="{{ route('brgy.media', ['id' => $media->id]) }}">{{ $media->media_name }}</a>
+                @empty
+                    <span class="nav-link text-muted">No service</span>
+                @endforelse
+            </nav>
+        </div>
 
 
             <a class="nav-link text-dark" href="{{ url('/barangay/News&Reports') }}">

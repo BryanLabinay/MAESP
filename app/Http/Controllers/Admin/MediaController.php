@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Media;
+use App\Models\MediaTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +15,49 @@ class MediaController extends Controller
      */
     public function index()
     {
+
         $mediaItems = Media::all();
         return view('admin.Media.index', compact('mediaItems'));
+    }
+
+    public function content($id)
+    {
+        $mediaTitle = MediaTitle::with('media')->findOrFail($id);
+
+        return view('admin.Media.media-content', compact('mediaTitle'));
+    }
+
+    public function media()
+    {
+        $mediaItems = MediaTitle::all();
+        return view('admin.Media.media-resources', compact('mediaItems'));
+    }
+
+    public function storeMedia(Request $request)
+    {
+        $request->validate([
+            'media_name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Handle file upload
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('media/image'), $imageName);
+            $imagePath =$imageName;
+        }
+
+        $mediaTitle = new MediaTitle();
+        $mediaTitle->media_name = $request->input('media_name');
+        $mediaTitle->description = $request->input('description');
+        $mediaTitle->image = $imagePath;
+        $mediaTitle->user_id = auth()->id();
+        $mediaTitle->save();
+
+        return redirect()->back()->with('success', 'Media added successfully!');
     }
 
     /**
@@ -32,29 +74,53 @@ class MediaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file.*' => 'required|mimes:jpg,jpeg,png,pdf,docx,xlsx,txt', // Validate each file
-            'title' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
+            'file' => 'required|array|min:1',
+            'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:2048',
+            'description' => 'nullable|string|max:500',
         ]);
 
-        $uploadedFiles = $request->file('file'); // Retrieve multiple files
+        $uploadedFiles = $request->file('file');
+
+        if (!$uploadedFiles) {
+            return back()->withErrors(['file' => 'No files uploaded']);
+        }
+
         $mediaRecords = [];
 
-        foreach ($uploadedFiles as $file) {
-            // Store each file in the `public/uploads` directory
-            $filePath = $file->store('uploads', 'public');
+        $mediaTitle = MediaTitle::first();
 
-            // Save each file information to the database
+        if (!$mediaTitle) {
+            return back()->withErrors(['media_title' => 'Media title not found']);
+        }
+
+        foreach ($uploadedFiles as $file) {
+            $fileName = $file->getClientOriginalName();
+
+            $fileName = preg_replace('/\s+/', '_', $fileName);
+
+            $destinationPath = public_path('media/file');
+            if (!$file->move($destinationPath, $fileName)) {
+                return back()->withErrors(['file' => 'File could not be moved']);
+            }
+
+            $filePath =$fileName;
+
             $mediaRecords[] = Media::create([
-                'title' => $request->input('title', $file->getClientOriginalName()),
+                'media_id' => $mediaTitle->id,
+                'title' => $request->input('title', $fileName),
                 'file' => $filePath,
-                'description' => $request->input('description', $file->getClientOriginalName()),
-                'user_id' => Auth::id(),
+                'description' => $request->input('description', $fileName),
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Files uploaded successfully');
     }
+
+
+
+
+
 
 
     /**

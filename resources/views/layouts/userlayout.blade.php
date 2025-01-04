@@ -61,7 +61,20 @@
                         @endforeach
                         </ul>
                     </li>
+
                     <li class="dropdown"><a href="#"><span>Media Resources</span> <i
+                        class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                    @php
+                    $mediatitle = \App\Models\MediaTitle::all();
+                @endphp
+                    @foreach ($mediatitle as $media)
+                    <li><a href="{{ route('user.media', ['id' => $media->id]) }}">{{ $media->media_name }}</a></li>
+
+                @endforeach
+                </ul>
+            </li>
+                    {{-- <li class="dropdown"><a href="#"><span>Media Resources</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
@@ -79,7 +92,7 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li><a href="blog.html">Portfolio</a></li>
                     <li class="dropdown"><a href="#"><span>Transparency</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>

@@ -11,16 +11,21 @@ class Media extends Model
 
     protected $table = 'media';
 
-
     protected $fillable = [
         'title',
         'file',
         'user_id',
         'description',
+        'media_id', // Foreign key to MediaTitle
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class); // Media belongs to User
+    }
+
+    public function mediaTitle()
+    {
+        return $this->belongsTo(MediaTitle::class, 'media_id'); // Media belongs to MediaTitle
     }
 }
