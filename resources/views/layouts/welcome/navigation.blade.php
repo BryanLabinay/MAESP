@@ -50,13 +50,28 @@
                 </li>
 
 
+
+
                 <li><a href="blog.html">Portfolio</a></li>
+
                 <li class="dropdown"><a href="#"><span>Transparency</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
-                        <li><a href="#">Dropdown 1</a></li>
+                        @php
+                            $title = \App\Models\TransparencyTitle::all();
+                        @endphp
+                        @if ($title->isEmpty())
+                            <li><a href="#">No transparency available</a></li>
+                        @else
+                            @foreach ($title as $transparency)
+                                <li><a
+                                        href="{{ route('user.transparency', ['id' => $transparency->id]) }}">{{ $transparency->transparency_name }}</a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
+
                 <li><a href="contact.html">Contact</a></li>
                 @if (Route::has('login'))
                     @auth

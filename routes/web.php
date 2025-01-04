@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\ServiceWpage;
 use App\Http\Controllers\MediaResourcesWpage;
+use App\Http\Controllers\TransparencyWpage;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\NotificationCTRL;
 use App\Http\Controllers\Admin\EventController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\ExportController;
 use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\Barangay\NewsUpdateController;
+use App\Http\Controllers\Barangay\TransparencyController;
 use App\Http\Controllers\Barangay\ServicesController;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
@@ -125,6 +127,11 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     // TRANSPARENCY
     Route::get('/Transparency', [TransparencyCTRL::class, 'index'])->name('trans.index');
+    Route::post('/Transparency-add', [TransparencyCTRL::class, 'transparencyTitle'])->name('add-title');
+    Route::get('/Transparency-content/{id}', [TransparencyCTRL::class, 'content'])->name('content');
+    Route::post('/transparency', [TransparencyCTRL::class, 'store'])->name('content.store');
+
+
 
 
     // ACTIVITY LOG
@@ -139,6 +146,10 @@ Route::get('/services/{id}', [ServiceWpage::class, 'index'])->name('user.service
 
 //media resources from user
 Route::get('/media/{id}', [MediaResourcesWpage::class, 'show'])->name('user.media');
+
+//transparency from user
+Route::get('/transparency/{id}', [TransparencyWpage::class, 'show'])->name('user.transparency');
+
 
 
 
@@ -169,6 +180,9 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     //Media Resources
     Route::get('/media/{id}', [MediaCtrl::class, 'index'])->name('brgy.media');
+
+    //Transparency
+    Route::get('/transparency/{id}', [TransparencyController::class, 'index'])->name('brgy.transparency');
 
 
     // NEWS & UPDATES

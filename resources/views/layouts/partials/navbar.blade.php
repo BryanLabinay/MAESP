@@ -71,24 +71,24 @@
 
 
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw fa-lg text-black"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user fa-fw fa-lg text-black"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                 <li><a class="dropdown-item" href="#!"><i class="fa-solid fa-user me-1"></i>Profile</a></li>
                 <li><a class="dropdown-item" href="#!"><i class="fa-solid fa-gear me-1"></i>Setting</a></li>
-                {{-- <li>
-                    <hr class="dropdown-divider bg-danger" />
-                </li> --}}
                 <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button class="dropdown-item text-danger" type="submit"><i
-                                class="fa-solid fa-power-off me-1"></i>Logout</button>
+                        <button class="dropdown-item text-danger" type="submit">
+                            <i class="fa-solid fa-power-off me-1"></i>Logout
+                        </button>
                     </form>
                 </li>
-
             </ul>
         </li>
+
     </ul>
 </nav>
 

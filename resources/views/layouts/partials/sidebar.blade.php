@@ -88,9 +88,30 @@
                     <a class="nav-link"
                         href="{{ route('brgy.media', ['id' => $media->id]) }}">{{ $media->media_name }}</a>
                 @empty
-                    <span class="nav-link text-muted">No service</span>
+                    <span class="nav-link text-muted">No Media Resources</span>
                 @endforelse
             </nav>
+        </div>
+
+        <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
+        data-bs-target="#transparencyLayouts" aria-expanded="false" aria-controls="transparencyLayouts">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+        Transparency
+        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+         </a>
+        <div class="collapse" id="transparencyLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+        @php
+            $title = \App\Models\TransparencyTitle::all();
+        @endphp
+
+        <nav class="sb-sidenav-menu-nested nav">
+            @forelse ($title as $transparency)
+                <a class="nav-link"
+                    href="{{ route('brgy.transparency', ['id' => $transparency->id]) }}">{{ $transparency->transparency_name }}</a>
+            @empty
+                <span class="nav-link text-muted">No service</span>
+            @endforelse
+        </nav>
         </div>
 
 
