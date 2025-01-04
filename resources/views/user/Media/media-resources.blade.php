@@ -1,14 +1,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+{{-- @include('layouts.welcome.navigation') --}}
 <div class="container">
     <!-- Media Title Section -->
     <div class="media-title">
         <h1>{{ $mediaTitle->media_name }}</h1>
 
         <!-- Check if media title has an image -->
-        @if($mediaTitle->image)
-            <img src="{{ asset('media/images/' . $mediaTitle->image) }}" alt="{{ $mediaTitle->media_name }}" class="media-title-image">
+        @if ($mediaTitle->image)
+            <img src="{{ asset('media/images/' . $mediaTitle->image) }}" alt="{{ $mediaTitle->media_name }}"
+                class="media-title-image">
         @endif
     </div>
 
@@ -19,32 +20,36 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
             <!-- Check if file exists -->
             <table class="table table-bordered">
                 <tbody>
-                        @foreach ($media as $item)
+                    @foreach ($media as $item)
                         <tr>
-                                @if($item->file)
+                            @if ($item->file)
                                 <td>
                                     <!-- View file link -->
-                                    <a href="{{ url('media/file/' . $item->file) }}" target="_blank" style="color: black" class="">
-                                    {{$item->file  }}
+                                    <a href="{{ url('media/file/' . $item->file) }}" target="_blank"
+                                        style="color: black" class="">
+                                        {{ $item->file }}
                                     </a>
                                 </td>
                                 <td>
                                     <!-- Display the file size in MB -->
                                     @php
-                                    $filePath = public_path('media/file/' . $item->file);
-                                    $fileSize = filesize($filePath) / 1024;
-                                    $displaySize = $fileSize < 1024 ? number_format($fileSize, 2) . ' KB' : number_format($fileSize / 1024, 2) . ' MB';
-                                @endphp
-                                <p>{{ $displaySize }}</p>
+                                        $filePath = public_path('media/file/' . $item->file);
+                                        $fileSize = filesize($filePath) / 1024;
+                                        $displaySize =
+                                            $fileSize < 1024
+                                                ? number_format($fileSize, 2) . ' KB'
+                                                : number_format($fileSize / 1024, 2) . ' MB';
+                                    @endphp
+                                    <p>{{ $displaySize }}</p>
                                 </td>
-                                @else
+                            @else
                                 <p>No file available.</p>
-                                @endif
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-            </div>
+                            @endif
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
