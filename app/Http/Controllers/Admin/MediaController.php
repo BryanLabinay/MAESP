@@ -88,39 +88,44 @@ class MediaController extends Controller
 
         $mediaRecords = [];
 
-        $mediaTitle = MediaTitle::first();
+        $mediaId = $request->input('media_id');
+
+        $mediaTitle = MediaTitle::find($mediaId);
 
         if (!$mediaTitle) {
             return back()->withErrors(['media_title' => 'Media title not found']);
         }
 
         foreach ($uploadedFiles as $file) {
-            $fileName = $file->getClientOriginalName();
-
-            $fileName = preg_replace('/\s+/', '_', $fileName);
-
+            $fileName = preg_replace('/\s+/', '_', $file->getClientOriginalName());
             $destinationPath = public_path('media/file');
-            if (!$file->move($destinationPath, $fileName)) {
+
+            try {
+                $file->move($destinationPath, $fileName);
+            } catch (\Exception $e) {
                 return back()->withErrors(['file' => 'File could not be moved']);
             }
 
-            $filePath =$fileName;
+            if (!file_exists($destinationPath . '/' . $fileName)) {
+                return back()->withErrors(['file' => 'File could not be moved']);
+            }
 
-            $mediaRecords[] = Media::create([
-                'media_id' => $mediaTitle->id,
-                'title' => $request->input('title', $fileName),
-                'file' => $filePath,
-                'description' => $request->input('description', $fileName),
-            ]);
+            $filePath = $fileName;
+
+            try {
+                $mediaRecords[] = Media::create([
+                    'media_id' => $mediaTitle->id,
+                    'title' => $request->input('title', $fileName),
+                    'file' => $filePath,
+                    'description' => $request->input('description', $fileName),
+                ]);
+            } catch (\Exception $e) {
+                return back()->withErrors(['file' => 'Error saving media to database']);
+            }
         }
 
         return redirect()->back()->with('success', 'Files uploaded successfully');
     }
-
-
-
-
-
 
 
     /**

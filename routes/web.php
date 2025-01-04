@@ -115,13 +115,12 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
 
     // MEDIA RESOURCES
-    Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
-    Route::resource('/media', MediaController::class);
-    Route::get('/Media', [MediaController::class, 'media'])->name('media');
-    Route::post('/Media-add', [MediaController::class, 'storeMedia'])->name('add-media');
-    Route::get('/Media-content/{id}', [MediaController::class, 'content'])->name('media');
-
-
+  // Media-related routes
+Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
+Route::post('/media', [MediaController::class, 'store'])->name('media.store');
+Route::post('/media-add', [MediaController::class, 'storeMedia'])->name('add-media');
+Route::get('/Media', [MediaController::class, 'media'])->name('media');
+Route::get('/media-content/{id}', [MediaController::class, 'content'])->name('media.content');
 
 
     // ACTIVITY LOG

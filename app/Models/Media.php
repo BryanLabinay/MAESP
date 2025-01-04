@@ -9,14 +9,11 @@ class Media extends Model
 {
     use HasFactory;
 
-    protected $table = 'media';
-
     protected $fillable = [
         'title',
         'file',
-        'user_id',
         'description',
-        'media_id', // Foreign key to MediaTitle
+        'media_id',
     ];
 
     public function user()

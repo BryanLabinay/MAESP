@@ -32,10 +32,12 @@
                                     <td>
                                         <!-- Display the file size in MB -->
                                         @php
-                                            $filePath = public_path('media/file/' . $item->file);
-                                            $fileSize = filesize($filePath) / 1024 / 1024;
-                                        @endphp
-                                        <p>{{ number_format($fileSize, 2) }} MB</p>
+                                        $filePath = public_path('media/file/' . $item->file);
+                                        $fileSize = filesize($filePath) / 1024;
+                                        $displaySize = $fileSize < 1024 ? number_format($fileSize, 2) . ' KB' : number_format($fileSize / 1024, 2) . ' MB';
+                                    @endphp
+                                    <p>{{ $displaySize }}</p>
+
                                     </td>
                                     @else
                                     <p>No file available.</p>

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('media_id')->constrained('media_titles')->onDelete('cascade'); // Foreign key to media_titles
-            $table->string('title')->nullable();
+            $table->unsignedBigInteger('media_id');
+            $table->string('title');
+            $table->string('file');
             $table->string('description')->nullable();
-            $table->text('file')->nullable();
+            $table->foreign('media_id')->references('id')->on('media_titles')->onDelete('cascade');
             $table->timestamps();
         });
     }

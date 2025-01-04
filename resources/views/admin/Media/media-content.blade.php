@@ -25,10 +25,11 @@
     @section('content')
         <div class="container-fluid">
             <!-- Media Content Form -->
-
             <form id="addMediaForm" method="POST" action="{{ route('media.store') }}" enctype="multipart/form-data">
-                <!-- CSRF Token -->
                 @csrf
+
+                <!-- Media Title Field (This is optional since the title comes from the mediaTitle in the controller) -->
+                <input type="hidden" name="media_id" value="{{ $mediaTitle->id }}">
 
                 <!-- Media Title Field -->
                 <div class="mb-3">
