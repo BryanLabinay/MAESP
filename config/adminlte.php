@@ -364,28 +364,33 @@ return [
         ],
         [
             'text' => 'Media Resources',
+            'url' => 'Admin/Media',
             'icon' => 'fa-solid fa-newspaper',
-            'submenu' => [
+        ],
+        // [
+        //     'text' => 'Media Resources',
+        //     'icon' => 'fa-solid fa-newspaper',
+        //     'submenu' => [
                 // [
                 //     'text' => 'Weather Updates',
                 //     'url' => 'Admin/Weather_Updates',
                 //     'icon' => 'fa-solid fa-cloud-sun-rain'
                 // ],
-                [
-                    'text' => 'Pest & Disease Alerts',
-                    'url' => 'Admin/Pest&Disease',
-                    'icon' => 'fa-solid fa-bug-slash'
-                ],
-                [
-                    'text' => 'Market Prices',
-                    'url' => 'Admin/Market_Prices',
-                    'icon' => 'fa-solid fa-peseta-sign'
-                ],
-                [
-                    'text' => 'Seed & Fertilize',
-                    'url' => 'Admin/Seed_Fertilizer',
-                    'icon' => 'fa-solid fa-seedling'
-                ],
+                // [
+                //     'text' => 'Pest & Disease Alerts',
+                //     'url' => 'Admin/Pest&Disease',
+                //     'icon' => 'fa-solid fa-bug-slash'
+                // ],
+                // [
+                //     'text' => 'Market Prices',
+                //     'url' => 'Admin/Market_Prices',
+                //     'icon' => 'fa-solid fa-peseta-sign'
+                // ],
+                // [
+                //     'text' => 'Seed & Fertilize',
+                //     'url' => 'Admin/Seed_Fertilizer',
+                //     'icon' => 'fa-solid fa-seedling'
+                // ],
                 // [
                 //     'text' => 'Pest & Disease Alerts',
                 //     'url' => '#',
@@ -410,8 +415,8 @@ return [
                 //         ],
                 //     ],
                 // ],
-            ],
-        ],
+        //     ],
+        // ],
         [
             'text' => 'News & Update',
             'url' => 'Admin/Media-Resources',

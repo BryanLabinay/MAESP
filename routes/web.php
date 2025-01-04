@@ -9,6 +9,7 @@ use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\ServiceWpage;
+use App\Http\Controllers\MediaResourcesWpage;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\NotificationCTRL;
 use App\Http\Controllers\Admin\EventController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Admin\PestDiseaseController;
 use App\Http\Controllers\Admin\SeedFertilizerCTRL;
 use App\Http\Controllers\Admin\ExportPDFController;
 use App\Http\Controllers\Barangay\ActivityLogController;
+use App\Http\Controllers\Barangay\MediaCtrl;
 use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\ExportController;
 use App\Http\Controllers\Barangay\FarmersControlller;
@@ -106,6 +108,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::post('/services/{service}/content', [ServiceController::class, 'storeContent'])->name('service.content.store');
 
 
+
     // Forum
     Route::get('/Forum', [ForumController::class, 'forum'])->name('forum');
 
@@ -114,24 +117,11 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // MEDIA RESOURCES
     Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
     Route::resource('/media', MediaController::class);
-
-    // NEWS $ UPDATE
-    // Weather & Updates
-    Route::get('/Weather_Updates', [NewsUpdatesController::class, 'indexWeather']);
-
-
-    // Pest & Disease Alerts
-    Route::get('/Pest&Disease', [PestDiseaseController::class, 'index']);
-    Route::post('/news/store', [PestDiseaseController::class, 'store'])->name('news.store');
-
-    // Market Prices
-    Route::get('/Market_Prices', [MarketPricesCTRL::class, 'index']);
-    Route::post('/Market/Prices/store', [MarketPricesCTRL::class, 'store'])->name('prices.store');
+    Route::get('/Media', [MediaController::class, 'media'])->name('media');
+    Route::post('/Media-add', [MediaController::class, 'storeMedia'])->name('add-media');
+    Route::get('/Media-content/{id}', [MediaController::class, 'content'])->name('media');
 
 
-    // Seed & Fertilizer
-    Route::get('/Seed_Fertilizer', [SeedFertilizerCTRL::class, 'index']);
-    Route::post('/Seed/Fertilizer/Store', [SeedFertilizerCTRL::class, 'store'])->name('seed.store');
 
 
     // ACTIVITY LOG
@@ -143,6 +133,10 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
 //service from user
 Route::get('/services/{id}', [ServiceWpage::class, 'index'])->name('user.service');
+
+//media resources from user
+Route::get('/media/{id}', [MediaResourcesWpage::class, 'show'])->name('user.media');
+
 
 
 
@@ -169,6 +163,9 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     //Services
     Route::get('/services/{id}', [ServicesController::class, 'index'])->name('brgy.service');
+
+    //Media Resources
+    Route::get('/media/{id}', [MediaCtrl::class, 'index'])->name('brgy.media');
 
 
     // NEWS & UPDATES

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('media_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('media_name')->nullable();
             $table->string('description')->nullable();
-            $table->text('file')->nullable();
+            $table->text('image')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            // Foreign key constraint
+            // Foreign key constraint to users table
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('media_titles');
     }
 };
