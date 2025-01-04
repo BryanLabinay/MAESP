@@ -17,10 +17,6 @@ class MediaResourcesWpage extends Controller
 
         $media = Media::where('media_id', $mediaTitle->id)->get();
 
-        return view('user.media-resources', compact('mediaTitle', 'media'));
+        return view('user.Media.media-resources', compact('mediaTitle', 'media'));
     }
-
-
 }
-
-
