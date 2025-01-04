@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Admin\PestDiseaseController;
 use App\Http\Controllers\Admin\SeedFertilizerCTRL;
 use App\Http\Controllers\Admin\ExportPDFController;
+use App\Http\Controllers\Admin\TransparencyCTRL;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\MediaCtrl;
 use App\Http\Controllers\Barangay\CroppingController;
@@ -115,12 +116,15 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
 
     // MEDIA RESOURCES
-  // Media-related routes
-Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
-Route::post('/media', [MediaController::class, 'store'])->name('media.store');
-Route::post('/media-add', [MediaController::class, 'storeMedia'])->name('add-media');
-Route::get('/Media', [MediaController::class, 'media'])->name('media');
-Route::get('/media-content/{id}', [MediaController::class, 'content'])->name('media.content');
+    // Media-related routes
+    Route::get('/Media-Resources', [MediaController::class, 'index'])->name('media.index');
+    Route::post('/media', [MediaController::class, 'store'])->name('media.store');
+    Route::post('/media-add', [MediaController::class, 'storeMedia'])->name('add-media');
+    Route::get('/Media', [MediaController::class, 'media'])->name('media');
+    Route::get('/media-content/{id}', [MediaController::class, 'content'])->name('media.content');
+
+    // TRANSPARENCY
+    Route::get('/Transparency', [TransparencyCTRL::class, 'index'])->name('trans.index');
 
 
     // ACTIVITY LOG
