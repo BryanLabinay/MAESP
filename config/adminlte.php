@@ -374,7 +374,7 @@ return [
         ],
         [
             'text' => 'News & Update',
-            'url' => 'Admin/Media-Resources',
+            'url' => 'Admin/News-Update',
             'icon' => 'fa-solid fa-users',
         ],
         [
