@@ -109,16 +109,32 @@
                 <a class="nav-link"
                     href="{{ route('brgy.transparency', ['id' => $transparency->id]) }}">{{ $transparency->transparency_name }}</a>
             @empty
-                <span class="nav-link text-muted">No service</span>
+                <span class="nav-link text-muted">No Transparency</span>
             @endforelse
         </nav>
         </div>
 
+        <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
+        data-bs-target="#newsLayouts" aria-expanded="false" aria-controls="newsLayouts">
+        <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+        News and Update
+        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+         </a>
+        <div class="collapse" id="newsLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+        @php
+            $title = \App\Models\NewsTitle::all();
+        @endphp
 
-            <a class="nav-link text-dark" href="{{ url('/barangay/News&Reports') }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
-                News & Reports
-            </a>
+        <nav class="sb-sidenav-menu-nested nav">
+            @forelse ($title as $news)
+                <a class="nav-link"
+                    href="{{ route('brgy.news', ['id' => $news->id]) }}">{{ $news->news_name }}</a>
+            @empty
+                <span class="nav-link text-muted">No News and Update</span>
+            @endforelse
+        </nav>
+        </div>
+
             <a class="nav-link text-dark" href="{{ url('/barangay/Activity-log') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                 Activity Log

@@ -94,7 +94,7 @@
                                                 <td>{{ $item->title }}</td>
                                                 <td>
                                                     @php
-                                                        $filePath = public_path('media/file/' . $item->file);
+                                                        $filePath = public_path('news/file/' . $item->file);
                                                         $fileSize = filesize($filePath) / 1024;
                                                         $displaySize =
                                                             $fileSize < 1024

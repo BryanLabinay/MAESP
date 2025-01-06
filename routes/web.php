@@ -203,9 +203,8 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     //Transparency
     Route::get('/transparency/{id}', [TransparencyController::class, 'index'])->name('brgy.transparency');
 
-
     // NEWS & UPDATES
-    Route::get('/News&Reports', [NewsUpdateController::class, 'index']);
+    Route::get('/News&Reports/{id}', [NewsUpdateController::class, 'index'])->name('brgy.news');
 
     // ACTIVITY LOG
     Route::get('/Activity-log', [ActivityLogController::class, 'index']);

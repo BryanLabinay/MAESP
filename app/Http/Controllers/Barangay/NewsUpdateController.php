@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Barangay;
 
 use App\Http\Controllers\Controller;
+use App\Models\NewsTitle;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsUpdateController extends Controller
@@ -10,11 +12,12 @@ class NewsUpdateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        return view('barangay.News.index');
+        $title = NewsTitle::findOrFail($id);
+        $content = News::where('news_id', $title->id)->get();
+        return view('barangay.News.index', compact('title', 'content'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
