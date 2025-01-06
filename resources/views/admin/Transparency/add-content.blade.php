@@ -23,41 +23,88 @@
     @stop
 
     @section('content')
+
         <div class="container-fluid">
+            <div class="row">
+                <!-- Transparency Content Form -->
+                <div class="col-md-6">
+                    <form id="addTransparencyForm" method="POST" action="{{ route('content.store') }}"
+                        enctype="multipart/form-data">
+                        @csrf
 
-            <form id="addtransparencyForm" method="POST" action="{{ route('content.store') }}" enctype="multipart/form-data">
-                @csrf
+                        <input type="hidden" name="transparency_id" value="{{ $content->id }}">
 
-                <input type="hidden" name="transparency_id" value="{{ $content->id }}">
+                        <div class="mb-3">
+                            <label for="transparencyTitle" class="form-label">Transparency Title</label>
+                            <input type="text" class="form-control" id="transparencyTitle" name="title"
+                                placeholder="Enter transparency title">
+                            @error('title')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                <div class="mb-3">
-                    <label for="transparencyTitle" class="form-label">Transparency Title</label>
-                    <input type="text" class="form-control" id="transparencyTitle" name="title" placeholder="Enter transparency title">
-                    @error('title')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                        <div class="mb-3">
+                            <label for="transparencyFile" class="form-label">Upload Transparency</label>
+                            <input type="file" class="form-control" id="transparencyFile" name="file[]" required
+                                multiple>
+                            @error('file')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Description Field -->
+                        <div class="mb-3">
+                            <label for="transparencyDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="transparencyDescription" name="description" rows="3"
+                                placeholder="Enter transparency description"></textarea>
+                            @error('description')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Transparency</button>
+                    </form>
                 </div>
 
-                <div class="mb-3">
-                    <label for="transparencyFile" class="form-label">Upload Transparency</label>
-                    <input type="file" class="form-control" id="transparencyFile" name="file[]" required multiple>
-                    @error('file')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                <!-- Transparency Content List -->
+                <div class="col-md-6">
+                    <h5 class="fw-semibold text-md">Transparency Content List</h5>
+                    <table id="transparencyTable" class="table table-hover table-striped table-bordered">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>File</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($transparencies as $transparency)
+                                <tr>
+                                    <td>
+                                        <a href="{{ asset('media/file/' . $transparency->file) }}" target="_blank">
+                                            {{ $transparency->title }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $transparency->description }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-
-                <div class="mb-3">
-                    <label for="transparencyDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="transparencyDescription" name="description" rows="3"
-                        placeholder="Enter transparency description"></textarea>
-                    @error('description')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <button type="submit" class="btn btn-primary">Save transparency</button>
-            </form>
+            </div>
         </div>
+
+        <!-- Include jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Include DataTables JS -->
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+        <!-- Initialize DataTable -->
+        <script>
+            $(document).ready(function() {
+                $('#transparencyTable').DataTable();
+            });
+        </script>
+
     @stop
 
     @section('js')
