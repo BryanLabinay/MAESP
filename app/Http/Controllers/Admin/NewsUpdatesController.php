@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\NewsTitle;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsUpdatesController extends Controller
@@ -10,21 +12,44 @@ class NewsUpdatesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function indexWeather()
+    public function index()
     {
-        return view('admin.News.Weather-Updates.index');
+        $news = NewsTitle::all();
+        return view('admin.NewsAndUpdate.index', compact('news'));
     }
-    public function indexPest()
+
+    public function newsTitle(Request $request)
     {
-        return view('admin.News.Pest.index');
+        $request->validate([
+            'news_name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('media/image'), $imageName);
+            $imagePath = $imageName;
+        }
+
+        $news = new NewsTitle();
+        $news->news_name = $request->input('news_name');
+        $news->description = $request->input('description');
+        $news->image = $imagePath;
+        $news->user_id = auth()->id();
+        $news->save();
+
+        return redirect()->back()->with('success', 'Title added successfully!');
     }
-    public function indexMarket()
+
+    public function content($id)
     {
-        return view('admin.News.Market-Prices.index');
-    }
-    public function indexSeed()
-    {
-        return view('admin.News.Seed.index');
+        $content = NewsTitle::with('news')->findOrFail($id);
+        $news = News::where('news_id', $id)->get();
+
+        return view('admin.NewsAndUpdate.content', compact('content', 'news'));
     }
 
     /**
@@ -35,13 +60,62 @@ class NewsUpdatesController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'file' => 'required|array|min:1',
+            'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:2048',
+            'description' => 'nullable|string|max:500',
+        ]);
+
+        $uploadedFiles = $request->file('file');
+
+        if (!$uploadedFiles) {
+            return back()->withErrors(['file' => 'No files uploaded']);
+        }
+
+        $newsRecords = [];
+
+        $newsId = $request->input('news_id');
+
+        $newsTitle = NewsTitle::find($newsId);
+
+        if (!$newsTitle) {
+            return back()->withErrors(['news_title' => 'news title not found']);
+        }
+
+        foreach ($uploadedFiles as $file) {
+            $fileName = preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $destinationPath = public_path('news/file');
+
+            try {
+                $file->move($destinationPath, $fileName);
+            } catch (\Exception $e) {
+                return back()->withErrors(['file' => 'File could not be moved']);
+            }
+
+            if (!file_exists($destinationPath . '/' . $fileName)) {
+                return back()->withErrors(['file' => 'File could not be moved']);
+            }
+
+            $filePath = $fileName;
+
+            try {
+                $newsRecords[] = News::create([
+                    'news_id' => $newsTitle->id,
+                    'title' => $request->input('title', $fileName),
+                    'file' => $filePath,
+                    'description' => $request->input('description', $fileName),
+                ]);
+            } catch (\Exception $e) {
+                return back()->withErrors(['file' => 'Error saving transparency to database']);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Files uploaded successfully');
     }
+
 
     /**
      * Display the specified resource.
