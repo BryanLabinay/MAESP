@@ -1,46 +1,51 @@
 <?php
 
-use App\Http\Controllers\ActivityLogCTRL;
 use App\Models\Barangay;
+use App\Http\Controllers\NewsWpage;
+use App\Http\Controllers\AboutWpage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use Illuminate\Console\Scheduling\Event;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\ServiceWpage;
-use App\Http\Controllers\MediaResourcesWpage;
+use App\Http\Controllers\PorfolioWpage;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PortfolioWpage;
+use Illuminate\Console\Scheduling\Event;
+use App\Http\Controllers\ActivityLogCTRL;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransparencyWpage;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\Admin\NotificationCTRL;
+use App\Http\Controllers\Barangay\MediaCtrl;
+use App\Http\Controllers\ReactionController;
+use App\Http\Controllers\MediaResourcesWpage;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\ForumController;
+use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\MarketPricesCTRL;
+use App\Http\Controllers\Admin\NotificationCTRL;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\TransparencyCTRL;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
-use App\Http\Controllers\Admin\MarketPricesCTRL;
-use App\Http\Controllers\Admin\MediaController;
-use App\Http\Controllers\Admin\NewsUpdatesController;
-use App\Http\Controllers\Admin\PestDiseaseController;
 use App\Http\Controllers\Admin\SeedFertilizerCTRL;
 use App\Http\Controllers\Admin\ExportPDFController;
-use App\Http\Controllers\Admin\TransparencyCTRL;
-use App\Http\Controllers\Barangay\ActivityLogController;
-use App\Http\Controllers\Barangay\MediaCtrl;
-use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\ExportController;
+use App\Http\Controllers\Admin\NewsUpdatesController;
+use App\Http\Controllers\Admin\PestDiseaseController;
+use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\FarmersControlller;
-use App\Http\Controllers\Barangay\NewsUpdateController;
-use App\Http\Controllers\Barangay\TransparencyController;
 use App\Http\Controllers\Barangay\ServicesController;
+use App\Http\Controllers\Barangay\NewsUpdateController;
+use App\Http\Controllers\Barangay\ActivityLogController;
+use App\Http\Controllers\Barangay\TransparencyController;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
 Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
 
 
 Route::get('/', function () {
-    return view('layouts.userlayout');
+    return view('user.content.main');
     // return redirect()->route('forum.show');
 })->name('homepage');
 
@@ -131,8 +136,11 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Transparency-content/{id}', [TransparencyCTRL::class, 'content'])->name('content');
     Route::post('/transparency', [TransparencyCTRL::class, 'store'])->name('content.store');
 
-
-
+    // News & Updates
+    Route::get('/News-Update', [NewsUpdatesController::class, 'index'])->name('news.index');
+    Route::post('/News-add', [NewsUpdatesController::class, 'newsTitle'])->name('news.add');
+    Route::get('/News-content/{id}', [NewsUpdatesController::class, 'content'])->name('content');
+    Route::post('/news', [NewsUpdatesController::class, 'store'])->name('news.store');
 
     // ACTIVITY LOG
     Route::get('/Activity-Log', [ActivityLogCTRL::class, 'index']);
@@ -149,6 +157,17 @@ Route::get('/media/{id}', [MediaResourcesWpage::class, 'show'])->name('user.medi
 
 //transparency from user
 Route::get('/transparency/{id}', [TransparencyWpage::class, 'show'])->name('user.transparency');
+
+Route::get('/news/{id}', [NewsWpage::class, 'show'])->name('user.news');
+
+// Porfolio
+Route::get('/Portfolio', [PortfolioWpage::class, 'show'])->name('show.portfolio');
+
+// Contact
+Route::get('/Contact', [ContactController::class, 'show'])->name('show.contact');
+
+// About
+Route::get('/About', [AboutWpage::class, 'show'])->name('show.about');
 
 
 
