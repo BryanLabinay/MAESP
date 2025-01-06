@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\TransparencyTitle;
 use App\Models\Transparency;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TransparencyCTRL extends Controller
 {
@@ -16,7 +18,7 @@ class TransparencyCTRL extends Controller
     {
 
         $title = TransparencyTitle::all();
-        return view('admin.Transparency.index',compact('title'));
+        return view('admin.Transparency.index', compact('title'));
     }
 
     public function transparencyTitle(Request $request)
@@ -32,7 +34,7 @@ class TransparencyCTRL extends Controller
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('media/image'), $imageName);
-            $imagePath =$imageName;
+            $imagePath = $imageName;
         }
 
         $transparencyTitle = new TransparencyTitle();
@@ -49,8 +51,9 @@ class TransparencyCTRL extends Controller
     public function content($id)
     {
         $content = transparencyTitle::with('transparency')->findOrFail($id);
+        $transparencies = Transparency::where('transparency_id', $id)->get();
 
-        return view('admin.Transparency.add-content', compact('content'));
+        return view('admin.Transparency.add-content', compact('content', 'transparencies'));
     }
 
 
