@@ -9,6 +9,8 @@ class Transparency extends Model
 {
     use HasFactory;
 
+    protected $table = 'transparencies';
+
     protected $fillable = [
         'title',
         'file',
