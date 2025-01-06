@@ -22,9 +22,10 @@ class MediaController extends Controller
 
     public function content($id)
     {
-        $mediaTitle = MediaTitle::with('media')->findOrFail($id);
+        $mediaTitle = MediaTitle::findOrFail($id);
+        $media = Media::where('media_id', $id)->get();
 
-        return view('admin.Media.media-content', compact('mediaTitle'));
+        return view('admin.Media.media-content', compact('mediaTitle', 'media'));
     }
 
     public function media()
@@ -47,7 +48,7 @@ class MediaController extends Controller
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('media/image'), $imageName);
-            $imagePath =$imageName;
+            $imagePath = $imageName;
         }
 
         $mediaTitle = new MediaTitle();
@@ -76,8 +77,8 @@ class MediaController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'file' => 'required|array|min:1',
-            'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:2048',
-            'description' => 'nullable|string|max:500',
+            'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:50000',
+            // 'description' => 'nullable|string|max:500',
         ]);
 
         $uploadedFiles = $request->file('file');
