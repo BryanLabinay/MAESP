@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\MarketPricesCTRL;
 use App\Http\Controllers\Admin\NotificationCTRL;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Barangay\SendReportController;
 use App\Http\Controllers\Admin\TransparencyCTRL;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\Barangay\ServicesController;
 use App\Http\Controllers\Barangay\NewsUpdateController;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\TransparencyController;
+use App\Http\Controllers\Admin\PortfolioCTRL;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
 Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
@@ -115,6 +117,12 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
         ->name('service.create');
     Route::post('/services/{service}/content', [ServiceController::class, 'storeContent'])->name('service.content.store');
 
+    //Portfolio
+    Route::get('/Portfolio', [PortfolioCTRL::class, 'index'])->name('portfolio');
+    Route::post('/form-submit', [PortfolioCTRL::class, 'store'])->name('form.submit');
+    Route::get('/portfolio/{id}/edit', [PortfolioCTRL::class, 'edit'])->name('portfolio.edit');
+    Route::put('/portfolio/{id}', [PortfolioCTRL::class, 'update'])->name('portfolio.update');
+    Route::delete('/portfolio/{id}', [PortfolioCTRL::class, 'destroy'])->name('portfolio.destroy');
 
 
     // Forum
@@ -133,7 +141,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     // TRANSPARENCY
     Route::get('/Transparency', [TransparencyCTRL::class, 'index'])->name('trans.index');
     Route::post('/Transparency-add', [TransparencyCTRL::class, 'transparencyTitle'])->name('add-title');
-    Route::get('/Transparency-content/{id}', [TransparencyCTRL::class, 'content'])->name('content');
+    Route::get('/Transparency-content/{id}', [TransparencyCTRL::class, 'content'])->name('trans.content');
     Route::post('/transparency', [TransparencyCTRL::class, 'store'])->name('content.store');
 
     // News & Updates
@@ -146,6 +154,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/Activity-Log', [ActivityLogCTRL::class, 'index']);
 
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('/brgy-send-reports', [SendReportController::class, 'show'])->name('brgy.reports');
 });
 
 
@@ -178,6 +187,10 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     // Logout
     // Route::post('logout', [BarangayController::class, 'destroy'])
     //     ->name('logout');
+
+
+
+    Route::resource('send-reports', SendReportController::class)->except('show');
     // FARMERS
     Route::get('/add-farmers', [FarmersControlller::class, 'index'])->name('add.farmers');
     Route::get('/list-farmers', [FarmersControlller::class, 'show'])->name('list.farmers');

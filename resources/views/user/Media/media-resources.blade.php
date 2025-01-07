@@ -62,8 +62,7 @@
                                                                     ? number_format($fileSize, 2) . ' KB'
                                                                     : number_format($fileSize / 1024, 2) . ' MB';
                                                         @endphp
-                                                        <span
-                                                            class="badge bg-info text-white">{{ $displaySize }}</span>
+                                                        <span class="badge bg-info text-dark">{{ $displaySize }}</span>
                                                     </td>
                                                 </tr>
                                             @endif

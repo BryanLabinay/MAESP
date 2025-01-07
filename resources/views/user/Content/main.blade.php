@@ -15,36 +15,28 @@
             <div class="carousel-item">
                 <img src="assets/img/hero_2.jpg" alt="">
                 <div class="carousel-container">
-                    {{-- <h2>Organic vegetables is good for health</h2>
-             <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id
-                 quod maxime placeat facere possimus.</p> --}}
+                    <h2 class="text-center text-uppercase">Municipal Agriculture Service Portal - Aparri</h2>
                 </div>
             </div><!-- End Carousel Item -->
 
             <div class="carousel-item">
                 <img src="assets/img/hero_3.jpg" alt="">
                 <div class="carousel-container">
-                    {{-- <h2>Providing Fresh Produce Every Single Day</h2>
-             <p>Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                 aut odit aut fugit.</p> --}}
+                    <h2 class="text-center text-uppercase">Municipal Agriculture Service Portal - Aparri</h2>
                 </div>
             </div><!-- End Carousel Item -->
 
             <div class="carousel-item">
                 <img src="assets/img/hero_4.jpg" alt="">
                 <div class="carousel-container">
-                    {{-- <h2>Farming as a Passione</h2>
-             <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                 sed quia non numquam eius.</p> --}}
+                    <h2 class="text-center text-uppercase">Municipal Agriculture Service Portal - Aparri</h2>
                 </div>
             </div><!-- End Carousel Item -->
 
             <div class="carousel-item">
                 <img src="assets/img/hero_5.jpg" alt="">
                 <div class="carousel-container">
-                    {{-- <h2>Good Food For All</h2>
-             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                 labore et dolore magna aliqua.</p> --}}
+                    <h2 class="text-center text-uppercase">Municipal Agriculture Service Portal - Aparri</h2>
                 </div>
             </div><!-- End Carousel Item -->
 
@@ -70,8 +62,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="assets/img/img_long_5.jpg" alt="Image " class="img-fluid img-overlap"
-                            data-aos="zoom-out">
+                        <img src="{{ asset('assets/img/about/about.jpg') }}" alt="Image "
+                            class="img-fluid img-overlap" data-aos="zoom-out">
                     </div>
                     <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
                         <h3 class="content-subtitle text-white opacity-50">Why Choose</h3>
@@ -111,6 +103,63 @@
             </div>
         </div>
     </section><!-- /About Section -->
+
+    {{-- NEWS & UPDATES --}}
+    <section class="mt-2" style="background-color: #DEBD34;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-6 d-flex justify-content-center">
+                    <a href=""
+                        class="bg-white p-4 border border-2 shadow-lg rounded text-center text-decoration-none"
+                        style="width: 320px;">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="{{ asset('assets/img/weather.png') }}" width="60" height="50"
+                                alt="">
+                            <h5 class="fw-bold text-dark mb-0 mt-3">WEATHER UPDATES</h5>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-6 d-flex justify-content-center">
+                    <a href=""
+                        class="bg-white p-4 border border-2 shadow-lg rounded text-center text-decoration-none"
+                        style="width: 320px;">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="{{ asset('assets/img/seminar.png') }}" width="60" height="50"
+                                alt="">
+                            <h5 class="fw-bold text-dark mb-0 mt-3">SEMINAR</h5>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="col-lg-3 col-6 d-flex justify-content-center">
+                    <a href=""
+                        class="bg-white p-4 border border-2 shadow-lg rounded text-center text-decoration-none"
+                        style="width: 320px;">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="{{ asset('assets/img/prices.png') }}" width="60" height="50"
+                                alt="">
+                            <h5 class="fw-bold text-dark mb-0 mt-3">WEATHER UPDATES</h5>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-6 d-flex justify-content-center">
+                    <a href=""
+                        class="bg-white p-4 border border-2 shadow-lg rounded text-center text-decoration-none"
+                        style="width: 320px;">
+                        <div class="d-flex flex-column align-items-center">
+                            <img src="{{ asset('assets/img/fertilizer.png') }}" width="60" height="50"
+                                alt="">
+                            <h5 class="fw-bold text-dark mb-0 mt-1">SEED & FERTILIZER DISTRIBUTION</h5>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- Recent Posts Section -->
     <section id="recent-posts" class="recent-posts section">
@@ -226,37 +275,5 @@
         </div>
 
     </section><!-- /Recent Posts Section -->
-
-    <!-- Call To Action Section -->
-    <section id="call-to-action" class="call-to-action section light-background">
-
-        <div class="content">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <h3 class="text-uppercase">Feedback</h3>
-                        <p class="opacity-50">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Nesciunt, reprehenderit!
-                        </p>
-                    </div>
-                    <div class="col-lg-6">
-                        <form action="forms/newsletter.php" class="form-subscribe php-email-form">
-                            <div class="form-group d-flex align-items-stretch">
-                                <input type="email" name="email" class="form-control h-100"
-                                    placeholder="Enter your e-mail">
-                                <input type="submit" class="btn btn-secondary px-4" value="Subcribe">
-                            </div>
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">
-                                Your subscription request has been sent. Thank you!
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- /Call To Action Section -->
 
 </x-user-layout>

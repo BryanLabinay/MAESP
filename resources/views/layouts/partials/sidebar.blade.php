@@ -46,7 +46,14 @@
                 href="{{ url('/barangay/list-cropping reports') }}"
                 style="{{ Request::is('barangay/list-cropping reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
-                Cropping list
+                Crop Assessment
+            </a>
+
+            <a class="nav-link text-dark {{ Request::is('send-reports.index') ? 'active' : '' }}"
+                href="{{ route('send-reports.index') }}"
+                style="{{ Request::is('send-reports.index') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+                Send Reports
             </a>
 
             <div class="sb-sidenav-menu-heading">Other</div>
@@ -57,7 +64,8 @@
                 Services
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
-            <div class="collapse" id="ServicecollapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+            <div class="collapse" id="ServicecollapseLayouts" aria-labelledby="headingOne"
+                data-bs-parent="#sidenavAccordion">
                 @php
                     $services = \App\Models\Service::all();
                 @endphp
@@ -73,67 +81,68 @@
             </div>
 
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
-            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-            <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
-            Media Resources
-            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-        </a>
-        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-            @php
-                $mediatitle = \App\Models\MediaTitle::all();
-            @endphp
+                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                Media Resources
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                @php
+                    $mediatitle = \App\Models\MediaTitle::all();
+                @endphp
 
-            <nav class="sb-sidenav-menu-nested nav">
-                @forelse ($mediatitle as $media)
-                    <a class="nav-link"
-                        href="{{ route('brgy.media', ['id' => $media->id]) }}">{{ $media->media_name }}</a>
-                @empty
-                    <span class="nav-link text-muted">No Media Resources</span>
-                @endforelse
-            </nav>
-        </div>
+                <nav class="sb-sidenav-menu-nested nav">
+                    @forelse ($mediatitle as $media)
+                        <a class="nav-link"
+                            href="{{ route('brgy.media', ['id' => $media->id]) }}">{{ $media->media_name }}</a>
+                    @empty
+                        <span class="nav-link text-muted">No Media Resources</span>
+                    @endforelse
+                </nav>
+            </div>
 
-        <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
-        data-bs-target="#transparencyLayouts" aria-expanded="false" aria-controls="transparencyLayouts">
-        <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
-        Transparency
-        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-         </a>
-        <div class="collapse" id="transparencyLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-        @php
-            $title = \App\Models\TransparencyTitle::all();
-        @endphp
+            <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
+                data-bs-target="#transparencyLayouts" aria-expanded="false" aria-controls="transparencyLayouts">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                Transparency
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="transparencyLayouts" aria-labelledby="headingOne"
+                data-bs-parent="#sidenavAccordion">
+                @php
+                    $title = \App\Models\TransparencyTitle::all();
+                @endphp
 
-        <nav class="sb-sidenav-menu-nested nav">
-            @forelse ($title as $transparency)
-                <a class="nav-link"
-                    href="{{ route('brgy.transparency', ['id' => $transparency->id]) }}">{{ $transparency->transparency_name }}</a>
-            @empty
-                <span class="nav-link text-muted">No Transparency</span>
-            @endforelse
-        </nav>
-        </div>
+                <nav class="sb-sidenav-menu-nested nav">
+                    @forelse ($title as $transparency)
+                        <a class="nav-link"
+                            href="{{ route('brgy.transparency', ['id' => $transparency->id]) }}">{{ $transparency->transparency_name }}</a>
+                    @empty
+                        <span class="nav-link text-muted">No Transparency</span>
+                    @endforelse
+                </nav>
+            </div>
 
-        <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
-        data-bs-target="#newsLayouts" aria-expanded="false" aria-controls="newsLayouts">
-        <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
-        News and Update
-        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-         </a>
-        <div class="collapse" id="newsLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-        @php
-            $title = \App\Models\NewsTitle::all();
-        @endphp
+            <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
+                data-bs-target="#newsLayouts" aria-expanded="false" aria-controls="newsLayouts">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                News and Update
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="newsLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                @php
+                    $title = \App\Models\NewsTitle::all();
+                @endphp
 
-        <nav class="sb-sidenav-menu-nested nav">
-            @forelse ($title as $news)
-                <a class="nav-link"
-                    href="{{ route('brgy.news', ['id' => $news->id]) }}">{{ $news->news_name }}</a>
-            @empty
-                <span class="nav-link text-muted">No News and Update</span>
-            @endforelse
-        </nav>
-        </div>
+                <nav class="sb-sidenav-menu-nested nav">
+                    @forelse ($title as $news)
+                        <a class="nav-link"
+                            href="{{ route('brgy.news', ['id' => $news->id]) }}">{{ $news->news_name }}</a>
+                    @empty
+                        <span class="nav-link text-muted">No News and Update</span>
+                    @endforelse
+                </nav>
+            </div>
 
             <a class="nav-link text-dark" href="{{ url('/barangay/Activity-log') }}">
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>

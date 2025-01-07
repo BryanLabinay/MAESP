@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 mb-4 mb-lg-0">
-                        <img src="assets/img/img_long_5.jpg" alt="Image " class="img-fluid img-overlap"
+                        <img src="{{ asset('assets/img/about/about.jpg') }}" alt="Image " class="img-fluid img-overlap"
                             data-aos="zoom-out">
                     </div>
                     <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">

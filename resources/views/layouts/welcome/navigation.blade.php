@@ -30,24 +30,6 @@
                     </ul>
                 </li>
 
-                {{-- News and Updates --}}
-                <li class="dropdown"><a href="#"><span>News and Update</span> <i
-                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                        @php
-                            $news = \App\Models\NewsTitle::all();
-                        @endphp
-                        @if ($news->isEmpty())
-                            <li><a href="#">No services available</a></li>
-                        @else
-                            @foreach ($news as $new)
-                                <li><a href="{{ route('user.news', ['id' => $new->id]) }}">{{ $new->news_name }}</a>
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                </li>
-
                 {{-- MEDIA RESOURCES --}}
                 <li class="dropdown"><a href="#"><span>Media Resources</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -83,6 +65,25 @@
                             @foreach ($title as $transparency)
                                 <li><a
                                         href="{{ route('user.transparency', ['id' => $transparency->id]) }}">{{ $transparency->transparency_name }}</a>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </li>
+
+
+                {{-- News and Updates --}}
+                <li class="dropdown"><a href="#"><span>News and Update</span> <i
+                            class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        @php
+                            $news = \App\Models\NewsTitle::all();
+                        @endphp
+                        @if ($news->isEmpty())
+                            <li><a href="#">No services available</a></li>
+                        @else
+                            @foreach ($news as $new)
+                                <li><a href="{{ route('user.news', ['id' => $new->id]) }}">{{ $new->news_name }}</a>
                                 </li>
                             @endforeach
                         @endif

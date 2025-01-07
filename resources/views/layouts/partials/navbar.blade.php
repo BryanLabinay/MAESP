@@ -1,7 +1,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-white shadow-sm py-2">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-0 bg-success py-2" href="#"><img src="{{ asset('assets/img/masp-logo.jpg') }}"
-            alt="Masp Logo" width="40" height="40" class="rounded-circle me-1">Agriculture Office</a>
+            alt="Masp Logo" width="40" height="40" class="rounded-circle me-1">Barangay Office</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars text-dark"></i></button>
@@ -72,7 +72,7 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false">
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-user fa-fw fa-lg text-black"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
