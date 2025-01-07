@@ -62,7 +62,7 @@ class TransparencyCTRL extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'file' => 'required|array|min:1',
-            'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:2048',
+            'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:50000',
             'description' => 'nullable|string|max:500',
         ]);
 

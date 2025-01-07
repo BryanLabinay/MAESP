@@ -87,17 +87,19 @@ class ServiceController extends Controller
     public function createContentForm($serviceId)
     {
         $service = Service::findOrFail($serviceId);
-        return view('admin.Service.add-content', compact('service'));
+        $services = ServiceContent::where('service_id', $serviceId)->get();
+
+        return view('admin.Service.add-content', compact('service', 'services'));
     }
 
 
     public function storeContent(Request $request, $serviceId)
     {
-        $request->validate([
-            'header' => 'nullable|string|max:255',
-            'content' => 'required|string',
-            'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
-        ]);
+        // $request->validate([
+        //     'header' => 'nullable|string|max:255',
+        //     'content' => 'required|string',
+        //     'image.*' => 'nullable|image|mimes:jpg,jpeg,png,gif',
+        // ]);
 
         $uploadedFiles = $request->file('image');
         $imagePaths = [];

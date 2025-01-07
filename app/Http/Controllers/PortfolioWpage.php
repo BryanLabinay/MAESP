@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Portfolio;
 use Illuminate\Http\Request;
 
 class PortfolioWpage extends Controller
@@ -35,7 +36,10 @@ class PortfolioWpage extends Controller
      */
     public function show()
     {
-        return view('user.Portfolio.show');
+
+        $portfolios = Portfolio::all();
+
+        return view('user.Portfolio.show', compact('portfolios'));
     }
 
     /**

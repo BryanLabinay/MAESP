@@ -345,22 +345,34 @@ return [
         [
             'text' => 'Brgy. Offices',
             'url' => 'Admin/Brgy',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fa-solid fa-building-user',
         ],
         [
             'text' => 'Brgy. Account',
             'url' => 'Admin/Brgy/Account',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fa-solid fa-at',
         ],
         [
             'text' => 'Crop Assessment',
             'url' => 'Admin/Crop-Assessment',
             'icon' => 'fa-solid fa-clipboard',
         ],
+
+        [
+            'text' => 'Brgy Reports',
+            'url' => 'Admin/brgy-send-reports',
+            'icon' => 'fa-solid fa-clipboard',
+        ],
+
         [
             'text' => 'Services',
             'url' => 'Admin/Services',
-            'icon' => 'fa-solid fa-users',
+            'icon' => 'fa-solid fa-screwdriver-wrench',
+        ],
+        [
+            'text' => 'Portfolio',
+            'url' => 'Admin/Portfolio',
+            'icon' => 'fa-solid fa-photo-film',
         ],
         [
             'text' => 'Media Resources',
@@ -370,18 +382,18 @@ return [
         [
             'text' => 'Transparency',
             'url' => 'Admin/Transparency',
-            'icon' => 'fa-solid fa-newspaper',
+            'icon' => 'fa-solid fa-earth-americas',
         ],
         [
             'text' => 'News & Update',
             'url' => 'Admin/News-Update',
-            'icon' => 'fa-solid fa-users',
+            'icon' => 'fa-regular fa-newspaper',
         ],
-        [
-            'text' => 'Feedback',
-            'url' => 'Admin/Forum',
-            'icon' => 'fa-solid fa-envelope',
-        ],
+        // [
+        //     'text' => 'Feedback',
+        //     'url' => 'Admin/Forum',
+        //     'icon' => 'fa-solid fa-envelope',
+        // ],
         // ['header' => 'OTHER'],
         [
             'text' => 'Activity Log',
