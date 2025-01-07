@@ -5,61 +5,58 @@
     <hr class="mt-0">
     <div class="container-fluid">
         <div class="col bg-success-subtle p-2 rounded-2 shadow-sm">
-            <table class="table table-bordered mb-0 table-striped">
+            <table class="table table-bordered mb-0 table-striped" id="farmersTable">
                 <thead class="table-secondary">
                     <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        {{-- <th>Sex</th> --}}
-                        {{-- <th>Marital Status</th> --}}
-                        {{-- <th>Birth Date</th> --}}
-                        {{-- <th>Address</th> --}}
+                        <th>no.</th>
+                        <th>Full Name</th>
+                        <th>Sex</th>
                         <th>Phone Number</th>
-                        {{-- <th>Email</th> --}}
-
-                        <th>Farm Location</th>
-                        <th>Farm Size</th>
-                        <th>Farm Type</th>
-                        <th>Crop Commodity</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php $counter = 1; @endphp
+
                     @foreach ($crop as $data)
-                        {{-- Farmer's Name --}}
-                        <tr>
-                            <td rowspan="{{ count($data->parcels) }}">{{ $data->id }} </td>
-                            <!-- Name spans multiple rows -->
-                            <td rowspan="{{ count($data->parcels) }}">{{ $data->first_name }} </td>
-                            <td rowspan="{{ count($data->parcels) }}">{{ $data->last_name }}</td>
-                            <td rowspan="{{ count($data->parcels) }}">{{ $data->phone_number }}</td>
+                        <tr class="text-center">
+                            <td>{{ $counter++ }}</td>
+                            <td class="text-start">{{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}
+                                {{ $data->suffix }}
+                            </td>
+                            <td class="text-uppercase">{{ $data->sex }}</td>
+                            <td>{{ $data->phone_number }}</td>
 
-
-                            {{-- Loop over each parcel --}}
-                            @foreach ($data->parcels as $index => $parcel)
-                                @if ($index > 0)
-                        <tr>
-                            <!-- Start a new row for subsequent parcels -->
-                    @endif
-
-                    {{-- Farm Location, Area, Type, and Crop --}}
-                    <td>{{ $index + 1 }}. {{ $parcel['farm_location'] }}</td>
-                    <td>{{ $parcel['area'] }}</td>
-                    <td>{{ $parcel['farm_type'] }}</td>
-                    <td>{{ $parcel['gross'] }}</td>
-
-                    @if ($index > 0)
-                        </tr> <!-- Close the row for subsequent parcels -->
-                    @endif
-                    @endforeach
-                    </tr>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#viewModal">View</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
-
-
-            <!-- Pagination links -->
-            {{ $crop->links() }}
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+    <script>
+        $(document).ready(function() {
+            $('#farmersTable').DataTable({
+                responsive: true,
+                paging: true,
+                ordering: true,
+                searching: true,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [4] // Disable sorting on the "Action" column (index 4)
+                }]
+            });
+        });
+    </script>
+@endpush
