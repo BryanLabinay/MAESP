@@ -1,6 +1,15 @@
 <x-user-layout>
-    <!-- Recent Posts Section -->
-    <!-- Recent Posts Section -->
+    <style>
+        .portfolio-img {
+            height: 250px;
+            /* Adjust the height as needed */
+            object-fit: cover;
+            width: 100%;
+            /* Ensures the image spans the container width */
+            border-radius: 8px;
+            /* Optional: adds rounded corners */
+        }
+    </style>
     <section id="recent-posts" class="recent-posts section">
 
         <!-- Section Title -->
@@ -10,18 +19,18 @@
         </div><!-- End Section Title -->
 
         <div class="container">
-
-            <div class="row gy-5 ">
+            <div class="row gy-5">
                 @foreach ($portfolios as $portfolio)
                     <div class="col-xl-4 col-md-6">
                         <div class="post-item position-relative h-100" data-aos="fade-up"
                             data-aos-delay="{{ $loop->index * 100 + 100 }}">
 
                             <div class="post-img position-relative overflow-hidden">
-                                <img src="{{ asset('images/' . $portfolio->image) }}" class="img-fluid"
+                                <!-- Apply the custom 'portfolio-img' class -->
+                                <img src="{{ asset('images/' . $portfolio->image) }}" class="img-fluid portfolio-img"
                                     alt="{{ $portfolio->title }}">
                                 <span
-                                    class="post-date bg-warning text-dark">{{ \Carbon\Carbon::parse($portfolio->created_at)->format('F d') }}</span>
+                                    class="post-date bg-success">{{ \Carbon\Carbon::parse($portfolio->created_at)->format('F d') }}</span>
                             </div>
 
                             <div class="post-content d-flex flex-column p-2">

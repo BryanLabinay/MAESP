@@ -44,7 +44,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>20</h3>
 
                                 <p>Total Reports</p>
                             </div>
@@ -57,7 +57,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>12</h3>
 
                                 <p>News and Update</p>
                             </div>

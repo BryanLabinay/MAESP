@@ -74,6 +74,38 @@ class UserTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Gaddang',
+                'email' => 'gaddang@gmail.com',
+                'password' => Hash::make('password'),
+                'usertype' => 'barangay',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Plaza',
+                'email' => 'plaza@gmail.com',
+                'password' => Hash::make('password'),
+                'usertype' => 'barangay',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'San Antonio',
+                'email' => 'sanantonio@gmail.com',
+                'password' => Hash::make('password'),
+                'usertype' => 'barangay',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Bukig',
+                'email' => 'bukig@gmail.com',
+                'password' => Hash::make('password'),
+                'usertype' => 'barangay',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

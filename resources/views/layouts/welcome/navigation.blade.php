@@ -53,7 +53,7 @@
                 <li><a href="{{ route('show.portfolio') }}">Portfolio</a></li>
 
                 {{-- TRANSPARENCY --}}
-                <li class="dropdown"><a href="#"><span>Transparency</span> <i
+                {{-- <li class="dropdown"><a href="#"><span>Transparency</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         @php
@@ -69,7 +69,7 @@
                             @endforeach
                         @endif
                     </ul>
-                </li>
+                </li> --}}
 
 
                 {{-- News and Updates --}}
