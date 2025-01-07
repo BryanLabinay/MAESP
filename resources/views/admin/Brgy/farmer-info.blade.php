@@ -42,10 +42,10 @@
                             <div class="col-10 d-flex align-items-center">
                                 <div class="d-flex flex-column"> <!-- Changed flex direction to column -->
                                     <div class="d-flex flex-row">
-                                        <h1 class="fw-bold me-2">BARANGAY</h1>
-                                        <h1 class="fw-bold text-uppercase">{{ $barangay->name }}</h1>
+                                        <h1 class="fw-bold ms-3">BARANGAY</h1>
+                                        <h1 class="fw-bold text-uppercase ms-3">{{ $barangay->name }}</h1>
                                     </div>
-                                    <h6>Total Farmers: 0</h6> <!-- Moved below the h1 tags -->
+                                    <h6 class="ms-3">Total Farmers: 0</h6> <!-- Moved below the h1 tags -->
                                 </div>
                             </div>
                         </div>
@@ -55,54 +55,55 @@
             <div class="bg-white p-3 mt-4">
                 <div class="row">
                     <div class="col-6 d-flex justify-content-start">
-                        <h5><span class="text-primary">Name:</span> {{ $farmer->first_name }} {{ $farmer->middle_name }}
+                        <h6><span class="text-primary">Name:</span> {{ $farmer->first_name }} {{ $farmer->middle_name }}
                             {{ $farmer->last_name }}
-                            {{ $farmer->suffix }}</h5>
+                            {{ $farmer->suffix }}</h6>
                     </div>
                     <div class="col-6 d-flex justify-content-end">
-                        <h5><span class="text-primary">Address:</span> {{ $farmer->address }}</h5>
+                        <h6><span class="text-primary">Address:</span> {{ $farmer->address }}</h6>
                     </div>
                 </div>
                 <hr class="mt-0">
                 <div class="row mt-2">
-                    <div class="col-3">
-                        <h6><span class="text-primary">Sex:</span> {{ $farmer->sex }}</h6>
-                    </div>
-                    <div class="col-3">
-                        <h6><span class="text-primary">Date of Birth:</span>
-                            {{ \Carbon\Carbon::parse($farmer->birth_date)->format('F d, Y') }}</h6>
-                    </div>
-                    <div class="col-3">
-                        <h6><span class="text-primary">Contact:</span> {{ $farmer->phone_number }}</h6>
-                    </div>
-                    <div class="col-3">
-                        <h6><span class="text-primary">Martial Status:</span> {{ $farmer->marital_status }}</h6>
-                    </div>
+                    {{-- <div class="col-3"> --}}
+                    <h6><span class="text-primary">Sex:</span> {{ $farmer->sex }}</h6>
+                    {{-- </div> --}}
+                    {{-- <div class="col-3"> --}}
+                    <h6><span class="text-primary">Date of Birth:</span>
+                        {{ \Carbon\Carbon::parse($farmer->birth_date)->format('F d, Y') }}</h6>
+                    {{-- </div> --}}
+                    {{-- <div class="col-3"> --}}
+                    <h6><span class="text-primary">Contact:</span> {{ $farmer->phone_number }}</h6>
+                    {{-- </div> --}}
+                    {{-- <div class="col-3"> --}}
+                    <h6><span class="text-primary">Martial Status:</span> {{ $farmer->marital_status }}</h6>
+                    {{-- </div> --}}
                 </div>
-                <div class="row mt-2">
-                    <div class="col-3">
-                        <h6><span class="text-primary">Name of Spouse:</span> {{ $farmer->name_of_spouse }}</h6>
-                    </div>
-                    <div class="col-3">
-                        <h6><span class="text-primary">Spouse Contact:</span> {{ $farmer->spouse_number }}</h6>
-                    </div>
-                    <div class="col-3">
-                        <h6><span class="text-primary">Parent Name:</span> {{ $farmer->parent_name }}</h6>
-                    </div>
-                    <div class="col-3">
-                        <h6><span class="text-primary">Parent Contact:</span> {{ $farmer->parent_number }}</h6>
-                    </div>
-                </div>
-                <hr class="mt-2">
-                <div class="row mt-4">
-                    @if ($farmer->parcels)
-                        @php
-                            $chunks = array_chunk($farmer->parcels, ceil(count($farmer->parcels) / 2)); // Split parcels into chunks
-                            $parcelCounter = 1; // Initialize the counter
-                        @endphp
+                {{-- <div class="row mt-2"> --}}
+                {{-- <div class="col-3"> --}}
+                <h6><span class="text-primary">Name of Spouse:</span> {{ $farmer->name_of_spouse }}</h6>
+                {{-- </div> --}}
+                {{-- <div class="col-3"> --}}
+                <h6><span class="text-primary">Spouse Contact:</span> {{ $farmer->spouse_number }}</h6>
+                {{-- </div> --}}
+                {{-- <div class="col-3"> --}}
+                <h6><span class="text-primary">Parent Name:</span> {{ $farmer->parent_name }}</h6>
+                {{-- </div> --}}
+                {{-- <div class="col-3"> --}}
+                <h6><span class="text-primary">Parent Contact:</span> {{ $farmer->parent_number }}</h6>
+                {{-- </div> --}}
+            </div>
+            <hr class="mt-2">
+            <div class="row mt-4">
+                @if ($farmer->parcels)
+                    @php
+                        $chunks = array_chunk($farmer->parcels, ceil(count($farmer->parcels) / 2)); // Split parcels into chunks
+                        $parcelCounter = 1; // Initialize the counter
+                    @endphp
 
-                        @foreach ($chunks as $chunk)
-                            <div class="col-md-6"> <!-- Dynamically create a column for each chunk -->
+                    @foreach ($chunks as $chunk)
+                        <div class="col-md-6">
+                            <div class="border p-3 mb-3"> <!-- Added border, padding, and margin -->
                                 @foreach ($chunk as $parcel)
                                     <p><strong>Parcel. {{ $parcelCounter++ }}</strong></p> <!-- Sequential numbering -->
                                     <p><strong>Farm Location:</strong> {{ htmlspecialchars($parcel['farm_location']) }}</p>
@@ -112,15 +113,17 @@
                                     <hr>
                                 @endforeach
                             </div>
-                        @endforeach
-                    @else
-                        <div class="col-12">
-                            <p>No parcels available</p>
                         </div>
-                    @endif
-                </div>
-
+                    @endforeach
+                @else
+                    <div class="col-12">
+                        <p>No parcels available</p>
+                    </div>
+                @endif
             </div>
+
+
+        </div>
         </div>
     @stop
 </x-app-layout>

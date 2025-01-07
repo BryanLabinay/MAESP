@@ -36,9 +36,12 @@
                         <a href="{{ route('media.content', $mediaTitle->id) }}" class="text-decoration-none text-dark">
                             <div class="card" style="width: 18rem;">
                                 @if ($mediaTitle->image)
-                                    <img src="{{ asset('storage/' . $mediaTitle->image) }}" alt="{{ $mediaTitle->media_name }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                                    <img src="{{ asset('storage/' . $mediaTitle->image) }}"
+                                        alt="{{ $mediaTitle->media_name }}" class="card-img-top img-fluid"
+                                        style="height: 200px; object-fit: cover;">
                                 @else
-                                    <img src="{{ asset('assets/img/market.jpg') }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="{{ $mediaTitle->media_name }}">
+                                    <img src="{{ asset('assets/img/market.jpg') }}" class="card-img-top img-fluid"
+                                        style="height: 200px; object-fit: cover;" alt="{{ $mediaTitle->media_name }}">
                                 @endif
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $mediaTitle->media_name }}</h5>
@@ -51,7 +54,8 @@
             </div>
 
 
-            <div class="modal fade" id="addMediaModal" tabindex="-1" aria-labelledby="addMediaModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addMediaModal" tabindex="-1" aria-labelledby="addMediaModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- Modal Header -->
@@ -61,23 +65,26 @@
                         </div>
                         <!-- Modal Body -->
                         <div class="modal-body">
-                            <form id="addMediaForm" method="POST" action="{{ route('add-media') }}" enctype="multipart/form-data">
+                            <form id="addMediaForm" method="POST" action="{{ route('add-media') }}"
+                                enctype="multipart/form-data">
                                 <!-- CSRF Token -->
                                 @csrf
                                 <!-- Media Title Field -->
                                 <div class="mb-3">
                                     <label for="mediaName" class="form-label">Media Name</label>
-                                    <input type="text" class="form-control" id="mediaName" name="media_name" placeholder="Enter media name" required>
+                                    <input type="text" class="form-control" id="mediaName" name="media_name"
+                                        placeholder="Enter media name" required>
                                 </div>
-                                <!-- Description Field -->
+                                {{-- <!-- Description Field -->
                                 <div class="mb-3">
                                     <label for="mediaDescription" class="form-label">Description</label>
                                     <textarea class="form-control" id="mediaDescription" name="description" rows="3" placeholder="Enter media description"></textarea>
-                                </div>
+                                </div> --}}
                                 <!-- Image Upload Field -->
                                 <div class="mb-3">
                                     <label for="mediaImage" class="form-label">Media Image</label>
-                                    <input type="file" class="form-control" id="mediaImage" name="image" accept="image/*">
+                                    <input type="file" class="form-control" id="mediaImage" name="image"
+                                        accept="image/*">
                                 </div>
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary">Save Media</button>
@@ -87,8 +94,8 @@
                 </div>
             </div>
 
-    @stop
-    @section('js')
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    @endsection
+        @stop
+        @section('js')
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        @endsection
 </x-app-layout>

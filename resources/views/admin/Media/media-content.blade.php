@@ -21,9 +21,32 @@
 
     @section('content_header')
         <h5 class="fw-semibold text-md">
-            Adding Media Content for: {{ $mediaTitle->media_name }}
+            Add Content to <span class="text-success">{{ $mediaTitle->media_name }}</span>
         </h5>
         <hr class="mt-0">
+
+        {{-- ALERT --}}
+        @if (session('success'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    iconColor: 'white',
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerPr0ogressBar: true,
+                });
+                (async () => {
+                    await Toast.fire({
+                        icon: 'success',
+                        title: 'Media Resource added!'
+                    })
+                })()
+            </script>
+        @endif
     @stop
 
     @section('content')
@@ -32,7 +55,7 @@
                 <div class="col-md-6 col-12">
                     <!-- Media Content Card -->
                     <div class="card">
-                        <div class="card-header bg-primary text-white">
+                        <div class="card-header bg-secondary text-white">
                             <h5 class="card-title mb-0">Add Media</h5>
                         </div>
                         <div class="card-body">
@@ -76,7 +99,7 @@
                     <!-- Media Content List Card -->
                     <div class="card">
                         <div class="card-header bg-secondary text-white">
-                            <h5 class="fw-semibold mb-0">Media Content List</h5>
+                            <h5 class="card-title mb-0">Media Content List</h5>
                         </div>
                         <div class="card-body">
                             <table id="mediaTable" class="table table-hover table-striped table-bordered">
@@ -101,7 +124,7 @@
                                                                 ? number_format($fileSize, 2) . ' KB'
                                                                 : number_format($fileSize / 1024, 2) . ' MB';
                                                     @endphp
-                                                    <span class="badge bg-info text-white">{{ $displaySize }}</span>
+                                                    <span class="badge bg-info text-dark">{{ $displaySize }}</span>
                                                 </td>
                                                 <td class="text-center p-0">
                                                     <a href="#" class="btn btn-danger btn-sm mt-1">Delete</a>

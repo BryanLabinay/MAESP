@@ -30,15 +30,15 @@
                      <div class="row">
                          <div class="col-sm-2">
                              <img src="{{ asset('assets/img/masp-logo.jpg') }}" alt="logo"
-                                 class="rounded-circle border border-1" width="110" height="110">
+                                 class="rounded-circle border border-1 me-3" width="110" height="110">
                          </div>
                          <div class="col-10 d-flex align-items-center">
                              <div class="d-flex flex-column"> <!-- Changed flex direction to column -->
                                  <div class="d-flex flex-row">
-                                     <h1 class="fw-bold me-2">BARANGAY</h1>
-                                     <h1 class="fw-bold text-uppercase">{{ $barangay->name }}</h1>
+                                     <h1 class="fw-bold ms-3">BARANGAY</h1>
+                                     <h1 class="fw-bold text-uppercase ms-3">{{ $barangay->name }}</h1>
                                  </div>
-                                 <h6>Total Farmers: 60</h6> <!-- Moved below the h1 tags -->
+                                 <h6 class="ms-3">Total Farmers: 60</h6> <!-- Moved below the h1 tags -->
                              </div>
                          </div>
                      </div>
@@ -58,9 +58,13 @@
                      </form>
                  </div> --}}
                  <div class="col-12 d-flex justify-content-end">
-                     <button type="submit" class="btn btn-success me-1" onclick="window.location='{{ route('brgy.export.excel') }}'"><i class="fa-solid fa-file-arrow-down me-1"></i>
+                     <button type="submit" class="btn btn-success me-1"
+                         onclick="window.location='{{ route('brgy.export.excel') }}'"><i
+                             class="fa-solid fa-file-arrow-down me-1"></i>
                          Export Excel</button>
-                     <button type="submit" class="btn btn-danger"onclick="window.location='{{ route('brgy.export.pdf') }}'"><i class="fa-solid fa-file-pdf me-1"></i> Generate
+                     <button type="submit"
+                         class="btn btn-danger"onclick="window.location='{{ route('brgy.export.pdf') }}'"><i
+                             class="fa-solid fa-file-pdf me-1"></i> Generate
                          PDF</button>
                  </div>
                  <hr class="mt-1 text-black">

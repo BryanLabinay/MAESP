@@ -35,7 +35,7 @@
                 <div class="row">
                     @foreach ($title as $titles)
                         <div class="col-3">
-                            <a href="{{ route('content', $titles->id) }}" class="text-decoration-none text-dark">
+                            <a href="{{ route('trans.content', $titles->id) }}" class="text-decoration-none text-dark">
                                 <div class="card" style="width: 18rem;">
                                     @if ($titles->image)
                                         <img src="{{ asset('media/image/' . $titles->image) }}"
@@ -80,11 +80,11 @@
                                             name="transparency_name" placeholder="Enter transparency name" required>
                                     </div>
                                     <!-- Description Field -->
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label for="transparencyDescription" class="form-label">Description</label>
                                         <textarea class="form-control" id="transparencyDescription" name="description" rows="3"
                                             placeholder="Enter transparency description"></textarea>
-                                    </div>
+                                    </div> --}}
                                     <!-- Image Upload Field -->
                                     <div class="mb-3">
                                         <label for="transparencyImage" class="form-label">Transparency Image</label>

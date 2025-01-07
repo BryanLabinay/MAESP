@@ -69,12 +69,17 @@
             {{-- Chart --}}
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-            <div class="row">
-                <div class="col" style="width: 80%; margin: auto;">
-                    <h5 class="text-center">Total Cropping Every Year</h5>
-                    <canvas id="cropsChart"></canvas>
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Total Cropping Every Year</h5>
+                            <canvas id="cropsChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
 
             <script>
