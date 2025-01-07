@@ -46,11 +46,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <!-- Pagination links -->
-            {{ $farmers->links() }}
-
-
-            <!-- Modal structure -->
 
             <!-- Modal structure -->
             <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -71,52 +66,34 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 @endsection
 
-@section('js')
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+@push('scripts')
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include DataTables.js -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
     <script>
-        new DataTable('#myTable', {
-            layout: {
-                topStart: {
-                    pageLength: {
-                        menu: [10, 25, 50, 100]
-                    }
-                },
-                topEnd: {
-                    search: {
-                        placeholder: 'Type search here'
-                    }
-                },
-                bottomEnd: {
-                    paging: {
-                        buttons: 3
-                    }
-                }
-            },
-            language: {
-                lengthMenu: " _MENU_ Records per page",
-                info: "Showing _START_ to _END_ of _TOTAL_ records",
-                infoEmpty: "No records available",
-                infoFiltered: "(filtered from _MAX_ total records)",
-                search: "Search:",
-                paginate: {
-                    first: "First",
-                    last: "Last",
-                    next: "Next",
-                    previous: "Previous"
-                }
-            }
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                responsive: true,
+                paging: true,
+                ordering: true,
+                info: true,
+                autoWidth: false,
+                lengthChange: true,
+                pageLength: 5,
+                columnDefs: [{
+                        orderable: false,
+                        targets: [6]
+                    } // Make the "Action" column unsortable
+                ]
+            });
         });
     </script>
-@endsection
+@endpush

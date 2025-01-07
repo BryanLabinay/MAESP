@@ -20,7 +20,7 @@ class FarmersControlller extends Controller
     public function show()
     {
         $auth = Auth::id();
-        $farmers = Farmer::where('user_id', $auth)->paginate(10);
+        $farmers = Farmer::where('user_id', $auth)->get();
 
         return view('barangay.farmers.list', compact('farmers'));
     }
@@ -109,5 +109,4 @@ class FarmersControlller extends Controller
 
         return redirect()->back()->with('success', 'Farmer and parcels added successfully!');
     }
-
 }

@@ -15,7 +15,7 @@ class CroppingController extends Controller
     public function index()
     {
         $auth = Auth::id();
-        $crop = Cropping::where('user_id', $auth)->paginate(10);
+        $crop = Cropping::where('user_id', $auth)->get();
 
         return view('barangay.Cropping.index', compact('crop'));
     }
@@ -30,7 +30,6 @@ class CroppingController extends Controller
     public function create()
     {
         return view('barangay.Cropping.create');
-
     }
 
     /**
