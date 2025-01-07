@@ -106,7 +106,7 @@ class ServiceController extends Controller
 
         if ($uploadedFiles && is_array($uploadedFiles)) {
             foreach ($uploadedFiles as $file) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
+                $fileName = $file->getClientOriginalName();
                 $file->move(public_path('service_content'), $fileName);
                 $imagePaths[] = $fileName;
             }
@@ -119,7 +119,6 @@ class ServiceController extends Controller
             'image' => $uploadedFiles ? json_encode($imagePaths) : null,
         ]);
 
-        // Redirect with success message
         return redirect()->route('service.create', $serviceId)->with('success', 'Content added successfully!');
     }
 
@@ -128,24 +127,62 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit($id)
+{
+    $serviceContent = ServiceContent::findOrFail($id);
+    return view('admin.Service.edit', compact('serviceContent'));
+}
+
+public function update(Request $request, $id)
+{
+    $serviceContent = ServiceContent::findOrFail($id);
+
+    $validatedData = $request->validate([
+        'header' => 'nullable|string|max:255',
+        'content' => 'required|string',
+        'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $serviceContent->header = $validatedData['header'] ?? $serviceContent->header;
+    $serviceContent->content = $validatedData['content'];
+
+    $existingImages = json_decode($serviceContent->image, true) ?? [];
+    if ($request->has('remove_images')) {
+        $remainingImages = array_diff($existingImages, $request->remove_images);
+        foreach ($request->remove_images as $image) {
+            if (file_exists(public_path('service_content' . $image))) {
+                unlink(public_path('service_content' . $image));
+            }
+        }
+        $existingImages = $remainingImages;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+    if ($request->hasFile('image')) {
+        $newImages = [];
+        foreach ($request->file('image') as $image) {
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('service_content'), $filename);
+            $newImages[] = $filename;
+        }
+        $existingImages = array_merge($existingImages, $newImages);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    $serviceContent->image = json_encode($existingImages);
+
+    $serviceContent->save();
+
+    return back()->with('success', 'Service content updated successfully.');
+
+}
+
+
+
+public function destroy($id)
+{
+    $serviceContent = ServiceContent::findOrFail($id);
+    $serviceContent->delete();
+
+    return redirect()->back()->with('success', 'Service content deleted successfully.');
+}
+
 }

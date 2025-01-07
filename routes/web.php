@@ -5,16 +5,16 @@ use App\Http\Controllers\NewsWpage;
 use App\Http\Controllers\AboutWpage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\ServiceWpage;
 use App\Http\Controllers\PorfolioWpage;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PortfolioWpage;
-use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\ActivityLogCTRL;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransparencyWpage;
-use App\Http\Controllers\Barangay\MediaCtrl;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\MediaResourcesWpage;
 use App\Http\Controllers\Admin\EventController;
@@ -23,24 +23,24 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\MarketPricesCTRL;
 use App\Http\Controllers\Admin\NotificationCTRL;
 use App\Http\Controllers\Admin\ReportController;
-use App\Http\Controllers\Barangay\SendReportController;
 use App\Http\Controllers\Admin\TransparencyCTRL;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\BarangayController;
 use App\Http\Controllers\Admin\CropAssessmentCTRL;
 use App\Http\Controllers\Admin\SeedFertilizerCTRL;
 use App\Http\Controllers\Admin\ExportPDFController;
-use App\Http\Controllers\Barangay\ExportController;
 use App\Http\Controllers\Admin\NewsUpdatesController;
 use App\Http\Controllers\Admin\PestDiseaseController;
+use App\Http\Controllers\Admin\PortfolioCTRL;
+use App\Http\Controllers\Barangay\SendReportController;
+use App\Http\Controllers\Barangay\MediaCtrl;
+use App\Http\Controllers\Barangay\ExportController;
 use App\Http\Controllers\Barangay\CroppingController;
 use App\Http\Controllers\Barangay\FarmersControlller;
 use App\Http\Controllers\Barangay\ServicesController;
 use App\Http\Controllers\Barangay\NewsUpdateController;
 use App\Http\Controllers\Barangay\ActivityLogController;
 use App\Http\Controllers\Barangay\TransparencyController;
-use App\Http\Controllers\Admin\PortfolioCTRL;
 
 Route::post('/Forum/create', [ForumController::class, 'create'])->name('forum.create');
 Route::get('/Forum/show', [ForumController::class, 'show'])->name('forum.show');
@@ -109,13 +109,18 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::post('/Store/Brgy-Account', [BarangayController::class, 'storeBrgyAcct'])->name('barangays.account');
     // Cropping
     Route::get('/Crop-Assessment', [CropAssessmentCTRL::class, 'index'])->name('crop');
+
+
     // Services
     Route::get('/Services', [ServiceController::class, 'index'])->name('service');
     Route::resource('/service', ServiceController::class);
     Route::get('/Services/List', [ServiceController::class, 'list'])->name('service.list');
-    Route::get('/services/{service}/content/create', [ServiceController::class, 'createContentForm'])
-        ->name('service.create');
+    Route::get('/services/{service}/content/create', [ServiceController::class, 'createContentForm'])->name('service.create');
     Route::post('/services/{service}/content', [ServiceController::class, 'storeContent'])->name('service.content.store');
+    Route::get('/service/{id}/edit', [ServiceController::class, 'edit'])->name('edit.service');
+    Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('service.content.update');
+    Route::delete('/service/{id}', [ServiceController::class, 'destroy'])->name('service.content.destroy');
+
 
     //Portfolio
     Route::get('/Portfolio', [PortfolioCTRL::class, 'index'])->name('portfolio');
