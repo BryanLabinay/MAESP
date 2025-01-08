@@ -13,60 +13,41 @@
                 </button>
             </div>
         </div>
-        <div class="col bg-success-subtle p-2 mt-3 rounded-2 shadow-sm">
-            <table class="table table-bordered mb-0 table-striped" id="myTable">
-                <thead class="table-secondary">
+        {{--  <hr class="mt-2">  --}}
+        <div class="col p-4 rounded-lg shadow-sm bg-light border mt-2 overflow-hidden">
+            <table class="table table-bordered mb-0 table-striped table-hover" id="myTable">
+                <thead class="table-success">
                     <tr class="text-center">
-                        <th>No.</th>
-                        <th>Name</th>
-                        <th>Sex</th>
-                        <th>Contact</th>
-                        <th>Date of Birth</th>
-                        <th>Address</th>
-                        <th>Action</th>
+                        <th class="text-sm">No.</th>
+                        <th class="text-sm">Name</th>
+                        <th class="text-sm">Sex</th>
+                        <th class="text-sm">Contact</th>
+                        <th class="text-sm text-center">Address</th>
+                        <th class="text-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $counter = 1; @endphp
                     @foreach ($farmers as $data)
-                        <tr class="text-center">
-                            <td>{{ $counter++ }}</td>
-                            <td class="text-start">{{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}
+                        <tr class="text-center text-gray-700 hover:bg-gray-50 transition duration-200">
+                            <td class="">{{ $counter++ }}</td>
+                            <td class="text-start ">{{ $data->first_name }} {{ $data->middle_name }}
+                                {{ $data->last_name }}
                                 {{ $data->suffix }}
                             </td>
-                            <td class="text-uppercase">{{ $data->sex }}</td>
-                            <td>{{ $data->phone_number }}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->birth_date)->format('F j, Y') }}</td>
-                            <td>{{ $data->address }}</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#viewModal">View</a>
+                            <td class="text-uppercase ">{{ $data->sex }}</td>
+                            <td class="">{{ $data->phone_number }}</td>
+                            <td class="">{{ $data->address }}</td>
+                            <td class="">
+                                <a href="#" class="btn btn-sm btn-primary hover:bg-blue-600 transition duration-200"
+                                    data-bs-toggle="modal" data-bs-target="#viewModal">View</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-
-            <!-- Modal structure -->
-            <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="viewModalLabel">Modal Title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Modal content goes here -->
-                            <p>This is the content inside the modal.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+
     </div>
 @endsection
 
@@ -87,10 +68,10 @@
                 info: true,
                 autoWidth: false,
                 lengthChange: true,
-                pageLength: 5,
+                pageLength: 10,
                 columnDefs: [{
                         orderable: false,
-                        targets: [6]
+                        targets: [5]
                     } // Make the "Action" column unsortable
                 ]
             });

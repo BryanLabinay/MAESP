@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Municipal Agriculture Office Aparri') }}</title>
+    <title>Municipal Agriculture Office Aparri</title>
 
     {{-- Favicon --}}
     <link rel="shortcut icon" href="{{ asset('assets/img/masp-logo.jpg') }}" type="image/x-icon">

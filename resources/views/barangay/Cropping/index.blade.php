@@ -4,13 +4,23 @@
     <h6 class="mt-4"><i class="fa-solid fa-asterisk me-1"></i>List of Farmers</h6>
     <hr class="mt-0">
     <div class="container-fluid">
-        <div class="col bg-success-subtle p-2 rounded-2 shadow-sm">
-            <table class="table table-bordered mb-0 table-striped" id="farmersTable">
-                <thead class="table-secondary">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-sm btn-danger me-1" onclick="window.location=''">
+                    <i class="fa-solid fa-file-pdf me-1"></i>Generate PDF
+                </button>
+                <button class="btn btn-sm btn-success" onclick="window.location=''">
+                    <i class="fa-solid fa-file-excel me-1"></i>Export Excel
+                </button>
+            </div>
+        </div>
+        <div class="col bg-light mt-2 border p-2 rounded-2 shadow-sm">
+            <table class="table table-bordered mb-0 table-striped table-hover" id="farmersTable">
+                <thead class="table-success">
                     <tr>
-                        <th>no.</th>
+                        <th>No.</th>
                         <th>Full Name</th>
-                        <th>Sex</th>
+                        <th>Address</th>
                         <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
@@ -24,7 +34,7 @@
                             <td class="text-start">{{ $data->first_name }} {{ $data->middle_name }} {{ $data->last_name }}
                                 {{ $data->suffix }}
                             </td>
-                            <td class="text-uppercase">{{ $data->sex }}</td>
+                            <td class="text-uppercase">{{ $data->address }}</td>
                             <td>{{ $data->phone_number }}</td>
 
                             <td>

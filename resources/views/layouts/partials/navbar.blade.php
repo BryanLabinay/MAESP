@@ -19,7 +19,7 @@
             $unreadCount = Auth::user()->notifications->whereNull('read_at')->count();
         @endphp
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown mt-1">
             <a id="navbarDropdownMenuLink1" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false" class="nav-link messages-toggle position-relative">
                 <i style="font-size: 19px; color:black" class="fa-solid fa-bell"></i>
@@ -70,7 +70,7 @@
         </li>
 
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown mt-1">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-user fa-fw fa-lg text-black"></i>

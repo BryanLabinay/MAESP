@@ -45,14 +45,14 @@
             <a class="nav-link text-dark {{ Request::is('barangay/list-cropping reports') ? 'active' : '' }}"
                 href="{{ url('/barangay/list-cropping reports') }}"
                 style="{{ Request::is('barangay/list-cropping reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-book"></i></div>
                 Crop Assessment
             </a>
 
-            <a class="nav-link text-dark {{ Request::is('send-reports.index') ? 'active' : '' }}"
-                href="{{ route('send-reports.index') }}"
-                style="{{ Request::is('send-reports.index') ? 'color: blue; background-color: #A2CA71;' : '' }}">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+            <a class="nav-link text-dark {{ Request::is('barangay/send-reports') ? 'active' : '' }}"
+                href="{{ url('barangay/send-reports') }}"
+                style="{{ Request::is('barangay/send-reports') ? 'color: blue; background-color: #A2CA71;' : '' }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-paper-plane"></i></div>
                 Send Reports
             </a>
 

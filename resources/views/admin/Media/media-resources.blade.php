@@ -36,7 +36,7 @@
                         <a href="{{ route('media.content', $mediaTitle->id) }}" class="text-decoration-none text-dark">
                             <div class="card" style="width: 18rem;">
                                 @if ($mediaTitle->image)
-                                    <img src="{{ asset('storage/' . $mediaTitle->image) }}"
+                                    <img src="{{ asset('media/image/' . $mediaTitle->image) }}"
                                         alt="{{ $mediaTitle->media_name }}" class="card-img-top img-fluid"
                                         style="height: 200px; object-fit: cover;">
                                 @else
