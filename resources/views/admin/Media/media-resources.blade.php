@@ -18,6 +18,29 @@
     @section('content_header')
         <h5 class="fw-semibold text-md">Media Resources</h5>
         <hr class="mt-0">
+
+
+        @if (session('success'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    iconColor: 'white',
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerPr0ogressBar: true,
+                });
+                (async () => {
+                    await Toast.fire({
+                        icon: 'success',
+                        title: 'Media Resource added!'
+                    })
+                })()
+            </script>
+        @endif
     @stop
 
     @section('content')

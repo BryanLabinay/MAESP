@@ -92,7 +92,7 @@ class BarangayController extends Controller
 
         // Auth::login($user);
 
-        return redirect(route('brgy.create', absolute: false));
+        return redirect(route('brgy.create', absolute: false))->with('success', 'Barangay account created successfully!');
     }
 
     public function barangaydetails($user_id)
