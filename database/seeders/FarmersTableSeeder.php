@@ -21,6 +21,7 @@ class FarmersTableSeeder extends Seeder
             DB::table('farmers')->insert([
                 'user_id' => $faker->numberBetween(2, 6), // Adjust based on your user IDs
                 'first_name' => $faker->firstName,
+
                 'middle_name' => $faker->lastName,
                 'last_name' => $faker->lastName,
                 'suffix' => $faker->suffix,
