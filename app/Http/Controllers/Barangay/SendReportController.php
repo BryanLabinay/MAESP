@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Barangay;
 
 use App\Http\Controllers\Controller;
+use App\Models\Farmer;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SendReportController extends Controller
@@ -48,8 +50,16 @@ class SendReportController extends Controller
 
     public function show()
     {
-        $report = Report::with('user')->get();
-        return view('admin.brgy.reports', compact('report'));
+        $barangays = User::where('usertype', 'barangay')->get();
+        return view('admin.brgy.reports', compact('barangays'));
+    }
+
+    public function reportsdetails($user_id)
+    {
+        $reports = Report::where('user_id', $user_id)->get();
+
+        $barangay = User::where('id', $user_id)->where('usertype', 'barangay')->first();
+        return view('admin.brgy.reports-details', compact('reports', 'barangay'));
     }
 
     public function edit($id)

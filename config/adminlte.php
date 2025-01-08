@@ -352,14 +352,9 @@ return [
             'url' => 'Admin/Brgy/Account',
             'icon' => 'fa-solid fa-at',
         ],
-        [
-            'text' => 'Crop Assessment',
-            'url' => 'Admin/Crop-Assessment',
-            'icon' => 'fa-solid fa-clipboard',
-        ],
 
         [
-            'text' => 'Brgy Reports',
+            'text' => 'Crop Assessment',
             'url' => 'Admin/brgy-send-reports',
             'icon' => 'fa-solid fa-clipboard',
         ],
