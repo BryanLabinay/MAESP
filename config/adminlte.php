@@ -374,11 +374,11 @@ return [
             'url' => 'Admin/Media',
             'icon' => 'fa-solid fa-newspaper',
         ],
-        // [
-        //     'text' => 'Transparency',
-        //     'url' => 'Admin/Transparency',
-        //     'icon' => 'fa-solid fa-earth-americas',
-        // ],
+        [
+            'text' => 'Transparency',
+            'url' => 'Admin/Transparency',
+            'icon' => 'fa-solid fa-earth-americas',
+        ],
         [
             'text' => 'News & Update',
             'url' => 'Admin/News-Update',
