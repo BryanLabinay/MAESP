@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use Faker\Factory as Faker;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,9 +15,9 @@ class FarmersTableSeeder extends Seeder
      */
     public function run(): void
     {
-                $faker = Faker::create();
+        $faker = Faker::create();
 
-        foreach (range(1, 10) as $index) { // Seed 10 farmers
+        foreach (range(1, 30) as $index) { // Seed 10 farmers
             DB::table('farmers')->insert([
                 'user_id' => $faker->numberBetween(2, 6), // Adjust based on your user IDs
                 'first_name' => $faker->firstName,
@@ -50,6 +51,5 @@ class FarmersTableSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
-
     }
 }
