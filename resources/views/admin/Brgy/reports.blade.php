@@ -1,53 +1,104 @@
 <x-app-layout>
-    <div class="container mt-5">
-        <h1 class="mb-4 text-center fw-bold">Reports</h1>
-        <table id="reportsTable" class="table table-striped table-bordered">
-            <thead class="table-success">
-                <tr>
-                    <th>Barangay</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>File</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($report as $data)
-                    <tr>
-                        <td>{{ $data->user->name }}</td>
-                        <td>{{ $data->title }}</td>
-                        <td>{{ $data->description }}</td>
-                        <td>
-                            <a href="{{ asset('media/reports/' . $data->file) }}" target="_blank"
-                                class="btn btn-primary btn-sm">
-                                View File
-                            </a>
-                        </td>
-                    </tr>
+    @section('css')
+        {{-- Boostrap CDN --}}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    @stop
+
+    @section('content_header')
+        <h5 class="fw-semibold text-md">Brgy.Offices Crop Assessments</h5>
+        <hr class="mt-0">
+    @stop
+
+    @section('content')
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-12 d-flex justify-content-end">
+                    <form action="" method="GET" class="form-inline">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control me-2" placeholder="Search Barangay"
+                                value="">
+                        </div>
+                        <button type="submit" class="btn btn-primary fw-semibold"><i
+                                class="fa-solid fa-magnifying-glass me-1"></i>Search</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-0">
+
+            <div class="row mt-3">
+                @foreach ($barangays as $barangay)
+                    <div class="col-2 mb-3">
+                        <a href="{{ 'crop-assessment-details/' . $barangay['id'] }}" class="text-decoration-none">
+                            <div class="card-group">
+                                <div class="card p-0">
+                                    <img src="{{ $barangay->image ? asset('brgy_images/' . $barangay->image) : asset('assets/img/masp-logo.jpg') }}"
+                                        class="card-img-top" alt="Image of {{ $barangay->name }}" height="120"
+                                        style="object-fit:cover;">
+
+                                    <div class="text-center bg-success">
+                                        <h6 class="fw-semibold text-uppercase mt-1">{{ $barangay->name }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
-            </tbody>
-        </table>
-    </div>
+            </div>
+        </div>
 
-    {{-- Include necessary scripts for DataTable --}}
-    @push('scripts')
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#reportsTable').DataTable({
-                    responsive: true,
-                    language: {
-                        search: "Search:",
-                        lengthMenu: "Show _MENU_ entries",
-                        info: "Showing _START_ to _END_ of _TOTAL_ entries"
-                    }
-                });
-            });
-        </script>
-    @endpush
+        <!-- Modal Structure -->
+        <div class="modal fade" id="addBarangayModal" tabindex="-1" aria-labelledby="addBarangayModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="addBarangayModalLabel">Add Barangay</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Modal Form Content -->
+                        <form id="addBarangayForm" action="{{ route('store.brgy') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="barangayName" class="form-label">Barangay Name</label>
+                                <input type="text" class="form-control" id="brgy_name" name="brgy_name"
+                                    placeholder="Enter Barangay Name" required>
+                            </div>
 
-    {{-- Include necessary CSS for DataTable --}}
-    @push('styles')
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    @endpush
+                            <div class="mb-3">
+                                <label for="cityMunicipality" class="form-label">City/Municipality</label>
+                                <input type="text" class="form-control" id="cityMunicipality" name="municipality"
+                                    placeholder="Enter City/Municipality" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Zipcode" class="form-label">Zip Code</label>
+                                <input type="text" class="form-control" id="barangayCode" name="zip_code"
+                                    placeholder="Enter Zip Code (optional)">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="barangayImage" class="form-label">Barangay Image</label>
+                                <input type="file" class="form-control" id="barangayImage" name="image"
+                                    accept="image/*">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Add Barangay</button>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" form="addBarangayForm" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @stop
+
+
 </x-app-layout>

@@ -160,6 +160,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
 
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/brgy-send-reports', [SendReportController::class, 'show'])->name('brgy.reports');
+    Route::get('/crop-assessment-details/{user_id}', [SendReportController::class, 'reportsdetails'])->name('brgy.reports-details');
 });
 
 
