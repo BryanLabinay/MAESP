@@ -18,6 +18,28 @@
     @section('content_header')
         <h5 class="fw-semibold text-md">Transparency</h5>
         <hr class="mt-0">
+
+        @if (session('success'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    iconColor: 'white',
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerPr0ogressBar: true,
+                });
+                (async () => {
+                    await Toast.fire({
+                        icon: 'success',
+                        title: 'Transparency added!'
+                    })
+                })()
+            </script>
+        @endif
     @stop
 
     @section('content')
@@ -27,34 +49,39 @@
                 <div class="row mb-3">
                     <div class="col-12 d-flex justify-content-end">
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTransparencyModal">
-                            Add Title
+                            Add Transparency
                         </button>
                     </div>
                 </div>
 
                 <div class="row">
                     @foreach ($title as $titles)
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                             <a href="{{ route('trans.content', $titles->id) }}" class="text-decoration-none text-dark">
-                                <div class="card" style="width: 18rem;">
+                                <div class="card h-100 shadow-sm border-0">
                                     @if ($titles->image)
                                         <img src="{{ asset('media/image/' . $titles->image) }}"
-                                            alt="{{ $titles->transparency_name }}" class="card-img-top img-fluid"
+                                            alt="{{ $titles->transparency_name }}"
+                                            class="card-img-top img-fluid rounded-top"
                                             style="height: 200px; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('assets/img/market.jpg') }}" class="card-img-top img-fluid"
-                                            style="height: 200px; object-fit: cover;"
-                                            alt="{{ $titles->transparency_name }}">
+                                        <img src="{{ asset('assets/img/trans.jpg') }}"
+                                            alt="{{ $titles->transparency_name }}"
+                                            class="card-img-top img-fluid rounded-top"
+                                            style="height: 200px; object-fit: cover;">
                                     @endif
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $titles->transparency_name }}</h5>
-                                        <p class="card-text">{{ $titles->description }}</p>
+
+                                    <div class="card-body d-flex flex-column align-items-center text-center">
+                                        <h5 class="card-title mb-1 text-primary fw-bold"> {{ $titles->transparency_name }}
+                                        </h5>
+                                        <button class="btn btn-outline-primary mt-auto">View Details</button>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     @endforeach
                 </div>
+
 
 
                 <div class="modal fade" id="addTransparencyModal" tabindex="-1" aria-labelledby="addTransparencyModalLabel"
@@ -92,7 +119,9 @@
                                             accept="image/*">
                                     </div>
                                     <!-- Submit Button -->
-                                    <button type="submit" class="btn btn-primary">Save transparency</button>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Upload transparency</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

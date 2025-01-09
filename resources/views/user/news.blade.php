@@ -1,7 +1,3 @@
-{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-{{-- @include('layouts.welcome.navigation') --}}
-<!-- Section Title -->
 <x-user-layout>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
@@ -12,72 +8,91 @@
             {{-- <p>List of Services</p> --}}
         </div><!-- End Section Title -->
 
+        <div class="content">
+            <div class="container">
+                <div class="row g-4">
+                    @foreach ($content as $data)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="service-item">
+                                <div class="card shadow-sm h-100">
+                                    @if ($data->file)
+                                        <img src="{{ asset('news/file/' . $data->file) }}" alt="{{ $data->news_name }}"
+                                            class="card-img-top img-fluid rounded-top"
+                                            style="height: 200px; object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('assets/img/news.jpg') }}" alt="{{ $data->news_name }}"
+                                            class="card-img-top img-fluid rounded-top"
+                                            style="height: 200px; object-fit: cover;">
+                                    @endif
 
-        <div class="container">
-            <!-- Media Title Section -->
-            <!-- filepath: /c:/xampp/htdocs/LARAVEL/MAESP/resources/views/user/Media/media-resources.blade.php -->
-            <!-- Include DataTables CSS -->
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
-            <!-- Check if media title has an image -->
-            @if ($title->image)
-            <img src="{{ asset('media/images/' . $title->image) }}" alt="{{ $title->news_name }}"
-                class="img-fluid rounded" style="max-width: 600px; height: auto;">
-        @endif
-        </div>
-
-        <!-- Media Files Section -->
-        <div class="media-files">
-            <div class="media-file-card">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-header bg-warning text-center">
-                                <h4 class="mb-0">        {{ $title->news_name }}
-                                </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="media-files row gy-4">
-                                    @foreach ($content as $item)
-                                        @if ($item->file)
-                                            <div class="col-md-4">
-                                                <div class="card">
-                                                    <img src="{{ asset('news/file/' . $item->file) }}" class="card-img-top" alt="News Image">
-                                                    <div class="card-body">
-                                                        <p class="card-text">
-                                                            {{ $item->title ?? 'Untitled News' }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="col-12">
-                                                <p>No file available.</p>
-                                            </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <!-- Header -->
+                                        @if ($data->title)
+                                            <h5 class="card-title text-primary text-truncate" style="font-weight: 600;">
+                                                {{ $data->title }}
+                                            </h5>
                                         @endif
-                                    @endforeach
+
+                                        <!-- Content -->
+                                        <p class="card-text text-muted">
+                                            {{ strlen($data->description) > 100 ? substr($data->description, 0, 100) . '...' : $data->description }}
+                                        </p>
+                                        <!-- Action Button -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary mt-2"
+                                            data-bs-toggle="modal" data-bs-target="#modal-{{ $data->id }}">
+                                            Read More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                @foreach ($content as $data)
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-{{ $data->id }}" tabindex="-1"
+                        aria-labelledby="modalLabel-{{ $data->id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header text-white">
+                                    <h5 class="modal-title" id="modalLabel-{{ $data->id }}">
+                                        {{ $data->title }}
+                                    </h5>
+                                    <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <!-- Modal Body -->
+                                <div class="modal-body">
+                                    @if ($data->file)
+                                        <div class="text-center mb-3">
+                                            <img src="{{ asset('news/file/' . $data->file) }}"
+                                                alt="{{ $data->news_name }}" class="img-fluid rounded shadow-sm"
+                                                style="max-height: 300px; object-fit: cover;">
+                                        </div>
+                                    @endif
+                                    <p class="text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                                        {{ $data->description }}
+                                    </p>
+                                </div>
+
+                                <!-- Modal Footer -->
+                                <div class="modal-footer justify-content-between bg-light">
+                                    <span class="text-muted">Published on
+                                        {{ $data->created_at->format('M d, Y') }}</span>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
-
-        <!-- Include jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- Include DataTables JS -->
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-        <!-- Initialize DataTable -->
-        <script>
-            $(document).ready(function() {
-                $('#mediaTable').DataTable();
-            });
-        </script>
-        </div>
-
 
     </section>
 

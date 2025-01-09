@@ -18,6 +18,50 @@
     @section('content_header')
         <h5 class="fw-semibold text-md">Portfolio</h5>
         <hr class="mt-0">
+
+        @if (session('success'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    iconColor: 'white',
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerPr0ogressBar: true,
+                });
+                (async () => {
+                    await Toast.fire({
+                        icon: 'success',
+                        title: 'Portfolio added!'
+                    })
+                })()
+            </script>
+        @endif
+
+        @if (session('update'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    iconColor: 'white',
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerPr0ogressBar: true,
+                });
+                (async () => {
+                    await Toast.fire({
+                        icon: 'success',
+                        title: 'Updated Portfolio!'
+                    })
+                })()
+            </script>
+        @endif
     @stop
 
     @section('content')
@@ -65,8 +109,9 @@
                         <div>
                             @forelse ($portfolios as $data)
                                 <div class="clickable-container position-relative mb-1 shadow-sm">
-                                    <a href="{{ route('portfolio.edit', $data->id) }}"
-                                        class="stretched-link text-decoration-none">
+                                    <!-- Trigger Element -->
+                                    <div class="stretched-link text-decoration-none" data-bs-toggle="modal"
+                                        data-bs-target="#portfolioModal{{ $data->id }}">
                                         <div class="d-flex align-items-center bg-white bg-opacity rounded-1 px-3">
                                             <div class="me-3">
                                                 @if ($data->image)
@@ -97,7 +142,52 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="portfolioModal{{ $data->id }}" tabindex="-1"
+                                        aria-labelledby="portfolioModalLabel{{ $data->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="portfolioModalLabel{{ $data->id }}">
+                                                        {{ $data->title }}
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Image -->
+                                                    @if ($data->image)
+                                                        <img src="{{ asset('images/' . $data->image) }}"
+                                                            class="img-fluid rounded mb-3 mx-auto d-block"
+                                                            style="width: 100%; max-height: 400px; object-fit: cover;"
+                                                            alt="{{ $data->title }}">
+                                                    @else
+                                                        <img src="{{ asset('uploads/service/default.png') }}"
+                                                            class="img-fluid rounded mb-3 mx-auto d-block"
+                                                            style="width: 100%; max-height: 400px; object-fit: cover;"
+                                                            alt="Default Image">
+                                                    @endif
+
+                                                    <!-- Description -->
+                                                    <p>{{ $data->description }}</p>
+
+                                                    <!-- Additional Details (Optional) -->
+                                                    <div>
+                                                        <small class="text-muted">Created on:
+                                                            {{ $data->created_at->format('M d, Y') }}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-sm"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <a href="{{ route('portfolio.edit', $data->id) }}"
+                                                        class="btn btn-primary btn-sm">Edit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             @empty
                                 <div class="row d-flex justify-content-center">
@@ -105,7 +195,7 @@
                                         <div class="bg-secondary bg-opacity-25 rounded-1 shadow-sm">
                                             <h5 class="mb-3 fw-bold bg-white px-1 py-1 rounded-1 text-center"
                                                 style="color:#012970;">
-                                                <span class="text-danger">No Service</span>
+                                                <span class="text-danger">No Content</span>
                                             </h5>
                                         </div>
                                     </div>

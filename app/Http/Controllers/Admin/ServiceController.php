@@ -87,7 +87,7 @@ class ServiceController extends Controller
     public function createContentForm($serviceId)
     {
         $service = Service::findOrFail($serviceId);
-        $services = ServiceContent::where('service_id', $serviceId)->get();
+        $services = ServiceContent::where('service_id', $serviceId)->paginate(5);
 
         return view('admin.Service.add-content', compact('service', 'services'));
     }
@@ -128,61 +128,59 @@ class ServiceController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-{
-    $serviceContent = ServiceContent::findOrFail($id);
-    return view('admin.Service.edit', compact('serviceContent'));
-}
+    {
+        $serviceContent = ServiceContent::findOrFail($id);
+        return view('admin.Service.edit', compact('serviceContent'));
+    }
 
-public function update(Request $request, $id)
-{
-    $serviceContent = ServiceContent::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $serviceContent = ServiceContent::findOrFail($id);
 
-    $validatedData = $request->validate([
-        'header' => 'nullable|string|max:255',
-        'content' => 'required|string',
-        'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+        $validatedData = $request->validate([
+            'header' => 'nullable|string|max:255',
+            'content' => 'required|string',
+            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $serviceContent->header = $validatedData['header'] ?? $serviceContent->header;
-    $serviceContent->content = $validatedData['content'];
+        $serviceContent->header = $validatedData['header'] ?? $serviceContent->header;
+        $serviceContent->content = $validatedData['content'];
 
-    $existingImages = json_decode($serviceContent->image, true) ?? [];
-    if ($request->has('remove_images')) {
-        $remainingImages = array_diff($existingImages, $request->remove_images);
-        foreach ($request->remove_images as $image) {
-            if (file_exists(public_path('service_content' . $image))) {
-                unlink(public_path('service_content' . $image));
+        $existingImages = json_decode($serviceContent->image, true) ?? [];
+        if ($request->has('remove_images')) {
+            $remainingImages = array_diff($existingImages, $request->remove_images);
+            foreach ($request->remove_images as $image) {
+                if (file_exists(public_path('service_content' . $image))) {
+                    unlink(public_path('service_content' . $image));
+                }
             }
+            $existingImages = $remainingImages;
         }
-        $existingImages = $remainingImages;
+
+        if ($request->hasFile('image')) {
+            $newImages = [];
+            foreach ($request->file('image') as $image) {
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('service_content'), $filename);
+                $newImages[] = $filename;
+            }
+            $existingImages = array_merge($existingImages, $newImages);
+        }
+
+        $serviceContent->image = json_encode($existingImages);
+
+        $serviceContent->save();
+
+        return back()->with('success', 'Service content updated successfully.');
     }
 
-    if ($request->hasFile('image')) {
-        $newImages = [];
-        foreach ($request->file('image') as $image) {
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('service_content'), $filename);
-            $newImages[] = $filename;
-        }
-        $existingImages = array_merge($existingImages, $newImages);
+
+
+    public function destroy($id)
+    {
+        $serviceContent = ServiceContent::findOrFail($id);
+        $serviceContent->delete();
+
+        return redirect()->back()->with('destroy', 'Service content deleted successfully.');
     }
-
-    $serviceContent->image = json_encode($existingImages);
-
-    $serviceContent->save();
-
-    return back()->with('success', 'Service content updated successfully.');
-
-}
-
-
-
-public function destroy($id)
-{
-    $serviceContent = ServiceContent::findOrFail($id);
-    $serviceContent->delete();
-
-    return redirect()->back()->with('success', 'Service content deleted successfully.');
-}
-
 }

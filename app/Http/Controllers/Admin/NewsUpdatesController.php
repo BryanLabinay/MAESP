@@ -66,7 +66,7 @@ class NewsUpdatesController extends Controller
             'title' => 'required|string|max:255',
             'file' => 'required|array|min:1',
             'file.*' => 'mimes:jpg,jpeg,png,pdf,docx,xlsx|max:2048',
-            'description' => 'nullable|string|max:500',
+            'description' => 'nullable|string|max:500', // Description validation
         ]);
 
         $uploadedFiles = $request->file('file');
@@ -76,45 +76,48 @@ class NewsUpdatesController extends Controller
         }
 
         $newsRecords = [];
-
         $newsId = $request->input('news_id');
 
+        // Check if the news title exists
         $newsTitle = NewsTitle::find($newsId);
-
         if (!$newsTitle) {
-            return back()->withErrors(['news_title' => 'news title not found']);
+            return back()->withErrors(['news_title' => 'News title not found']);
         }
 
         foreach ($uploadedFiles as $file) {
             $fileName = preg_replace('/\s+/', '_', $file->getClientOriginalName());
             $destinationPath = public_path('news/file');
 
+            // Attempt to move the uploaded file to the destination path
             try {
                 $file->move($destinationPath, $fileName);
             } catch (\Exception $e) {
                 return back()->withErrors(['file' => 'File could not be moved']);
             }
 
+            // Verify if the file exists in the destination path
             if (!file_exists($destinationPath . '/' . $fileName)) {
                 return back()->withErrors(['file' => 'File could not be moved']);
             }
 
             $filePath = $fileName;
 
+            // Save the file details in the database
             try {
                 $newsRecords[] = News::create([
                     'news_id' => $newsTitle->id,
                     'title' => $request->input('title', $fileName),
                     'file' => $filePath,
-                    'description' => $request->input('description', $fileName),
+                    'description' => $request->input('description', $fileName), // Save the description
                 ]);
             } catch (\Exception $e) {
-                return back()->withErrors(['file' => 'Error saving transparency to database']);
+                return back()->withErrors(['file' => 'Error saving file to the database']);
             }
         }
 
         return redirect()->back()->with('success', 'Files uploaded successfully');
     }
+
 
 
     /**

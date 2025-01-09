@@ -18,6 +18,28 @@
     @section('content_header')
         <h5 class="fw-semibold text-md">News and Update</h5>
         <hr class="mt-0">
+
+        @if (session('success'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    iconColor: 'white',
+                    customClass: {
+                        popup: 'colored-toast',
+                    },
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerPr0ogressBar: true,
+                });
+                (async () => {
+                    await Toast.fire({
+                        icon: 'success',
+                        title: 'News and Updates added!'
+                    })
+                })()
+            </script>
+        @endif
     @stop
 
     @section('content')
@@ -32,19 +54,23 @@
 
             <div class="row">
                 @foreach ($news as $new)
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a href="{{ route('content', $new->id) }}" class="text-decoration-none text-dark">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card h-100 shadow-sm border-0">
                                 @if ($new->image)
                                     <img src="{{ asset('storage/' . $new->image) }}" alt="{{ $new->news_name }}"
-                                        class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                                        class="card-img-top img-fluid rounded-top"
+                                        style="height: 200px; object-fit: cover;">
                                 @else
-                                    <img src="{{ asset('assets/img/market.jpg') }}" class="card-img-top img-fluid"
-                                        style="height: 200px; object-fit: cover;" alt="{{ $new->news_name }}">
+                                    <img src="{{ asset('assets/img/news.jpg') }}" alt="{{ $new->news_name }}"
+                                        class="card-img-top img-fluid rounded-top"
+                                        style="height: 200px; object-fit: cover;">
                                 @endif
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $new->news_name }}</h5>
-                                    <p class="card-text">{{ $new->description }}</p>
+
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <h5 class="card-title mb-1 text-primary fw-bold"> {{ $new->news_name }}
+                                    </h5>
+                                    <button class="btn btn-outline-primary mt-auto">View Details</button>
                                 </div>
                             </div>
                         </a>
@@ -74,11 +100,11 @@
                                         placeholder="Enter news name" required>
                                 </div>
                                 <!-- Description Field -->
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="newsDescription" class="form-label">Description</label>
                                     <textarea class="form-control" id="newsDescription" name="description" rows="3"
                                         placeholder="Enter news description"></textarea>
-                                </div>
+                                </div> --}}
                                 <!-- Image Upload Field -->
                                 <div class="mb-3">
                                     <label for="newsImage" class="form-label">News Image</label>
@@ -86,7 +112,9 @@
                                         accept="image/*">
                                 </div>
                                 <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary">Save News</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Upload News & Updates</button>
+                                </div>
                             </form>
                         </div>
                     </div>

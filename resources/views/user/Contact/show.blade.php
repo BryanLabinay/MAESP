@@ -3,12 +3,12 @@
     <section id="contact" class="section-bg">
         <div class="container" data-aos="fade-up">
 
-            <div class="section-header">
-                <h3>Contact Us</h3>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+            <div class="section-header mb-5">
+                <h3 class="text-center">Contact Us</h3>
+                {{-- <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p> --}}
             </div>
 
-            <div class="row contact-info">
+            <div class="row contact-info mt-4">
 
                 <div class="col-md-4">
                     <div class="contact-address">

@@ -14,9 +14,6 @@
 
 
         <div class="container">
-            <!-- Media Title Section -->
-            <!-- filepath: /c:/xampp/htdocs/LARAVEL/MAESP/resources/views/user/Media/media-resources.blade.php -->
-            <!-- Include DataTables CSS -->
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
             <!-- Check if media title has an image -->
@@ -27,13 +24,13 @@
         </div>
 
         <!-- Media Files Section -->
-        <div class="media-files">
+        <div class="container">
             <div class="media-file-card">
                 <div class="row">
-                    <div class="col-lg-7">
-                        <div class="card shadow-sm border-0">
-                            <div class="card-header bg-warning text-center">
-                                <h4 class="mb-0">{{ $mediaTitle->media_name }}</h4>
+                    <div class="col-lg-8">
+                        <div class="card shadow-lg border-0">
+                            <div class="card-header bg-warning bg-opacity-25 text-center">
+                                <h4 class="mb-0 fw-bold">{{ $mediaTitle->media_name }}</h4>
                             </div>
                             <div class="card-body">
                                 <table id="mediaTable" class="table table-hover table-striped table-bordered">
@@ -72,6 +69,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-4">
+                        <div class="card border-0 shadow-sm">
+                            <img src="{{ asset('assets/img/webmedia.jpg') }}" alt="Web Media"
+                                class="card-img-top rounded" style="object-fit: cover; max-height: 300px;">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Media Resources</h5>
+                                <p class="card-text text-muted">A beautiful representation of modern media design.</p>
+                                {{-- <a href="#" class="btn btn-primary btn-sm">Learn More</a> --}}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>

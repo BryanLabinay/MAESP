@@ -18,6 +18,4 @@ class ServicesController extends Controller
 
         return view('barangay.Service.services', compact('service', 'serviceContents'));
     }
-
-
 }
