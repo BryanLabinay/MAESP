@@ -201,6 +201,12 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
     Route::get('/add-farmers', [FarmersControlller::class, 'index'])->name('add.farmers');
     Route::get('/list-farmers', [FarmersControlller::class, 'show'])->name('list.farmers');
     Route::post('/store-farmers', [FarmersControlller::class, 'store'])->name('store.farmers');
+    Route::get('/edit-farmers/{id}', [FarmersControlller::class, 'edit'])->name('edit.farmers');
+    Route::put('/farmers/{id}', [FarmersControlller::class, 'update'])->name('farmers.update');
+    Route::get('/status/{id}/update/{status}', [FarmersControlller::class, 'status'])->name('status.update');
+
+
+
 
     // Cropping
     // Route::get('/add-cropping-reports', [CroppingController::class, 'create'])->name('add.cropping');
@@ -208,10 +214,18 @@ Route::middleware(['auth', 'barangay'])->prefix('barangay')->group(function () {
 
     Route::get('/list-cropping reports', [CroppingController::class, 'index'])->name('list.cropping');
     Route::post('/store-cropping', [CroppingController::class, 'store'])->name('store.cropping');
+    Route::get('/view-cropping/{id}', [CroppingController::class, 'view'])->name('view.cropping');
+    Route::get('/edit-cropping/{id}', [CroppingController::class, 'edit'])->name('edit.cropping');
+    Route::put('/cropping/{id}', [CroppingController::class, 'update'])->name('cropping.update');
+
 
     // Brgy export
     Route::get('/farmers/export-pdf', [ExportController::class, 'exportFarmersPDF'])->name('farmers.export.pdf');
     Route::get('/farmers/export-excel', [ExportController::class, 'exportFarmersExcel'])->name('farmers.export.excel');
+
+    //Cropping export
+    Route::get('/cropping/export-pdf', [ExportController::class, 'exportCroppingPDF'])->name('cropping.pdf');
+    Route::get('/cropping/export-excel', [ExportController::class, 'exportCroppingExcel'])->name('cropping.excel');
 
     //Services
     Route::get('/services/{id}', [ServicesController::class, 'index'])->name('brgy.service');

@@ -20,6 +20,7 @@ class Farmer extends Model
         'suffix',
         'sex',
         'marital_status',
+        'status',
         'birth_date',
         'address',
         'phone_number',

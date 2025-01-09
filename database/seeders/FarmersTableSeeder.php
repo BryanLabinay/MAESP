@@ -29,6 +29,7 @@ class FarmersTableSeeder extends Seeder
                 'birth_date' => $faker->date(),
                 'phone_number' => $faker->phoneNumber,
                 'marital_status' => $faker->randomElement(['single', 'married', 'divorced', 'widowed']),
+                'status' => $faker->randomElement(['active', 'inactive']),
                 'name_of_spouse' => $faker->name,
                 'spouse_number' => $faker->phoneNumber,
                 'parent_name' => $faker->name,

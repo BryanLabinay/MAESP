@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('marital_status')->nullable();
+            $table->string('status')->default('active');
 
             $table->string('name_of_spouse')->nullable();
             $table->string('spouse_number')->nullable();
