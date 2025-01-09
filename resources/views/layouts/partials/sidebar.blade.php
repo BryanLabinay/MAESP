@@ -60,7 +60,7 @@
 
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
                 data-bs-target="#ServicecollapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                 Services
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
@@ -82,7 +82,7 @@
 
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
                 data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
                 Media Resources
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
@@ -103,7 +103,7 @@
 
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
                 data-bs-target="#transparencyLayouts" aria-expanded="false" aria-controls="transparencyLayouts">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-earth-asia"></i></div>
                 Transparency
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
@@ -125,7 +125,7 @@
 
             <a class="nav-link collapsed text-dark" href="#" data-bs-toggle="collapse"
                 data-bs-target="#newsLayouts" aria-expanded="false" aria-controls="newsLayouts">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-newspaper"></i></div>
                 News and Update
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>

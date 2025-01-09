@@ -28,7 +28,8 @@ class SendReportController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'file' => 'required|file|mimes:jpg,jpeg,png,gif,pdf,doc,docx,xlsx|max:20480',
+            // Modify the file validation to only accept non-image formats
+            'file' => 'required|file|mimes:pdf,doc,docx,xlsx|max:20480',
         ]);
 
         $report = new Report();
@@ -38,7 +39,7 @@ class SendReportController extends Controller
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename =$file->getClientOriginalName();
             $file->move(public_path('media/reports'), $filename);
             $report->file = $filename;
         }
@@ -73,7 +74,7 @@ class SendReportController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'file' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf,doc,docx|max:20480',
+            'file' => 'required|file|mimes:pdf,doc,docx,xlsx|max:20480',
         ]);
 
         $report = Report::findOrFail($id);

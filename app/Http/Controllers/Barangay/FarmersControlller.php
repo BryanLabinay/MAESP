@@ -109,4 +109,75 @@ class FarmersControlller extends Controller
 
         return redirect()->back()->with('success', 'Farmer and parcels added successfully!');
     }
+
+    public function edit($id){
+
+        $farmer = Farmer::findOrFail($id);
+
+        return view('barangay.farmers.edit',compact('farmer'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        $farmer = Farmer::findOrFail($id);
+
+        // Validate form data
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone_number' => 'nullable|string',
+            'parcels' => 'array|nullable',
+            'parcels.*.farm_location' => 'required|string',
+            'parcels.*.farm_area' => 'required|numeric',
+            'parcels.*.farm_type' => 'nullable|string',
+            'parcels.*.crop_commodity' => 'nullable|string',
+            'deleted_parcels' => 'array|nullable',
+            'address' => 'nullable|string',
+        ]);
+
+        // Filter out parcels marked for deletion
+        $parcels = $request->input('parcels', []);
+        $deletedParcels = $request->input('deleted_parcels', []);
+
+        // Remove the parcels from the array that need to be deleted
+        $parcels = array_filter($parcels, function ($parcel, $index) use ($deletedParcels) {
+            return !in_array($index, $deletedParcels);
+        }, ARRAY_FILTER_USE_BOTH);
+
+        // Update the farmer data
+        $farmer->first_name = $request->input('first_name');
+        $farmer->middle_name = $request->input('middle_name');
+        $farmer->last_name = $request->input('last_name');
+        $farmer->suffix = $request->input('suffix');
+        $farmer->sex = $request->input('sex');
+        $farmer->birth_date = $request->input('birth_date');
+        $farmer->phone_number = $request->input('phone_number');
+        $farmer->address = $request->input('address');  // Ensure address is updated
+        $farmer->parcels = $parcels;
+
+        $farmer->save();
+
+        return redirect()->route('list.farmers')->with('success', 'Farmer updated successfully.');
+    }
+
+
+    public function status(Request $request, $id, $status)
+{
+    // Find the farmer by ID
+    $farmer = Farmer::findOrFail($id);
+
+    // Validate the status change to ensure it is either 'active' or 'inactive'
+    if (!in_array($status, ['active', 'inactive'])) {
+        return redirect()->back()->with('error', 'Invalid status value.');
+    }
+
+    // Update the farmer's status
+    $farmer->status = $status;
+    $farmer->save();
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Farmer status updated successfully.');
+}
+
 }
