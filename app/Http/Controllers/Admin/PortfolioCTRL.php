@@ -83,7 +83,7 @@ class PortfolioCTRL extends Controller
 
         $portfolio->save(); // Save the updated portfolio
 
-        return redirect()->route('portfolio')->with('success', 'Portfolio updated successfully!');
+        return redirect()->route('portfolio')->with('update', 'Portfolio updated successfully!');
     }
 
     public function destroy($id)

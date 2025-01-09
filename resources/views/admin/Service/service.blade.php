@@ -59,27 +59,29 @@
                     @php
                         $images = json_decode($service->image); // Decode the image JSON array
                     @endphp
-                    <div class="col-md-3 mb-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a href="{{ route('service.create', $service->id) }}" class="text-decoration-none">
-                            <div class="card h-100 service-card">
+                            <div class="card h-100 service-card shadow-sm border-0">
                                 <!-- Show the first image if available -->
                                 @if ($images && count($images) > 0)
-                                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid"
+                                    <img src="{{ asset($images[0]) }}" class="card-img-top img-fluid rounded-top"
                                         style="height: 200px; object-fit: cover;" alt="Service Image">
                                 @else
-                                    <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top img-fluid"
-                                        style="height: 200px; object-fit: cover;" alt="Placeholder Image">
+                                    <img src="{{ asset('assets/img/default.jpg') }}"
+                                        class="card-img-top img-fluid rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="Placeholder Image">
                                 @endif
 
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $service->service_name }}</h5>
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <h5 class="card-title mb-2 text-primary fw-bold">{{ $service->service_name }}</h5>
+                                    <button class="btn btn-outline-primary mt-auto">View Details</button>
                                 </div>
                             </div>
                         </a>
                     </div>
                 @endforeach
-
             </div>
+
 
 
         </div>

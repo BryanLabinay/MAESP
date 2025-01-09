@@ -118,6 +118,7 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
     Route::get('/services/{service}/content/create', [ServiceController::class, 'createContentForm'])->name('service.create');
     Route::post('/services/{service}/content', [ServiceController::class, 'storeContent'])->name('service.content.store');
     Route::get('/service/{id}/edit', [ServiceController::class, 'edit'])->name('edit.service');
+    Route::get('/service/{id}/show', [ServiceController::class, 'show'])->name('show.service');
     Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('service.content.update');
     Route::delete('/service/{id}', [ServiceController::class, 'destroy'])->name('service.content.destroy');
 

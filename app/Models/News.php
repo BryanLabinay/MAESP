@@ -12,7 +12,7 @@ class News extends Model
     protected $fillable = [
         'title',
         'file',
-        // 'description',
+        'description',
         'news_id',
     ];
 

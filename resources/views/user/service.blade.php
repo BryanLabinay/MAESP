@@ -8,28 +8,105 @@
         </div><!-- End Section Title -->
         <div class="content">
             <div class="container">
-                <div class="row g-0">
+                <div class="row g-4">
                     @foreach ($serviceContents as $content)
                         <div class="col-lg-3 col-md-6">
                             <div class="service-item">
+                                <div class="card shadow-sm h-100">
+                                    <!-- Image Section with Carousel -->
+                                    @if ($content->image)
+                                        <div id="carousel{{ $loop->index }}" class="carousel slide"
+                                            data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                @foreach (json_decode($content->image, true) as $index => $image)
+                                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                        <img src="{{ asset('service_content/' . $image) }}"
+                                                            class="d-block w-100 img-fluid rounded-top"
+                                                            style="height: 200px; object-fit: cover;"
+                                                            alt="{{ $content->header }}">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#carousel{{ $loop->index }}" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#carousel{{ $loop->index }}" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                    @else
+                                        <img src="{{ asset('assets/img/default.jpg') }}"
+                                            class="card-img-top img-fluid rounded-top"
+                                            style="height: 200px; object-fit: cover;" alt="Default Image">
+                                    @endif
 
-
-                                <div class=" card ">
+                                    <!-- Card Body -->
                                     <div class="card-body">
+                                        <!-- Header -->
                                         @if ($content->header)
-                                            <h3 class="service-heading">
+                                            <h5 class="card-title text-primary text-truncate" style="font-weight: 600;">
                                                 {{ $content->header }}
-                                            </h3>
+                                            </h5>
                                         @endif
-                                        <p>{{ $content->content }}</p>
+
+                                        <!-- Content -->
+                                        <p class="card-text text-muted">
+                                            {{ strlen($content->content) > 100 ? substr($content->content, 0, 100) . '...' : $content->content }}
+                                        </p>
+
+                                        <!-- Action Button -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary mt-2"
+                                            data-bs-toggle="modal" data-bs-target="#modal-{{ $content->id }}">
+                                            Read More
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal-{{ $content->id }}" tabindex="-1"
+                            aria-labelledby="modalLabel-{{ $content->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header text-white">
+                                        <h5 class="modal-title" id="modalLabel-{{ $content->id }}">
+                                            {{ $content->header }}
+                                        </h5>
+                                        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        @if ($content->image)
+                                            <div class="text-center mb-3">
+                                                <img src="{{ asset('service_content/' . json_decode($content->image, true)[0]) }}"
+                                                    class="img-fluid rounded shadow-sm" alt="{{ $content->header }}"
+                                                    style="max-height: 400px; object-fit: cover;">
+                                            </div>
+                                        @endif
+                                        <p class="text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                                            {{ $content->content }}
+                                        </p>
+                                    </div>
+
+                                    <!-- Modal Footer -->
+                                    <div class="modal-footer bg-light">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach
-
                 </div>
+
             </div>
         </div>
     </section>

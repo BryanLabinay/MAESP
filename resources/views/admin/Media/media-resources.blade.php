@@ -48,33 +48,36 @@
             <div class="row mb-3">
                 <div class="col-12 d-flex justify-content-end">
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addMediaModal">
-                        Add Media
+                        Add Media Resources
                     </button>
                 </div>
             </div>
 
             <div class="row">
                 @foreach ($mediaItems as $mediaTitle)
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a href="{{ route('media.content', $mediaTitle->id) }}" class="text-decoration-none text-dark">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card h-100 shadow-sm border-0">
                                 @if ($mediaTitle->image)
                                     <img src="{{ asset('media/image/' . $mediaTitle->image) }}"
-                                        alt="{{ $mediaTitle->media_name }}" class="card-img-top img-fluid"
+                                        alt="{{ $mediaTitle->media_name }}" class="card-img-top img-fluid rounded-top"
                                         style="height: 200px; object-fit: cover;">
                                 @else
-                                    <img src="{{ asset('assets/img/market.jpg') }}" class="card-img-top img-fluid"
-                                        style="height: 200px; object-fit: cover;" alt="{{ $mediaTitle->media_name }}">
+                                    <img src="{{ asset('assets/img/media.jpg') }}" alt="{{ $mediaTitle->media_name }}"
+                                        class="card-img-top img-fluid rounded-top"
+                                        style="height: 200px; object-fit: cover;">
                                 @endif
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $mediaTitle->media_name }}</h5>
-                                    <p class="card-text">{{ $mediaTitle->description }}</p>
+
+                                <div class="card-body d-flex flex-column align-items-center text-center">
+                                    <h5 class="card-title mb-2 text-primary fw-bold">{{ $mediaTitle->media_name }}</h5>
+                                    <button class="btn btn-outline-primary mt-auto">View Details</button>
                                 </div>
                             </div>
                         </a>
                     </div>
                 @endforeach
             </div>
+
 
 
             <div class="modal fade" id="addMediaModal" tabindex="-1" aria-labelledby="addMediaModalLabel"
@@ -110,7 +113,9 @@
                                         accept="image/*">
                                 </div>
                                 <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary">Save Media</button>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Upload Media</button>
+                                </div>
                             </form>
                         </div>
                     </div>
